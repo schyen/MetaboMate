@@ -1,2 +1,2 @@
 # MetaboMate
-R tools for NMR-based metabonomics
+R functions for NMR-based metabonomics
