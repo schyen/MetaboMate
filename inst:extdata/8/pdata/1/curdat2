@@ -1,0 +1,19 @@
+##TITLE= Parameter file, XWIN-NMR		Version 3.5
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= comet
+$$ Mon Aug 10 13:58:27 2009 BST (UT+1h)  comet@bc-jkn-17
+$$ /ubackup/data/comet/nmr/JL_bariatricrat/8/pdata/1/curdat2
+##$DU2= </ubackup>
+##$DU3= </ubackup>
+##$EXPNO2= 7
+##$EXPNO3= 8
+##$NAME2= <JL_bariatricrat>
+##$NAME3= <JL_bariatricrat>
+##$PROCNO2= 1
+##$PROCNO3= 1
+##$TYPE= <nmr>
+##$USER2= <comet>
+##$USER3= <comet>
+##END=
