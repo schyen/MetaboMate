@@ -11,7 +11,7 @@
 #' @importFrom stats cor cov
 #' @importFrom ggplot2 ggplot geom_line scale_x_reverse scale_color_gradientn ggtitle xlab ylab theme_bw ggtitle
 #' @importFrom colorRamps matlab.like2
-#' g=ggplot(df, aes(ppm, cov, colour=abs(cor)))+
+
 
 plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
 

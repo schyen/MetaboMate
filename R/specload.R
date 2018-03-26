@@ -16,7 +16,7 @@
 #' @seealso plotload specOverlay
 #' @author Torben Kimhofer
 #' @importFrom reshape2 melt
-#' @importFrom ggplot2 aes_string scale_x_reverse ggtitle xlab facet_grid theme_bw theme element_text geom_line
+#' @importFrom ggplot2 aes_string scale_x_reverse ggtitle xlab facet_grid theme_bw theme element_text geom_line scale_colour_gradientn
 #' @importFrom colorRamps matlab.like2
 #' @importFrom scales pretty_breaks
 #' @importFrom stats as.formula
