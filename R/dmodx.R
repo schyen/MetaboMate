@@ -34,7 +34,7 @@ dmodx=function(model, plot=T){
   if(plot==T){
     g=ggplot(df, aes_string('ID', 'DmodX', colour='col'))+
       geom_point()+
-      scale_color_gradientn(colours=matlab.like2(10), name=expression(t[pred]))+
+      scale_colour_gradientn(colours=matlab.like2(10), name=expression(t[pred]))+
       scale_y_continuous(limits = c(min(dmodX), max(c(dmodX, ci95))), name='DModX')+
       geom_hline(yintercept=ci95, linetype=2, colour='gray80')+
       xlab('Sample index')+
