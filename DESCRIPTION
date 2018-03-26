@@ -1,0 +1,40 @@
+Package: MetaboMate
+Type: Package
+Title: R tools for NMR-based metabonomics
+Version: 0.1.0
+Authors@R: c(person("Kimhofer", "Torben", email = "tkimhofer@gmail.com",
+  role = c("aut", "cre")),
+  person("Holmes", "Elaine", email = "e.holmes@imperial.ac.uk", role = c("aut")),
+  person("Nicholson", "Jeremy K.", email = "j.nicholson@imperial.ac.uk", role = c("aut")),
+  person("Li", "Jia V.", email = "jia.li@imperial.ac.uk", role = c("ctb")),
+  person("Wist", "Julian", email = "",  role = c("aut", "ctb")))
+Maintainer: Torben Kimhofer <tkimhofer@gmail.com>
+Description: R tools for NMR-based metabonomics. Fully validated and comprehensive library that covers all basic steps of the metabonomics analysis pipeline. This includes reading-in 1D spectra from Bruker file format, data preprocessing, various normalisation methods, unsupervised and supervised multivariate analysis techniques and feature extraction. Most of the provided functions can also be used for MS data analysis (such as PQN normalisation or OPLS). All combined with aestethically pleasing visualisations using ggplot2.
+License: CC BY-NC-ND 4.0
+Encoding: UTF-8
+LazyData: true
+Imports: 
+  scales (>= 0.5.0),
+  gridExtra (>= 2.3),
+  reshape2 (>= 1.4.3),
+  pROC (>= 1.10.0),
+  colorRamps (>= 2.3),
+  RColorBrewer,
+  calibrate,
+  ellipse,
+  ggrepel,
+  pcaMethods,
+  plyr,
+  ptw,
+  methods,
+  ggplot2 (>= 2.2.1),
+  speaq
+Depends:
+  R(>= 3.3.3),
+RoxygenNote: 6.0.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/kimsche/MetaboMate
+BugReports: https://github.com/kimsche/MetaboMate/issues
