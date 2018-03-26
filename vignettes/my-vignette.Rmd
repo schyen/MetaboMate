@@ -28,7 +28,9 @@ Although not essential for this tutorial, I recommend to install RStudio. RStudi
 The first step is to load NMR spectra into to R workspace. This can be accomplished with the **readBruker()** function, which imput argument is the path to the NMR experiment folder. It them imports all spectra into matrix format. A matrix is a data table where each row represents an observation (here this is a urine NMR spectrum) and each column represents a metabolic feature (ppm variable).
 ```{r, fig.show='hold'}
 library(MetaboMate)
-readBruker(path = '/Volumes/Torben_1/Rproj/MetaboNomics/inst:extdata')
+path=system.file("extdata", package = "MetaboMate")
+print(path)
+readBruker(path)
 ls()
 ```
 
