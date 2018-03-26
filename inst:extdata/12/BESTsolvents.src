@@ -1,7 +1,0 @@
-set wp(psetVersion)	1.32.2.6
-set GParValue(aSppsl) [list ""]
-set GParValue(aSptsl) [list "" "" "" "" ""]
-set GParValue(aSptrl) [list "" "" "" "" ""]
-set GParValue(aSpwsl) [list "" "citrate" "pushgap" "peroxide" "pushwash" "" "pepsinHCl" "" "" ""]
-set GParValue(asflprt)	1
-set GParValue(asflprp)	2
