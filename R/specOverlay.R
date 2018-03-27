@@ -35,6 +35,7 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
   df=melt(df, id.vars=c('alp','ID',names(an)))
   df$variable=as.numeric(gsub('^\\.', '-', gsub('ppm_','', df$variable)))
 
+  print(df[which(is.na(df), arr.ind=T),])
   # initiate generic ggplot object
   g<- ggplot()+
     scale_x_reverse(breaks=seq(shift[1], shift[2], by=abs(diff(shift))/20),

@@ -42,7 +42,9 @@ matspec(ppm, X, shift = range(ppm))
 
 From this overview we can see that the spectral width ranges from -5 to approximately 15 ppm with the residual water signal resonating around 4.8 ppm. 
 
-There are different higher-level plotting functions available that allow a more comprehensive spectral visualisation of individual peaks or peak areas. One of this function is **specOverlay**, which is comparable to **matspec()** shown above. For illustration purposes we plot the TSP signal (a component of the sample preparation buffer) coloured accroding to the receiver gain paramter in **meta** dataframe. The RG value amplifies the NMR signal (free induction decay) before it is converted to a digital signal. 
+There are different higher-level plotting functions available that allow a more comprehensive spectral visualisation of individual peaks or peak areas. One of this function is **specOverlay()**, which is comparable to **matspec()** shown above. 
+
+For illustration purposes we plot the TSP signal (a component of the sample preparation buffer) coloured accroding to the receiver gain paramter in **meta** dataframe. The RG value amplifies the NMR signal (free induction decay) before it is converted to a digital signal. 
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # plot TSP signal
@@ -53,13 +55,18 @@ specOverlay(X, ppm, shift=c(-0.05,0.05),
 
 ```
 
-From the plot above you can see that there were different types of experiments performed (indicated by different linetypes) and that the RG is related to the signal strength in each experiment. 
+From the plot above you can see that there were different types of experiments performed (indicated by different linetypes) and that the RG is related to the TSP signal strength within each experiment type. 
 
 
-The different experiment types map to different biolfuids and NMR pulse sequences, which makes quantitative comparison across spectra not possible. Therefore, we must filter for the desired experiment type (**<JL-noe1d>**) before we continue with the analysis.
+The different experiment types map to different biolfuids and NMR pulse sequences. This makes a quantitative comparison across spectra not possible and therefore, we filter for the desired experiment type (**\<JL-noe1d\>**) before we continue with the analysis.
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # plot TSP signal
+
+idx=grep('noe', meta$a_EXP)
+X=X[idx,]
+meta=meta[idx,]
+
 specOverlay(X, ppm, shift=c(-0.05,0.05), 
             an=list('All_Spectra'='All spectra', # facetting (here: a single panel) 
                     'Receiver Gain'=as.numeric(meta$a_RG), # colour
