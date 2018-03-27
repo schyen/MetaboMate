@@ -15,6 +15,7 @@
 #' @references Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 #' @return This function returns an \emph{OPLS_MetaboMate} S4 object.
 #' @seealso \code{\link{OPLS_MetaboMate-class}}
+#' @author Torben Kimhofer
 #' @importFrom graphics plot
 #' @importFrom methods getSlots new representation setClass
 #' @importFrom stats cov sd var

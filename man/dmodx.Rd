@@ -22,3 +22,6 @@ Bylesjö M., \emph{et al.} (2002) OPLS discriminant analysis: combining the stre
 
 Wold S. (1976) Pattern recognition by means of disjoint princi-pal components models.  \emph{Pattern Recognition}, 8, 127-39.
 }
+\author{
+Torben Kimhofer
+}

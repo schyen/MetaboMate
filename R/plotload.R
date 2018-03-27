@@ -12,9 +12,9 @@
 #' @importFrom stats cor cov
 #' @importFrom ggplot2 ggplot geom_line scale_x_reverse scale_color_gradientn ggtitle xlab ylab theme_bw ggtitle aes_string
 #' @importFrom colorRamps matlab.like2
-#' @seealso \code{\link{OPLS_MetaboMate-class}}
+#' @seealso \code{\link[=OPLS_MetaboMate-class]{OPLS_MetaboMate}}
 #' @seealso \code{\link{opls}}
-#' @seealso \code{\link{PCA_MetaboMate-class}}
+#' @seealso \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}}
 #' @seealso \code{\link{pca}}
 
 

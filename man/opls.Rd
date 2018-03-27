@@ -43,3 +43,6 @@ Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tut
 \seealso{
 \code{\link{OPLS_MetaboMate-class}}
 }
+\author{
+Torben Kimhofer
+}

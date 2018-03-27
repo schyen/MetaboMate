@@ -2,11 +2,11 @@
 #' @param X Data to be scaled, can be a vector or a matrix with observations in rows variables in columns.
 #' @param idc Indices of samples in X used to derive center/scale parameters (relevant for statistical validation procedures, e.g., scaling X with training set samples). If set to \code{all}, no selection is performed.
 #' @param center Logical indicating if data should be mean centered.
-#' @param scale Logical indicating if data should be scaled. Currently only unit variance (UV) scaling is implemented.
+#' @param scale Scaling method that should be applied: none, unit variance (UV) or pareto scaling.
 #' @return Centred/scaled data of the same dimensions than input.
 
 
-center_scale <- function(X, idc='all', center=T, scale = 'UV') {
+center_scale <- function(X, idc='all', center=T, scale = c('None', 'UV', 'Pareto')) {
 
   # if idc empty then use all samples
   if(idc[1]=='all'){
@@ -26,9 +26,15 @@ center_scale <- function(X, idc='all', center=T, scale = 'UV') {
     X <- scale(X, center = center, scale = F)
   }
 
-  if (scale[1] == 'UV') {
+  if (scale[1] == 'None') {
+    return(X)
+  }
+
+  if (scale[1] %in% c('UV', 'Pareto')) {
     sdX <- apply(X1, 2, sd)
-    X <- scale(X, center = F, scale = sdX)
+    switch(scale[1],
+           'UV' = {X <- scale(X, center = F, scale = sdX)},
+           'Pareto'= {X <- scale(X, center = F, scale = sqrt(sdX))})
   }
 
   if (is.numeric(scale[1])) {

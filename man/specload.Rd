@@ -39,6 +39,14 @@ OPLS: If \code{type='Statistical recostruction'} the function calculates the cov
 }
 \seealso{
 plotload specOverlay
+
+\code{\link[=OPLS_MetaboMate-class]{OPLS_MetaboMate}}
+
+\code{\link{opls}}
+
+\code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}}
+
+\code{\link{pca}}
 }
 \author{
 Torben Kimhofer

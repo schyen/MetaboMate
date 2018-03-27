@@ -29,11 +29,11 @@ Plotting PCA or OPLS loadings
 OPLS: If \code{type='Statistical recostruction'} the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm varaible). If \code{type='Backscaled'} the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.
 }
 \seealso{
-\code{\link{OPLS_MetaboMate-class}}
+\code{\link[=OPLS_MetaboMate-class]{OPLS_MetaboMate}}
 
 \code{\link{opls}}
 
-\code{\link{PCA_MetaboMate-class}}
+\code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}}
 
 \code{\link{pca}}
 }

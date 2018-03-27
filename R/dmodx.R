@@ -8,6 +8,7 @@
 #' @importFrom ggplot2 ggplot aes_string geom_point scale_colour_gradientn geom_hline xlab scale_y_continuous theme_bw theme element_blank element_text
 #' @importFrom colorRamps matlab.like
 #' @importFrom stats t.test sd
+#' @author Torben Kimhofer
 # E=residual Matrix
 # N=number of samples
 # K=number of variables

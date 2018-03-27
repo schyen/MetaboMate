@@ -4,7 +4,8 @@
 \alias{center_scale}
 \title{Centering and scaleing vectors or matrices}
 \usage{
-center_scale(X, idc = "all", center = T, scale = "UV")
+center_scale(X, idc = "all", center = T, scale = c("None", "UV",
+  "Pareto"))
 }
 \arguments{
 \item{X}{Data to be scaled, can be a vector or a matrix with observations in rows variables in columns.}
@@ -13,7 +14,7 @@ center_scale(X, idc = "all", center = T, scale = "UV")
 
 \item{center}{Logical indicating if data should be mean centered.}
 
-\item{scale}{Logical indicating if data should be scaled. Currently only unit variance (UV) scaling is implemented.}
+\item{scale}{Scaling method that should be applied: none, unit variance (UV) or pareto scaling.}
 }
 \value{
 Centred/scaled data of the same dimensions than input.

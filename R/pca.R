@@ -3,40 +3,52 @@
 #' @description This function is used to perform Principal Component Analysis (PCA).
 #' @param X Numeric input matrix with each row representing an observation and each column a metabolic feature.
 #' @param pc Desired number of principal components.
-#' @param scale Desired scaling, currently only unit variance scaling (or no scaling \code{scale=FALSE} is implemented.
+#' @param scale Desired scaling: None, unit variance (UV) or Pareto scaling
+#' @param method Algorithm for computing PCA. NIPALS is standard and usually fine. It can handle small amounts of missing/NA values.
+#' @details Other methods include: 'svd', 'rnipals', 'bpca', 'ppca', 'svdImpute', 'robustPca', 'nlpca', 'llsImpute', 'llsImputeAll'. If these methods are specified, the \code{pca} function from the \code{pcaMethods} package is used to fit PCA model (see References).
 #' @param center Logical indicating if data should be mean centred.
 #' @references Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 #' @return This function returns a \emph{PCA_MetaboMate} S4 object.
 #' @author Torben Kimhofer
-#' @seealso \code{\link{PCA_MetaboMate-class}}
-
-pca=function(X, pc=2, scale='UV', center=T){
+#' @seealso \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}}
+#' @seealso \code{\link[pcaMethods]{pca}}
+#' @importFrom pcaMethods pca
+#'
+pca=function(X, pc=2, scale=c('None', 'UV', 'Pareto'), center=T, method='nipals'){
 
   X=as.matrix(center_scale(X, idc = 'all', center, scale))
 
-  res=list()
-  for(i in 1:pc){
-    if(i==1){
-      res[[i]]=NIPALS_PCAcomponent(X)
-    }else(
-      res[[i]]=NIPALS_PCAcomponent(X=res[[i-1]][[1]])
-    )
+  if(method=='nipals'){
+    res=list()
+    for(i in 1:pc){
+      if(i==1){
+        res[[i]]=NIPALS_PCAcomponent(X)
+      }else(
+        res[[i]]=NIPALS_PCAcomponent(X=res[[i-1]][[1]])
+      )
+    }
+
+    Tpc=sapply(res, '[[',2)
+    Ppc=sapply(res, '[[',3)
+
+    #total.var<-sum(diag(cov(X))) #Calculate total variance in
+    total.var<-totSS(X)
+    prop.var<-rep(NA,ncol(Tpc));
+    cum.var<-rep(NA,ncol(Tpc)) #Create #Calculate proportion of variance explained and cumulative
+    for(i in 1:ncol(Tpc)){prop.var[i]<-var(Tpc[,i])/total.var}
+    mod_pca=new('PCA_MetaboMate',
+                t=Tpc,
+                p=Ppc,
+                nc=pc,
+                R2=prop.var)
+  }else{
+    mod=pcaMethods::pca(X, nPcs=pc, scale='none', center=F, method=method)
+    mod_pca=new('PCA_MetaboMate',
+                t=mod@scores,
+                p=mod@loadings,
+                nc=pc,
+                R2=mod@R2cum)
   }
-
-  Tpc=sapply(res, '[[',2)
-  Ppc=sapply(res, '[[',3)
-
-  #total.var<-sum(diag(cov(X))) #Calculate total variance in
-  total.var<-totSS(X)
-  prop.var<-rep(NA,ncol(Tpc));
-  cum.var<-rep(NA,ncol(Tpc)) #Create #Calculate proportion of variance explained and cumulative
-  for(i in 1:ncol(Tpc)){prop.var[i]<-var(Tpc[,i])/total.var}
-
-  mod_pca=new('PCA_MetaboMate',
-              t=Tpc,
-              p=Ppc,
-              nc=pc,
-              R2=prop.var)
 
   return(mod_pca)
 

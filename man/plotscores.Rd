@@ -47,3 +47,6 @@ Hotelling, H. (1931) The generalization of Student’s ratio. \emph{Ann. Math. S
 
 \code{\link{pca}}
 }
+\author{
+Torben Kimhofer
+}

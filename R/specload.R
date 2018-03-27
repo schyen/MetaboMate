@@ -14,6 +14,10 @@
 #' @description  Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument \code{shift} should be as small as possible. List argument \code{an} must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of \code{an} must have the same length as \code{X}.
 #' @details OPLS: If \code{type='Statistical recostruction'} the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm varaible). If \code{type='Backscaled'} the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.
 #' @seealso plotload specOverlay
+#' @seealso \code{\link[=OPLS_MetaboMate-class]{OPLS_MetaboMate}}
+#' @seealso \code{\link{opls}}
+#' @seealso \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}}
+#' @seealso \code{\link{pca}}
 #' @author Torben Kimhofer
 #' @importFrom reshape2 melt
 #' @importFrom ggplot2 aes_string scale_x_reverse ggtitle xlab facet_grid theme_bw theme element_text geom_line scale_colour_gradientn
