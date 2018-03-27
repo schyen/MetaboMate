@@ -22,7 +22,7 @@ plotscores(model, pc = c(1, 2), an, title = "", qc = NA, legend = "in",
 
 \item{cv.scores}{Logical value (TRUE or FALSE) indicating if cross-validated scores should be plotted for the predictive component(s) (only for PLS and O-PLS).}
 
-\item{...}{Additional values passed on to \code{\link[ggplot2]{scale_colour_gradientn}}}
+\item{...}{Additional values passed on to \code{\link[ggplot2]{scale_colour_gradientn}}.}
 }
 \value{
 This function returns a \emph{ggplot2} plot object.
@@ -39,7 +39,11 @@ Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS)
 Hotelling, H. (1931) The generalization of Student’s ratio. \emph{Ann. Math. Stat.}, 2, 360-378.
 }
 \seealso{
-\code{\link{MetaboMate-class}}
+\code{\link{OPLS_MetaboMate-class}}
 
 \code{\link{opls}}
+
+\code{\link{PCA_MetaboMate-class}}
+
+\code{\link{pca}}
 }

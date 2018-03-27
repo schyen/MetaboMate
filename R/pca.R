@@ -8,17 +8,18 @@
 #' @references Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 #' @return This function returns a \emph{PCA_MetaboMate} S4 object.
 #' @author Torben Kimhofer
+#' @seealso \code{\link{PCA_MetaboMate-class}}
 
 pca=function(X, pc=2, scale='UV', center=T){
 
-  X=as.matrix(MetaboMate:::center_scale(X, idc = 'all', center, scale))
+  X=as.matrix(center_scale(X, idc = 'all', center, scale))
 
   res=list()
   for(i in 1:pc){
     if(i==1){
-      res[[i]]=MetaboMate:::NIPALS_PCAcomponent(X)
+      res[[i]]=NIPALS_PCAcomponent(X)
     }else(
-      res[[i]]=MetaboMate:::NIPALS_PCAcomponent(X=res[[i-1]][[1]])
+      res[[i]]=NIPALS_PCAcomponent(X=res[[i-1]][[1]])
     )
   }
 

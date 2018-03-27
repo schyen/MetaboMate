@@ -22,7 +22,7 @@
 #' @importFrom stats as.formula
 
 
-specload=function(model, X, ppm, shift=c(0,10), an=list(facet , col, ltype), alp=0.3, size=1, pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
+specload=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=1, pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
 
   if(length(model@Xscale)!=ncol(X)){
     stop('Model loadings do not fit to X matrix.')
@@ -130,8 +130,8 @@ specload=function(model, X, ppm, shift=c(0,10), an=list(facet , col, ltype), alp
   }
 
   g=ggplot()+
-    geom_line(data=df1, aes(ppm, Intensity, color=load, group=ID), size=0.8)+
-    geom_line(data=df, aes(variable, value,group=ID), alpha=alp, size=0.1)+
+    geom_line(data=df1, aes_string('ppm', 'Intensity', color='load', group='ID'), size=0.8)+
+    geom_line(data=df, aes_string('variable', 'value',group='ID'), alpha=alp, size=0.1)+
     scale_x_reverse(breaks=round(seq(shift[1], shift[2], by=abs(diff(shift))/20),3))+
     scale_y_continuous(limits=limY)+
     ggtitle(title)+

@@ -4,9 +4,9 @@
 \alias{specload}
 \title{Overlay PCA or OPLS loadings with spectra}
 \usage{
-specload(model, X, ppm, shift = c(0, 10), an = list(facet, col, ltype),
-  alp = 0.3, size = 1, pc = 1, type = c("Statistical reconstruction",
-  "Backscaled"), title = "")
+specload(model, X, ppm, shift = c(0, 10), an, alp = 0.3, size = 1,
+  pc = 1, type = c("Statistical reconstruction", "Backscaled"),
+  title = "")
 }
 \arguments{
 \item{model}{PCA or OPLS model generated via \emph{MetaboMate} package functions.}

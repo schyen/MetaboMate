@@ -24,6 +24,9 @@ This function is used to perform Principal Component Analysis (PCA).
 \references{
 Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 }
+\seealso{
+\code{\link{PCA_MetaboMate-class}}
+}
 \author{
 Torben Kimhofer
 }
