@@ -1,0 +1,11 @@
+##TITLE= Parameter file, TOPSPIN		Version 2.0.a
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 1	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= jli
+$$ 2009-11-08 17:19:07.645 +0000  IC\jli@BC-WANGYL
+$$ C:/data/jli/nmr/JL_bariatricrat/178/pdata/1/assocs
+$$ process C:\Bruker\TOPSPIN\prog\mod\dataserver.exe
+##$MULTDISP= <C:/data/jli/nmr/JL_bariatricrat/126/pdata/1|C:/data/jli/nmr/JL_bariatricrat/276/pdata/1|C:/data/jli/nmr/JL_bariatricrat/165/pdata/1|C:/data/jli/nmr/JL_bariatricrat/138/pdata/1|C:/data/jli/nmr/JL_bariatricrat/265/pdata/1|C:/data/jli/nmr/JL_bariatricrat/271/pdata/1|C:/data/jli/nmr/JL_bariatricrat/253/pdata/1|C:/data/jli/nmr/JL_bariatricrat/207/pdata/1|C:/data/jli/nmr/JL_bariatricrat/229/pdata/1|C:/data/jli/nmr/JL_bariatricrat/258/pdata/1|C:/data/jli/nmr/JL_bariatricrat/227/pdata/1|C:/data/jli/nmr/JL_bariatricrat/228/pdata/1|C:/data/jli/nmr/JL_bariatricrat/162/pdata/1|C:/data/jli/nmr/JL_bariatricrat/124/pdata/1|C:/data/jli/nmr/JL_bariatricrat/151/pdata/1|C:/data/jli/nmr/JL_bariatricrat/122/pdata/1|C:/data/jli/nmr/JL_bariatricrat/116/pdata/1|C:/data/jli/nmr/JL_bariatricrat/280/pdata/1|C:/data/jli/nmr/JL_bariatricrat/268/pdata/1|C:/data/jli/nmr/JL_bariatricrat/225/pdata/1|C:/data/jli/nmr/JL_bariatricrat/191/pdata/1|C:/data/jli/nmr/JL_bariatricrat/247/pdata/1>
+##END=

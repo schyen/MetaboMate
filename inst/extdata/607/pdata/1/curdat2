@@ -1,0 +1,19 @@
+##TITLE= Parameter file, XWIN-NMR		Version 3.5
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= comet
+$$ Sat Oct 17 09:00:19 2009 BST (UT+1h)  comet@bc-jkn-17
+$$ /ubackup/data/comet/nmr/Jia_test/11/pdata/1/curdat2
+##$DU2= </ubackup>
+##$DU3= </ubackup>
+##$EXPNO2= 1
+##$EXPNO3= 11
+##$NAME2= <Jia_test>
+##$NAME3= <Jia_test>
+##$PROCNO2= 1
+##$PROCNO3= 2
+##$TYPE= <nmr>
+##$USER2= <comet>
+##$USER3= <comet>
+##END=

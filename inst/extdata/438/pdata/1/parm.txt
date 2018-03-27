@@ -1,0 +1,45 @@
+
+Current Data Parameters
+NAME             JL_bariatricrat                
+EXPNO                       438                
+PROCNO                        1                
+
+F2 - Acquisition Parameters
+Date_                  20091005                
+Time                       7.06                
+INSTRUM                   spect                
+PROBHD           5 mm TXI 1H-13                
+PULPROG               noesypr1d                
+TD                        65536                
+SOLVENT                     H2O                
+NS                          128                
+DS                            8                
+SWH                   12019.230 Hz             
+FIDRES                 0.183399 Hz             
+AQ                    2.7263892 sec            
+RG                         90.5                
+DW                       41.600 usec           
+DE                         7.00 usec           
+TE                        300.0 K              
+D1                   2.00000000 sec            
+D8                   0.10000000 sec            
+D11                  0.03000000 sec            
+d12                  0.00002000 sec            
+MCREST               0.00000000 sec            
+MCWRK                0.01500000 sec            
+
+======== CHANNEL f1 ========
+NUC1                         1H                
+P1                        11.00 usec           
+PL1                        0.00 dB             
+PL9                       56.00 dB             
+SFO1                600.2928233 MHz            
+
+F2 - Processing parameters
+SI                        32768                
+SF                  600.2899513 MHz            
+WDW                          EM                
+SSB                           0                
+LB                         0.30 Hz             
+GB                            0                
+PC                         1.00                

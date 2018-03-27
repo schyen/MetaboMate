@@ -1,0 +1,29 @@
+##TITLE= Audit trail, XWIN-NMR		Version 3.5
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= comet
+$$ /ubackup/data/comet/nmr/Jia_test/37/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, WHAT)
+(   1,<2009-10-18 14:51:08.70 +0100>,<comet>,<bc-jkn-17>,
+      <created by zg, POWCHK disabled, PULCHK disabled
+       configuration hash MD5:
+       E7 3B 2F 71 FF 3F FA 50 42 28 BF C9 3E C3 F6 17
+       data hash MD5: 64K
+       8F 39 92 71 EE EF 68 29 1B 06 93 FB 02 E8 27 07>)
+(   2,<2009-10-18 14:51:13.96 +0100>,<comet>,<bc-jkn-17>,
+      <Start of raw data processing
+       efp LB = 0.3 FT_mod = 6 PKNL = 1 PHC0 = -1210.876 PHC1 = -28.32989 SI = 64K 
+       data hash MD5: 64K
+       88 92 10 94 B1 D2 5C 28 AB D6 55 5D 91 A9 A9 3E>)
+(   3,<2009-10-18 14:51:54.88 +0100>,<comet>,<bc-jkn-17>,
+      <pk PHC0 = 177.9858 PHC1 = 0 
+       data hash MD5: 64K
+       95 A1 34 13 3C 3F 1A C9 22 E5 75 15 FE A2 1A 88>)
+(   4,<2009-10-20 06:29:16.27 +0100>,<comet>,<bc-jkn-17>,
+      <wrpa from 1 31 "Jia_test" "comet" "/ubackup"
+       data hash MD5: 64K
+       95 A1 34 13 3C 3F 1A C9 22 E5 75 15 FE A2 1A 88>)
+##END=
+
+$$ hash MD5
+$$ 5E E0 16 38 25 1F DE B9 01 0F A8 D1 F5 C9 28 1F

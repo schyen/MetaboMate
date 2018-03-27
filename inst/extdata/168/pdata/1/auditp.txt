@@ -1,0 +1,25 @@
+##TITLE= Audit trail, XWIN-NMR		Version 3.5
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= comet
+$$ /ubackup/data/comet/nmr/JL_bariatricrat/168/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, WHAT)
+(   1,<2009-08-13 07:53:21.73 +0100>,<comet>,<bc-jkn-17>,
+      <created by zg, POWCHK disabled, PULCHK disabled
+       configuration hash MD5:
+       E7 3B 2F 71 FF 3F FA 50 42 28 BF C9 3E C3 F6 17
+       data hash MD5: 64K
+       BA D4 FE 29 BF A5 81 69 69 EB 91 EA 04 E9 0F E6>)
+(   2,<2009-08-13 07:53:25.27 +0100>,<comet>,<bc-jkn-17>,
+      <Start of raw data processing
+       efp LB = 0.3 FT_mod = 6 PKNL = 1 PHC0 = 44.55798 PHC1 = -26.00001 SI = 32K 
+       data hash MD5: 32K
+       F0 97 C6 D8 6A 3D 5C D9 33 31 5F 90 FB EE 44 E6>)
+(   3,<2009-08-13 19:27:59.67 +0100>,<comet>,<bc-jkn-17>,
+      <pk PHC0 = 96.04314 PHC1 = 0 
+       data hash MD5: 32K
+       5E 26 25 7C 9A C4 DD 46 6E 25 44 B3 23 FD 0D B2>)
+##END=
+
+$$ hash MD5
+$$ 5A 79 33 46 34 24 A9 30 57 11 0B 19 69 FF 3E 5E
