@@ -1,4 +1,4 @@
-#' Centering and scaleing vectors or matrices
+#' Centering and scaling vectors or matrices
 #' @param X Data to be scaled, can be a vector or a matrix with observations in rows variables in columns.
 #' @param idc Indices of samples in X used to derive center/scale parameters (relevant for statistical validation procedures, e.g., scaling X with training set samples). If set to \code{all}, no selection is performed.
 #' @param center Logical indicating if data should be mean centered.

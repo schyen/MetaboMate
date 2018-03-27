@@ -52,12 +52,17 @@ readBruker=function (path)
   }
   not.present[[2]]<-pfile[!p.exp %in% a.exp]
   if(length(not.present[[2]])>0){
-    cat('File structure depreciated: missing Bruker processing file(s). See output for file names.')
+    cat('File structure depreciated: missing Bruker processing file(s). See output for experiment folder names.')
   }
   not.present[[3]]<-rfile[!r.exp %in% a.exp]
   if(length(not.present[[3]])>0){
-    cat('File structure depreciated: missing spectrum file(s). See output for file names.')
+    cat('File structure depreciated: missing aquisition file(s). See output for experiment folder names.')
   }
+  not.present[[4]]<-pfile[!p.exp %in% r.exp]
+  if(length(not.present[[4]])>0){
+    cat('Check files: missing 1D spectrum file(s). See output for experiment folder names.')
+  }
+
   if(sum(sapply(not.present, length))>0) {
     return(sort(unlist(not.present)))}
 

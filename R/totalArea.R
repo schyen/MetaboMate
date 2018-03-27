@@ -1,4 +1,4 @@
-#' Total area normaliatoin
+#' Total area normalisation
 #' @export
 #' @aliases totalArea
 #' @param X Input matrix where rows represent samples.
