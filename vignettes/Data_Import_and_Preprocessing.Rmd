@@ -55,10 +55,10 @@ specOverlay(X, ppm, shift=c(-0.05,0.05),
 
 ```
 
-From the plot above you can see that there were different types of experiments performed (indicated by different linetypes) and that the RG is related to the TSP signal strength within each experiment type. 
+From the plot above you can see that there were different types of experiments performed (indicated by different linetypes) and that the RG is related to the TSP signal strength within each experiment type. **Meta** also contains information on sample acquisition date and time (**a_Date**) and run order (**a_RunOrder**).
 
 
-The different experiment types map to different biolfuids and NMR pulse sequences. This makes a quantitative comparison across spectra not possible and therefore, we filter for the desired experiment type (**\<JL-noe1d\>**) before we continue with the analysis.
+The different experiment types map to different biolfuids and NMR pulse sequences, making a quantitative comparison not useful and therefore, we filter for the desired experiment type (**\<JL-noe1d\>**) before we continue with the analysis.
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # plot TSP signal

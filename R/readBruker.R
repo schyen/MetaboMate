@@ -12,7 +12,7 @@
 #' @details Paremeters with prefix \code{a} or \code{p} were extracted from the \emph{acqus} or \emph{procs} file, respectively. Paremeters without any prefix were calculated on the fly.
 
 
-readBruker=function(path, filter=F)
+readBruker=function(path, filter=T)
 {
   warnDef <- options("warn")$warn
   warnRead <- options(warn = -1)
@@ -127,7 +127,7 @@ readBruker=function(path, filter=F)
       # read-in spec
       if(as.numeric(meta$V2[grep('p_BYTORDP', meta$V1)])!=0){endianness<-'big'}else{endianness<-'little'}
 
-      # read binary real part of spec
+      # read binary: real part of spec
       spec <- readBin(rf[i],
                    what = "int",
                    n = as.numeric(meta$V2[grep('p_FTSIZE', meta$V1)]),
@@ -146,9 +146,9 @@ readBruker=function(path, filter=F)
       return(list(meta, spec, ppm))
     })
 
-    ids=unique(unlist(sapply(out, function(x) x[[1]]$V1)))
+    ids=unique(as.vector(sapply(out, function(x) x[[1]]$V1)))
     meta<<-data.frame(t(sapply(out, function(x) {
-      x=unique(x)
+      x[[1]]=unique(x[[1]])
       x[[1]]$V2[match(ids, x[[1]]$V1)]
   })), stringsAsFactors = F)
     colnames(meta)=ids
