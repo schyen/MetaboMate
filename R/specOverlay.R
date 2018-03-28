@@ -23,7 +23,7 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
 
   idx=get.idx(shift, ppm)
   specs=X[,idx]
-  colnames(specs)=paste("ppm", ppm[idx], sep='_')
+  colnames(specs)=paste("Idx", idx, sep='_')
 
   le.arg<-paste(length(an))
   col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])
@@ -33,9 +33,8 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
   df=data.frame(do.call(cbind.data.frame, an), ID=1:nrow(specs), alp, specs)
   colnames(df)[1:le.arg]=names(an)
   df=melt(df, id.vars=c('alp','ID',names(an)))
-  df$variable=as.numeric(gsub('^\\.', '-', gsub('ppm_','', df$variable)))
+  df$variable=ppm[as.numeric(gsub('Idx_', '', df$variable))]
 
-  print(df[which(is.na(df), arr.ind=T),])
   # initiate generic ggplot object
   g<- ggplot()+
     scale_x_reverse(breaks=seq(shift[1], shift[2], by=abs(diff(shift))/20),
@@ -75,7 +74,7 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
            }
          )
 
-  # add multi-colour gradient if colour vector is not
+  # add multi-colour gradient if colour vector is not factor/char
   if(col.cat==F){
     g<-g + scale_colour_gradientn(colors=matlab.like2(10))
   }
