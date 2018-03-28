@@ -28,7 +28,7 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
 
   le.arg<-paste(length(an))
   col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])
-  an[[3]]=factor(an[[3]])
+  if(le.arg==3){an[[3]]=factor(an[[3]])}
 
   # create dataframe for ggplot function
   df=data.frame(do.call(cbind.data.frame, an), ID=1:nrow(specs), alp, specs)
