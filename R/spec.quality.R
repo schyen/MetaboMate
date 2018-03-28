@@ -9,7 +9,7 @@
 #' @references Eilers, P.H.C. (2004), Parametric Time Warping, \emph{Analytical Chemistry}, 76.2, 404–411.
 #' @references Bloemberg, T.G., \emph{et al.} (2010), Improved parametric time warping for Proteomics, \emph{Chemometrics and Intelligent Laboratory Systems}, 104.1, 65-74.
 #' @importFrom ptw asysm
-#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 aes_string labs theme_bw
 #' @importFrom colorRamps matlab.like2
 #' @importFrom graphics plot
 #' @importFrom stats median
@@ -58,8 +58,11 @@ spec.quality=function(X, ppm, ppm.noise=c(9.4,9.5), plot=T){
                         y='Residual.water',
                         colour='Baseline',
                         size='TSP.lw.ppm'))+
-      geom_point()+
-      scale_colour_gradientn(colours=matlab.like2(10))
+      geom_point(shape=21)+
+      scale_colour_gradientn(colours=matlab.like2(10))+
+      labs(x='Estimated Signal to Noise Ratio', y='Residual Water Signal')+
+      theme_bw()
+
     plot(g)
   }
 

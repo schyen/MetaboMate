@@ -5,10 +5,10 @@
 #' @param ppm ppm vector with its length equals to \code{nrow(X)}.
 #' @param shift Chemical shift area to be plotted. This should be kept as small as possible (see Details).
 #' @param an List with one to three elements specifying facetting, colour and linetype (see Details).
-#' @param alp Alpha value for spectral lines.
+#' @param alp Alpha value for lines (number between 0 and 1 whereas 0 is fully transparent and 1 is fully opaque).
 #' @param title Plot title.
-#' @param size plot line width.
-#' @param ... Additional paramters passe on to ggplot's facet function.
+#' @param size Line width (0.5 is a good start).
+#' @param ... Additional paramters passed on to ggplot's facet function.
 #' @description  Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument \code{shift} should be as small as possible. List argument \code{an} must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of \code{an} must have the same length as \code{X}.
 #' @author Torben Kimhofer
 #' @importFrom reshape2 melt
@@ -16,6 +16,7 @@
 #' @importFrom colorRamps matlab.like2
 #' @importFrom scales pretty_breaks
 #' @importFrom stats as.formula
+#' @seealso \code{\link{facet_grid}}
 
 specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltype'), alp=0.7, size=0.5, title='', ...){
 

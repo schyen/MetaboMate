@@ -2,6 +2,7 @@
 #' @export
 #' @description  Reading 1D NMR spectra from Bruker. This function is recurisvely searching for matching processing, acquisition and spectrum data (r1) files in a given experiment folder.
 #' @param path Path to experiment folder.
+#' @param filter Logical, if set TRUE then experiments with matching \emph{acqus}, \emph{procs} and \emph{1r} files are read-in. If set FALSE, the algorihm will stop if file systems are corrupt or 2D experiments are presenr. The latter option is for more for running file system tests.
 #' @return The following variables are automatically returned as globally defined variables:
 #' \item{X}{Imported NMR matrix where NMR spectra in rows and ppm variables in columns.}
 #' \item{ppm}{Ppm vector.}
@@ -11,7 +12,7 @@
 #' @details Paremeters with prefix \code{a} or \code{p} were extracted from the \emph{acqus} or \emph{procs} file, respectively. Paremeters without any prefix were calculated on the fly.
 
 
-readBruker=function (path)
+readBruker=function(path, filter=F)
 {
   warnDef <- options("warn")$warn
   warnRead <- options(warn = -1)
@@ -43,28 +44,43 @@ readBruker=function (path)
   a.exp<-gsub(paste('^', path, '/|/acqus$', sep=''),'', afile)
   p.exp<-gsub(paste('^', path, '/|/pdata/1/procs$', sep=''),'', pfile)
   r.exp<-gsub(paste('^', path, '/|/pdata/1/1r$', sep=''),'', rfile)
-  # check if all files are present
 
-  not.present<-list()
-  not.present[[1]]=afile[!a.exp %in% p.exp]
-  if(length(not.present[[1]])>0){
-    cat('File structure depreciated: missing Bruker acquisition file(s). See output for file names.')
-  }
-  not.present[[2]]<-pfile[!p.exp %in% a.exp]
-  if(length(not.present[[2]])>0){
-    cat('File structure depreciated: missing Bruker processing file(s). See output for experiment folder names.')
-  }
-  not.present[[3]]<-rfile[!r.exp %in% a.exp]
-  if(length(not.present[[3]])>0){
-    cat('File structure depreciated: missing aquisition file(s). See output for experiment folder names.')
-  }
-  not.present[[4]]<-pfile[!p.exp %in% r.exp]
-  if(length(not.present[[4]])>0){
-    cat('Check files: missing 1D spectrum file(s). See output for experiment folder names.')
+  # check files match
+  idx.a=a.exp %in% r.exp & a.exp %in% p.exp
+  idx.p=p.exp %in% r.exp & p.exp %in% a.exp
+  idx.r=r.exp %in% a.exp & r.exp %in% p.exp
+
+  # filter acqus and procs for 1r files (exclude 2D experiments and corrupt file systems)
+  if(filter==T){
+    afile=afile[idx.a]
+    pfile=pfile[idx.p]
+    rfile=rfile[idx.r]
+  }else{
+    not.present<-list()
+    not.present[[1]]=afile[!idx.a]
+    not.present[[2]]<-pfile[!idx.p]
+    not.present[[3]]<-rfile[!idx.r]
+
+    if(length(not.present[[1]])>0){
+      cat('File structure depreciated: missing Bruker acquisition file(s). See output for file names.\n')
+    }
+    if(length(not.present[[2]])>0){
+      cat('File structure depreciated: missing Bruker processing file(s). See output for experiment folder names.\n')
+    }
+    if(length(not.present[[3]])>0){
+      cat('File structure depreciated: missing aquisition file(s). See output for experiment folder names.\n')
+    }
+
+    if(sum(sapply(not.present, length))>0) {
+      return(sort(unlist(not.present)))}
+
   }
 
-  if(sum(sapply(not.present, length))>0) {
-    return(sort(unlist(not.present)))}
+  Lp<-length(pfile)
+  if (Lp == 0) {
+    stop("No matching Bruker files in specified path.")
+  }
+
 
   if(Lp==1){cat('Reading ', Lp, ' spectrum.\n', sep='')}else{cat('Reading ', Lp, ' spectra.\n', sep='')}
 
