@@ -12,8 +12,7 @@
 #' @details Paremeters with prefix \code{a} or \code{p} were extracted from the \emph{acqus} or \emph{procs} file, respectively. Paremeters without any prefix were calculated on the fly.
 
 
-readBruker=function(path, filter=T)
-{
+readBruker=function(path, filter=T){
   warnDef <- options("warn")$warn
   warnRead <- options(warn = -1)
 
@@ -146,12 +145,19 @@ readBruker=function(path, filter=T)
       return(list(meta, spec, ppm))
     })
 
-    ids=unique(as.vector(sapply(out, function(x) x[[1]]$V1)))
+    ids=unique(as.vector(unlist(sapply(out, function(x) x[[1]]$V1))))
     meta<<-data.frame(t(sapply(out, function(x) {
       x[[1]]=unique(x[[1]])
       x[[1]]$V2[match(ids, x[[1]]$V1)]
   })), stringsAsFactors = F)
     colnames(meta)=ids
+
+    # convert to numeric
+    nums=sapply(meta, function(x){
+      suppressWarnings(as.numeric(x))
+    })
+    idx=complete.cases(t(nums))
+    meta[,idx]=nums[,idx]
 
     meta$a_Date=strptime('1970-01-01 00:00:00', format='%Y-%m-%d %H:%M:%M')+as.numeric(meta$a_DATE)
     meta$a_RunOrder=rank(meta$a_Date, na.last = 'min')
