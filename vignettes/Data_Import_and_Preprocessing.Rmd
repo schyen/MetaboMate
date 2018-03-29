@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette documents a typical pre-processing workflow for NMR-based metabolic profilig using the *MetaboMate* R package. Example data represent thirty Proton NMR (^1^H NMR) spectra of murine urine samples collected pre and post bariatric surgery. One dimensional spectra were acquired on a 600 MHz Bruker Avance III spectrometer, equipped with a 5 mm triple resonance (TXI) probe operating at 300 K. Further information on sample collection, processing and data acquisition can be obtained from the original publication by Jia V. Li *et al.*^[Li, Jia V., *et al.* (2011) Metaboilc surgery profoundly influences gut microbial-host mtaboilc cross-talk. *Gut* 60.9, 1214-1223.]
+This vignette documents a typical pre-processing workflow for NMR-based metabolic profilig using the *MetaboMate* R package. Example data represent thirty Proton NMR (^1^H NMR) spectra of murine urine samples collected pre and post bariatric surgery. One dimensional spectra were acquired on a 600 MHz Bruker Avance III spectrometer, equipped with a 5 mm triple resonance (TXI) probe operating at 300 K. Further information on sample collection, processing and data acquisition can be obtained from the original publication by Jia V. Li *et al.*^[Li, Jia V., *et al.* (2011) Metabolic surgery profoundly influences gut microbial-host metabolic cross-talk. *Gut* 60.9, 1214-1223.]
 
 ## Prerequisites
 Although not essential for this tutorial, I recommend to install RStudio. RStudio is an open-source integrated development environment for R, which includes a code editor that highlights syntax, enables quick and easy access to help pages, improves workspace management and offers various tools for plotting, history and debugging. Simply put, it makes working with R a lot more efficient.
@@ -189,4 +189,5 @@ matspec(ppm, X.pqn, shift = c(6,9))
 The pre-processed spectra are calibrated, free of unwanted signals or noise regions and normalised to account for dilution effects. Low quality spectra could be further excluded based on the quality control indices dervied with the **spec.quality()** function. 
 
 The next step is a multivariate statistical analysis with projection methods such as Prinicpal Component Analysis (PCA) and Partial-Least Squares (PLS) or extensions of it (Orthogonal-Partial Least Squares). For more information please see vignette **Multivariate Statistical Analysis** of the *MetaboMate* package.
+
 

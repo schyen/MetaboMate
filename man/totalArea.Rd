@@ -2,7 +2,7 @@
 % Please edit documentation in R/totalArea.R
 \name{totalArea}
 \alias{totalArea}
-\title{Total area normaliatoin}
+\title{Total area normalisation}
 \usage{
 totalArea(X, add.DilF = "ta.dilf")
 }
@@ -12,7 +12,7 @@ totalArea(X, add.DilF = "ta.dilf")
 \item{add.DilF}{Character string for new variable for dilution factor (will be exported as global envrionment variable). Can be left NULL if dilution factor should not be exported.}
 }
 \description{
-Total area normaliatoin
+Total area normalisation
 }
 \author{
 Torben Kimhofer

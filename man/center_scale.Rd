@@ -2,7 +2,7 @@
 % Please edit documentation in R/center_scale.R
 \name{center_scale}
 \alias{center_scale}
-\title{Centering and scaleing vectors or matrices}
+\title{Centering and scaling vectors or matrices}
 \usage{
 center_scale(X, idc = "all", center = T, scale = c("None", "UV",
   "Pareto"))
@@ -20,5 +20,5 @@ center_scale(X, idc = "all", center = T, scale = c("None", "UV",
 Centred/scaled data of the same dimensions than input.
 }
 \description{
-Centering and scaleing vectors or matrices
+Centering and scaling vectors or matrices
 }

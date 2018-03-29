@@ -7,7 +7,7 @@
 #' \item{X}{Imported NMR matrix where NMR spectra in rows and ppm variables in columns.}
 #' \item{ppm}{Ppm vector.}
 #' \item{meta}{Spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).}
-#' @importFrom stats approxfun
+#' @importFrom stats approxfun complete.cases
 #' @author Torben Kimhofer, Imperial College London (2017)
 #' @details Paremeters with prefix \code{a} or \code{p} were extracted from the \emph{acqus} or \emph{procs} file, respectively. Paremeters without any prefix were calculated on the fly.
 
@@ -146,7 +146,7 @@ readBruker=function(path, filter=T){
     })
 
     ids=unique(as.vector(unlist(sapply(out, function(x) x[[1]]$V1))))
-    meta<<-data.frame(t(sapply(out, function(x) {
+    meta<-data.frame(t(sapply(out, function(x) {
       x[[1]]=unique(x[[1]])
       x[[1]]$V2[match(ids, x[[1]]$V1)]
   })), stringsAsFactors = F)

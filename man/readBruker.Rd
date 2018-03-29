@@ -4,10 +4,12 @@
 \alias{readBruker}
 \title{Reading 1D NMR spectra from Bruker}
 \usage{
-readBruker(path)
+readBruker(path, filter = T)
 }
 \arguments{
 \item{path}{Path to experiment folder.}
+
+\item{filter}{Logical, if set TRUE then experiments with matching \emph{acqus}, \emph{procs} and \emph{1r} files are read-in. If set FALSE, the algorihm will stop if file systems are corrupt or 2D experiments are presenr. The latter option is for more for running file system tests.}
 }
 \value{
 The following variables are automatically returned as globally defined variables:

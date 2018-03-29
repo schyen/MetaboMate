@@ -4,7 +4,7 @@
 \alias{pqn}
 \title{Probablistic quotient normalisation}
 \usage{
-pqn(X, reference.idx = NA, TArea = F, add.DilF = "pqn.dilf")
+pqn(X, reference.idx = NA, TArea = F, add.DilF = NULL)
 }
 \arguments{
 \item{X}{Input matrix where rows represent samples.}
