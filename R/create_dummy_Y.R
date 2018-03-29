@@ -3,7 +3,7 @@
 #' @param Y Dependent variable (numeric or factor for regression or discriminat analysis, resepctively)
 #' @return List of two: Dummy matrix and data frame mapping Y-levels to numeric representations.
 #' @aliases create_dummy_Y
-
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 
 create_dummy_Y=function(Y){
   if(!is.numeric(Y)){

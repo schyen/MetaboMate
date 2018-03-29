@@ -26,3 +26,6 @@ Low-level plotting function for NMR spectra.
 \seealso{
 \code{\link{spec}} \code{\link{plot}}
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

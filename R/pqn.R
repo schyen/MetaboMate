@@ -7,7 +7,7 @@
 #' @param add.DilF Character string for new variable for dilution factor (will be exported as global envrionment variable). Can be left NULL if dilution factor should not be exported.
 #' @details It is sometimes favourable not to use all spectra to calculate a dilution reference (e.g. QC samples should generally be excluded). Therefore, a vector of indices can be specified with the parameter \code{reference.idx} and the respective spectra are used to calculate the median spectrum as a dilution reference. The parameter \code{reference.idx} can also be a single index, then the respective spectrum is used as a reference. If it is set \code{N/A}, all spectra in \code{X} are used to calculate the dilution reference spectrum. to Total area normaliasation is integral part of the probablistic quotient normalisation algorithm (see References), however, this sometimes distorts the spectra, i.e. is not suitable for normalisation. The parameter \code{TArea} can be set to TRUE or FALSE, depending if total area normalisation should be applied or not.
 #' @references Dieterly, F., \emph{et al.} (2006), Probabilistic Quotient Normalization as Robust Method to Account for Dilution of Complex Biological Mixtures. Application in 1H NMR Metabonomics, \emph{Analytical Chemistry}, 78.3, 4281-90.
-#' @author Torben Kimhofer
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 pqn=function(X, reference.idx=NA, TArea=F, add.DilF=NULL){
 
   # apply total area normalisation

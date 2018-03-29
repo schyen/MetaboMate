@@ -25,3 +25,6 @@ Returned is a list with the following entries:
 \description{
 Calculate PLS, orthogonalise X and remove orthogonal information
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

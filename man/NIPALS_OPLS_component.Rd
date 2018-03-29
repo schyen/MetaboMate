@@ -28,3 +28,6 @@ Calculating a single OPLS component. This function should only be used for two l
 \references{
 Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS). \emph{Journal of Chemometrics}, 16.3, 119-128.
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

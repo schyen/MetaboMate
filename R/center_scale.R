@@ -4,7 +4,7 @@
 #' @param center Logical indicating if data should be mean centered.
 #' @param scale Scaling method that should be applied: none, unit variance (UV) or pareto scaling.
 #' @return Centred/scaled data of the same dimensions than input.
-
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 
 center_scale <- function(X, idc='all', center=T, scale = c('None', 'UV', 'Pareto')) {
 

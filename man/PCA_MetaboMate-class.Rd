@@ -7,3 +7,6 @@
 \description{
 An S4 class to represent PCA models
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

@@ -8,7 +8,7 @@
 #' \item{Scores}{PCA component scores.}
 #' \item{Loadings}{PLS component loadings.}
 #' @references {Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. Analytica Chimica Acta 185, 1-17.}
-
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 NIPALS_PCAcomponent<-function(X){
   # initialise scores (t_h)
   t_h<-cbind(X[,1])

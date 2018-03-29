@@ -26,3 +26,6 @@ Low-level plotting function for a single NMR spectrum.
 \seealso{
 \code{\link{matspec}} \code{\link{plot}}
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

@@ -5,10 +5,11 @@
 #' @return The projection distance of each observation in the model (\code{DModX}).
 #' @references Bylesjö M., \emph{et al.} (2002) OPLS discriminant analysis: combining the strengthsof PLS-DA and SIMCA classification. \emph{Journal of Chemometrics}, 20, 341-51.
 #' @references Wold S. (1976) Pattern recognition by means of disjoint princi-pal components models.  \emph{Pattern Recognition}, 8, 127-39.
+#' @seealso \code{\link{opls}}
 #' @importFrom ggplot2 ggplot aes_string geom_point scale_colour_gradientn geom_hline xlab scale_y_continuous theme_bw theme element_blank element_text
 #' @importFrom colorRamps matlab.like
 #' @importFrom stats t.test sd
-#' @author Torben Kimhofer
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 # E=residual Matrix
 # N=number of samples
 # K=number of variables

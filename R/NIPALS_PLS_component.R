@@ -9,7 +9,7 @@
 #' \item{weights}{PLS component weights.}
 #' \item{betas}{PLS X coefficients.}
 #' \item{Q.pc}{PLS Y coefficient.}
-
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 
 NIPALS_PLS_component<-function(X, Y){
 

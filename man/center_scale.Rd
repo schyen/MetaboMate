@@ -22,3 +22,6 @@ Centred/scaled data of the same dimensions than input.
 \description{
 Centering and scaling vectors or matrices
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

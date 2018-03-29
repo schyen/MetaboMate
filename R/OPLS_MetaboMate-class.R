@@ -1,5 +1,5 @@
 #' An S4 class to represent OPLS models
-
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 # define slots for OPLS_Torben object
 setClass('OPLS_MetaboMate', representation(
     type = 'character',

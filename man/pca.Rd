@@ -31,10 +31,8 @@ Other methods include: 'svd', 'rnipals', 'bpca', 'ppca', 'svdImpute', 'robustPca
 Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 }
 \seealso{
-\code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}}
-
-\code{\link[pcaMethods]{pca}}
+\code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}} \code{\link[pcaMethods]{pca}} \code{\link{plotscores}} \code{\link{plotload}} \code{\link{opls}}
 }
 \author{
-Torben Kimhofer
+Torben Kimhofer \email{tkimhofer@gmail.com}
 }

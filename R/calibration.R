@@ -8,7 +8,8 @@
 #' @details Spectral calibration to a chemical shift reference. If \code{type='Urine'} calibration will be performed using signal resonating around 0 ppm (Trimethylsilylpropanoic acid resonance). If \code{type='Plasma'}, the doublet around 5.23, originating from the alpha anomer of glucose, will be used for calibration. \strong{Blood serum-derived spectra} can also be calibrated with input argument \code{type='Plasma'}.
 #' @return Returned is the calibrated NMR data matrix.
 #' @references Dona, A.C., \emph{et al.} (2014) Precision high-throughput proton NMR spectroscopy of human urine, serum, and plasma for large-scale metabolic phenotyping. \emph{Analytical Chemistry}. 86.19. 9887-94.
-#' @author Torben Kimhofer
+#' @seealso \code{\link{readBruker}}
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @importFrom  speaq detectSpecPeaks
 
 ### function shiftes the max TSP intensity to zero

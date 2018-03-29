@@ -8,7 +8,7 @@
 #' \item{ppm}{Ppm vector.}
 #' \item{meta}{Spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).}
 #' @importFrom stats approxfun complete.cases
-#' @author Torben Kimhofer, Imperial College London (2017)
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @details Paremeters with prefix \code{a} or \code{p} were extracted from the \emph{acqus} or \emph{procs} file, respectively. Paremeters without any prefix were calculated on the fly.
 
 

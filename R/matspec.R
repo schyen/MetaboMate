@@ -9,7 +9,7 @@
 #' @aliases matspec
 #' @details Low-level plotting function for NMR spectra.
 #' @importFrom graphics matplot matpoints
-
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 matspec=function(ppm, X, shift=c(0,9.5), add=F, ...){
   idx=get.idx(shift, ppm)
 

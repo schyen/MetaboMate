@@ -26,3 +26,9 @@ Eilers, P.H.C. (2004), Parametric Time Warping, \emph{Analytical Chemistry}, 76.
 
 Bloemberg, T.G., \emph{et al.} (2010), Improved parametric time warping for Proteomics, \emph{Chemometrics and Intelligent Laboratory Systems}, 104.1, 65-74.
 }
+\seealso{
+\code{\link{readBruker}}
+}
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

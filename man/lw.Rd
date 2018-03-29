@@ -19,3 +19,9 @@ Array of line widhts in ppm. To convert from ppm to Hertz (Hz), multiply values 
 \description{
 Calculating full width at half maximum (FWHM, aka line width). This function simply returns the ppm difference where peak line crosses half of the peak height. It requires one signal across all spectra within ppm ranges specified in \code{shift}.
 }
+\seealso{
+\code{\link{readBruker}}
+}
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

@@ -21,3 +21,6 @@ Calculating a single PCA component
 \references{
 {Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. Analytica Chimica Acta 185, 1-17.}
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

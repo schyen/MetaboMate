@@ -14,8 +14,8 @@
 #' @references Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS). \emph{Journal of Chemometrics}, 16.3, 119-128.
 #' @references Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 #' @return This function returns an \emph{OPLS_MetaboMate} S4 object.
-#' @seealso \code{\link{OPLS_MetaboMate-class}}
-#' @author Torben Kimhofer
+#' @seealso \code{\link{OPLS_MetaboMate-class}} \code{\link{dmodx}} \code{\link{plotscores}} \code{\link{plotload}} \code{\link{specload}}
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @importFrom graphics plot
 #' @importFrom methods getSlots new representation setClass
 #' @importFrom stats cov sd var

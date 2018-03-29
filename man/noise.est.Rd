@@ -22,6 +22,9 @@ Estimation of noise level
 \details{
 Estiamation of noise level in NMR spectra. This is useful for quality control checks (e.g., before and after spectral normalisation). Noise estimation requires a singal-free ppm region across all spectra, usually this is at the extreme ends or the spectrum. This function requires a minimum number of 50 data points to robustly estimate noise levels.
 }
+\seealso{
+\code{\link{readBruker}}
+}
 \author{
-Torben Kimhofer
+Torben Kimhofer \email{tkimhofer@gmail.com}
 }

@@ -14,3 +14,6 @@ get.idx(range = c(1, 5), ppm)
 \description{
 get indices of respective ppm values
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

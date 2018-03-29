@@ -5,9 +5,10 @@
 #' @param where Signal free region across all NMR spectra (see Details).
 #' @details Estiamation of noise level in NMR spectra. This is useful for quality control checks (e.g., before and after spectral normalisation). Noise estimation requires a singal-free ppm region across all spectra, usually this is at the extreme ends or the spectrum. This function requires a minimum number of 50 data points to robustly estimate noise levels.
 #' @return Returned is a vector of noise levels for each spectrum.
-#' @author Torben Kimhofer
+#' @seealso \code{\link{readBruker}}
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @importFrom ptw asysm
-#'
+
 noise.est=function(NMR, ppm, where=c(14.6,14.7)){
 
   # set ppm range where noise should be estimated, i.e., no signals

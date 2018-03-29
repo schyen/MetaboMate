@@ -25,3 +25,6 @@ If input argument \code{Y} is a dummy marix then function \cite{\code{centre_sca
 \seealso{
 center_scale
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

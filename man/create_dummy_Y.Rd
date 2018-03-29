@@ -15,3 +15,6 @@ List of two: Dummy matrix and data frame mapping Y-levels to numeric representat
 \description{
 Create dummy matrix and check numeric variable for OPLS analysis
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

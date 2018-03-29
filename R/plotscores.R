@@ -14,11 +14,8 @@
 #' @references Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS). \emph{Journal of Chemometrics}, 16.3, 119-128.
 #' @references Hotelling, H. (1931) The generalization of Student’s ratio. \emph{Ann. Math. Stat.}, 2, 360-378.
 #' @return This function returns a \emph{ggplot2} plot object.
-#' @author Torben Kimhofer
-#' @seealso \code{\link{OPLS_MetaboMate-class}}
-#' @seealso \code{\link{opls}}
-#' @seealso \code{\link{PCA_MetaboMate-class}}
-#' @seealso \code{\link{pca}}
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
+#' @seealso \code{\link{pca}} \code{\link{opls}} \code{\link{PCA_MetaboMate-class}} \code{\link{OPLS_MetaboMate-class}}
 #' @importFrom stats cov
 #' @importFrom ellipse ellipse
 #' @importFrom RColorBrewer brewer.pal
@@ -52,13 +49,27 @@ plotscores=function(model, pc=c(1,2), an, title='', qc=NA, legend='in', cv.score
          })
 
   ###### DATA PREP
+
+  if(is.null(names(an))){cat('No facet, colour and linetype names given. See an argument in ?specOverlay\n')
+    names(an)=paste('an', 1:length(an), sep='')}
+  # names of an list
+  if ('' %in% names(an)){
+    idx=which(names(an)=='')
+    names(an)[idx]=paste('an', idx, sep='')
+  }
+  names(an)=gsub(' ', '.', names(an))
+
+  # create scores df for ggplot function
+  an1=do.call(cbind.data.frame, an)
   # prep df for ggplot2
-  sc=data.frame(x,y, cl=an[[1]])
-  if(length(an)==2){
-    sc$shape=factor(an[[2]])}else{
-      sc$shape=16}
-  if(length(an)==3){
-    sc$labs=an[[3]]}
+  sc=data.frame(x,y, an1)
+  colnames(sc)[-c(1:2)]=names(an)
+
+  # if(length(an)==2){
+  #   sc$shape=factor(an[[2]])}else{
+  #     sc$shape=16}
+  # if(length(an)==3){
+  #   sc$labs=an[[3]]}
 
   # prep sub-df for QC samples
   if(!is.na(qc[1])){
@@ -89,9 +100,9 @@ plotscores=function(model, pc=c(1,2), an, title='', qc=NA, legend='in', cv.score
   # minimum nb of factors for categorical variables in 17
   if(class(an[[1]])!='numeric' & length(table(an[[1]]))<17){
     type='categorical'
-    if(length(unique(sc$cl))>8){
-      cols=c(brewer.pal(8,"Dark2"), brewer.pal(8,"Set1")[1:(length(unique(sc$cl))-8)])}else{
-        cols=brewer.pal(8,"Dark2")[1:length(unique(sc$cl))]}
+    if(length(unique(an[[1]]))>8){
+      cols=c(brewer.pal(8,"Dark2"), brewer.pal(8,"Set1")[1:(length(unique(an[[1]]))-8)])}else{
+        cols=brewer.pal(8,"Dark2")[1:length(unique(an[[1]]))]}
   }else{
     type='continuous'
   }
@@ -112,13 +123,13 @@ plotscores=function(model, pc=c(1,2), an, title='', qc=NA, legend='in', cv.score
    switch(type,
           'categorical'={
             g=g+
-              geom_point(data=sc, aes_string('x','y', colour='cl'), alpha=0.7, shape=16)+
+              geom_point(data=sc, aes_string('x','y', colour=names(an)[1]), alpha=0.7, shape=16)+
               scale_colour_manual(values=cols)+
               labs(colour=names(an)[1])
           },
           'continuous'={
             g=g+
-              geom_point(data=sc, aes_string('x','y', colour='cl'), shape=16,  alpha=1)+#size=2.5,
+              geom_point(data=sc, aes_string('x','y', colour=names(an)[1]), shape=16,  alpha=1)+#size=2.5,
               scale_colour_gradientn(colours=matlab.like(10),  breaks=pretty_breaks(), ...)+
               ggtitle(title)
           })
@@ -128,13 +139,13 @@ plotscores=function(model, pc=c(1,2), an, title='', qc=NA, legend='in', cv.score
     switch(type,
            'categorical'={
              g=g+
-               geom_point(data=sc, aes_string('x','y', colour='cl', shape='shape'), alpha=0.7)+
+               geom_point(data=sc, aes_string('x','y', colour=names(an)[1], shape=names(an)[2]), alpha=0.7)+
                scale_colour_manual(values=cols)+
                labs(colour=names(an)[1], shape=names(an)[2])
            },
            'continuous'={
              g=g+
-               geom_point(data=sc, aes_string('x','y', colour='cl', shape='shape'), alpha=0.7)+
+               geom_point(data=sc, aes_string('x','y', colour=names(an)[1], shape=names(an)[2]), alpha=0.7)+
                scale_colour_gradientn(colours=matlab.like(10),  breaks=pretty_breaks(), ...)+
                ggtitle(title)
            })
@@ -145,20 +156,32 @@ plotscores=function(model, pc=c(1,2), an, title='', qc=NA, legend='in', cv.score
            'categorical'={
              if(length(unique(sc$shape))==1){
                g=g+
-                 geom_point(data=sc, aes_string('x','y', colour='cl'), shape='shape', alpha=0.7)+
+                 geom_point(data=sc, aes_string('x','y', colour=names(an)[1]), alpha=0.7)+
                  scale_colour_manual(values=cols)+
-                 geom_text_repel(data=sc, aes_string('x','y', label='labs'))+
+                 geom_text_repel(data=sc, aes_string('x','y', label=names(an)[3]))+
                  labs(colour=names(an)[1], shape=names(an)[2])
              }else{
                g=g+
-                 geom_point(data=sc, aes_string('x','y', colour='cl', shape='shape'), alpha=0.7)+
+                 geom_point(data=sc, aes_string('x','y', colour=names(an)[1], shape=names(an)[2]), alpha=0.7)+
                  scale_colour_manual(values=cols)+
-                 geom_text_repel(data=sc, aes_string('x','y', label='labs'))+
+                 geom_text_repel(data=sc, aes_string('x','y', label=names(an)[3]))+
                  labs(colour=names(an)[1], shape=names(an)[2])
              }
            },
            'continuous'={
-             stop('A continuous variable can not be mapped to shape')
+             if(length(unique(sc$shape))==1){
+               g=g+
+                 geom_point(data=sc, aes_string('x','y', colour=names(an)[1]), alpha=0.7)+
+                 scale_colour_gradientn(colours=matlab.like(10),  breaks=pretty_breaks(), ...)+
+                 geom_text_repel(data=sc, aes_string('x','y', label=names(an)[3]), min.segment.length = unit(0, 'lines'))+
+                 labs(colour=names(an)[1], shape=names(an)[2])
+             }else{
+               g=g+
+                 geom_point(data=sc, aes_string('x','y', colour=names(an)[1], shape=names(an)[2]), alpha=0.7)+
+                 scale_colour_gradientn(colours=matlab.like(10),  breaks=pretty_breaks(), ...)+
+                 geom_text_repel(data=sc, aes_string('x','y', label=names(an)[3]), min.segment.length = unit(0, 'lines'))+
+                 labs(colour=names(an)[1], shape=names(an)[2])
+             }
            })
   }
 

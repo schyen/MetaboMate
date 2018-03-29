@@ -5,7 +5,7 @@
 #' @param method Type of cross validation: k-fold or Monte Carlo-Cross Validation (MCCV), sampling can be performed totally random or group stratified: 'k-fold', 'k-fold_stratified', 'MC', 'MC_stratified'.
 #' @details If input argument \code{Y} is a dummy marix then function \cite{\code{centre_scale}} has been applied beforehand.The number of cross validation sets is related to the number of samples in each group. If in doubt, set \code{k=nrow(Y)} or \code{k=length(Y)} if Y is matrix or vector, respectively.
 #' @seealso center_scale
-
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 cv_sets_method=function(cv.k=7, Y, type=c('R', 'DA'), method='k-fold_stratified'){
 
   if(type=='R' & (method == 'k-fold_stratified' | method == 'MC_stratified')){cat('Stratified k-fold CV sampling not implemented for numeric Y. Changed to k-fold!\n'); method='kfold'}

@@ -15,5 +15,5 @@ totalArea(X, add.DilF = "ta.dilf")
 Total area normalisation
 }
 \author{
-Torben Kimhofer
+Torben Kimhofer \email{tkimhofer@gmail.com}
 }

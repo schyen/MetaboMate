@@ -6,6 +6,7 @@
 #' @param ppm.noise region for noise estimation, must be signal free across all spectra.
 #' @param plot Logical indicating if a summary plot should be produced.
 #' @return Returned is a data frame with TSP line width, residual water signal, normalised baseline estimation (the lower the less baseline fluctuations), estimated signal to noise ratio.
+#' @seealso \code{\link{readBruker}}
 #' @references Eilers, P.H.C. (2004), Parametric Time Warping, \emph{Analytical Chemistry}, 76.2, 404–411.
 #' @references Bloemberg, T.G., \emph{et al.} (2010), Improved parametric time warping for Proteomics, \emph{Chemometrics and Intelligent Laboratory Systems}, 104.1, 65-74.
 #' @importFrom ptw asysm
@@ -13,7 +14,7 @@
 #' @importFrom colorRamps matlab.like2
 #' @importFrom graphics plot
 #' @importFrom stats median
-#'
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 
 
 spec.quality=function(X, ppm, ppm.noise=c(9.4,9.5), plot=T){

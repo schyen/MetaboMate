@@ -24,5 +24,5 @@ Reading 1D NMR spectra from Bruker. This function is recurisvely searching for m
 Paremeters with prefix \code{a} or \code{p} were extracted from the \emph{acqus} or \emph{procs} file, respectively. Paremeters without any prefix were calculated on the fly.
 }
 \author{
-Torben Kimhofer, Imperial College London (2017)
+Torben Kimhofer \email{tkimhofer@gmail.com}
 }

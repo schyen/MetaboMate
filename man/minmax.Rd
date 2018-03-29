@@ -18,3 +18,6 @@ Min-Max scaling
 \details{
 Scaling minimum and maximum values to zero and one
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

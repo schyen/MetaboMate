@@ -20,3 +20,6 @@ Returned is a list with the following entries:
 \description{
 Predicting scores and Y outcome using PLS component(s)
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

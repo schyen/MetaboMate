@@ -39,14 +39,8 @@ Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS)
 Hotelling, H. (1931) The generalization of Student’s ratio. \emph{Ann. Math. Stat.}, 2, 360-378.
 }
 \seealso{
-\code{\link{OPLS_MetaboMate-class}}
-
-\code{\link{opls}}
-
-\code{\link{PCA_MetaboMate-class}}
-
-\code{\link{pca}}
+\code{\link{pca}} \code{\link{opls}} \code{\link{PCA_MetaboMate-class}} \code{\link{OPLS_MetaboMate-class}}
 }
 \author{
-Torben Kimhofer
+Torben Kimhofer \email{tkimhofer@gmail.com}
 }

@@ -25,6 +25,9 @@ Spectral calibration to a chemical shift reference. If \code{type='Urine'} calib
 \references{
 Dona, A.C., \emph{et al.} (2014) Precision high-throughput proton NMR spectroscopy of human urine, serum, and plasma for large-scale metabolic phenotyping. \emph{Analytical Chemistry}. 86.19. 9887-94.
 }
+\seealso{
+\code{\link{readBruker}}
+}
 \author{
-Torben Kimhofer
+Torben Kimhofer \email{tkimhofer@gmail.com}
 }

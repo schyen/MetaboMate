@@ -9,8 +9,9 @@
 #' @param title Plot title.
 #' @param size Line width (0.5 is a good start).
 #' @param ... Additional paramters passed on to ggplot's facet function.
-#' @description  Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument \code{shift} should be as small as possible. List argument \code{an} must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of \code{an} must have the same length as \code{X}.
-#' @author Torben Kimhofer
+#' @description  Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument \code{shift} should be as small as possible. List argument \code{an} must have the first element define, even if it is only a single valuess. If colour and line width is specified, then at least one list elements of \code{an} must have the same length as \code{X}.
+#' @seealso \code{\link{readBruker}}
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @importFrom reshape2 melt
 #' @importFrom ggplot2 aes_string scale_x_reverse ggtitle xlab facet_grid theme_bw theme element_text geom_line
 #' @importFrom colorRamps matlab.like2
@@ -20,7 +21,15 @@
 
 specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltype'), alp=0.7, size=0.5, title='', ...){
 
+  if(is.null(names(an))){cat('No facet, colour and linetype names given. See an argument in ?specOverlay\n')
+    names(an)=paste('an', 1:length(an), sep='')}
+
+  if ('' %in% names(an)){
+    idx=which(names(an)=='')
+    names(an)[idx]=paste('an', idx, sep='')
+  }
   names(an)=gsub(' ', '.', names(an))
+
 
   idx=get.idx(shift, ppm)
   specs=X[,idx]

@@ -9,9 +9,8 @@
 #' @param center Logical indicating if data should be mean centred.
 #' @references Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 #' @return This function returns a \emph{PCA_MetaboMate} S4 object.
-#' @author Torben Kimhofer
-#' @seealso \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}}
-#' @seealso \code{\link[pcaMethods]{pca}}
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
+#' @seealso \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}} \code{\link[pcaMethods]{pca}} \code{\link{plotscores}} \code{\link{plotload}} \code{\link{opls}}
 #' @importFrom pcaMethods pca
 #'
 pca=function(X, pc=2, scale=c('None', 'UV', 'Pareto'), center=T, method='nipals'){

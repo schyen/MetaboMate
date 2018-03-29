@@ -8,6 +8,7 @@
 #' @seealso  \code{\link{matspec}} \code{\link{plot}}
 #' @aliases spec
 #' @details Low-level plotting function for a single NMR spectrum.
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @importFrom graphics points
 
 spec=function(ppm, x, shift=c(0,9.5), add=F, ...){

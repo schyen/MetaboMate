@@ -41,8 +41,8 @@ Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS)
 Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 }
 \seealso{
-\code{\link{OPLS_MetaboMate-class}}
+\code{\link{OPLS_MetaboMate-class}} \code{\link{dmodx}} \code{\link{plotscores}} \code{\link{plotload}} \code{\link{specload}}
 }
 \author{
-Torben Kimhofer
+Torben Kimhofer \email{tkimhofer@gmail.com}
 }

@@ -8,36 +8,48 @@
 #' @param type Type of loadigs visualisation, either \code{'Statistical reconstruction'} or \code{'Backscaled'} (see Details).
 #' @param title Plot title.
 #' @details OPLS: If \code{type='Statistical recostruction'} the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm varaible). If \code{type='Backscaled'} the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.
-#' @author Torben Kimhofer
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @importFrom stats cor cov
 #' @importFrom ggplot2 ggplot geom_line scale_x_reverse scale_color_gradientn ggtitle xlab ylab theme_bw ggtitle aes_string
 #' @importFrom colorRamps matlab.like2
-#' @seealso \code{\link[=OPLS_MetaboMate-class]{OPLS_MetaboMate}}
-#' @seealso \code{\link{opls}}
-#' @seealso \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}}
-#' @seealso \code{\link{pca}}
-
+#' @seealso \code{\link{pca}} \code{\link{opls}} \code{\link{PCA_MetaboMate-class}} \code{\link{OPLS_MetaboMate-class}}
 
 plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
 
-  if(length(model@Xscale)!=ncol(X)){
-    stop('Model loadings do not fit to X matrix.')
+  if(grepl('stat|recon', type, ignore.case = T)){type='Statistical reconstruction'}else{
+    type='Backscaled'
   }
 
-  if(length(model@Xscale)!=length(ppm)){
-    stop('Model loadings do not fit to ppm vector.')
-  }
-
-  if(class(model)=='PLS_MataboMate'){
+  if(class(model)[1]=='PCA_MetaboMate'){
     type=c('Statistical reconstruction')
+
+
+    if(nrow(model@p)!=ncol(X)){
+      stop('Model loadings do not fit to X matrix.')
+    }
+
+    if(nrow(model@p)!=length(ppm)){
+      stop('Model loadings do not fit to ppm vector.')
+    }
+
+  }else{
+
+    if(ncol(model@p_pred)!=ncol(X)){
+      stop('Model loadings do not fit to X matrix.')
+    }
+
+    if(ncol(model@p_pred)!=length(ppm)){
+      stop('Model loadings do not fit to ppm vector.')
+    }
+
   }
 
   idx=get.idx(shift, ppm)
 
   if(type=='Statistical reconstruction'){
     switch(class(model)[1],
-           "PCA_MetabMate"={t=model@t[,pc]},
-           "OPLS_MetabMate"={t=model@t_pred[,pc]}
+           "PCA_MetaboMate"={t=model@t[,pc]},
+           "OPLS_MetaboMate"={t=model@t_pred[,pc]}
     )
 
     cc=cor(t, X)[1,]

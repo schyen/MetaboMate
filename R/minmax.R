@@ -4,5 +4,6 @@
 #' @param x Input vector.
 #' @return Scaled x vector.
 #' @usage minmax(x)
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 minmax<-function(x){
   (x-min(x))/(max(x)-min(x))}

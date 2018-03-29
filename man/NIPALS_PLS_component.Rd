@@ -24,3 +24,6 @@ Returned is a list with the following entries:
 \description{
 Calculating a single PLS component
 }
+\author{
+Torben Kimhofer \email{tkimhofer@gmail.com}
+}

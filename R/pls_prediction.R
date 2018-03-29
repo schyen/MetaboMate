@@ -5,7 +5,7 @@
 #' \item{Scores_pred}{Predicted PLS component scores.}
 #' \item{Y_hat}{Predicted outcome. Averaged over all components in multi-PLS-component case.}
 #' #' \item{Y_hat_components}{Predicted outcome (Y) for each component.}
-
+#' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
   pls_prediction=function(pls_mod, X){
 
   # in case of one sample scenario
