@@ -53,7 +53,7 @@ matspec(ppm, X.pqn[1:10,], shift = range(ppm))
 The pre-processed specra range from 0.5 to 9.5 ppm. If you have some experience in urinary NMR analysis you might recognise some unusual and interesting chemical shifts in the above plot. These signals are most likely induced by the surgical procedure. We will find out more about this during this tutorial and also in the following vignette on metabolite identification.
 
 ## Unsupervised Multivariate Analysis
-Let's start with an exploratory analysis approach using Principal Component Analysis (PCA). This projection method tries to find latent (in the sense of unobserved) factors in the data and summarises these in so called principal components. This drastically reduces the dimnesionality of the data with the effect that we can visualise it in two dimensions.
+Let's start with an exploratory analysis approach using Principal Component Analysis (PCA). This projection method tries to find latent (in the sense of unobserved) factors in the data and summarises these in so called principal components. This drastically reduces the dimensionality of the data with the effect that we can visualise it in few dimensions.
 
 Performing PCA can be achieved with the **pca()** function. Its input arguments are the pre-processed NMR matrix (*X=X.pqn*), information on how many prinicipal components should be fitted (*pc=2*) and centering and scaling parameters. Here the data will be unit variance scaled (*scale="UV"*) and mean centered (*center=TRUE*). 
 
@@ -63,7 +63,7 @@ pca.model=pca(X=X.pqn, pc=2, scale='UV', center=TRUE)
 ```
 Plotting PCA scores can be achieved with the **plotscores()** function. The minimum input arguments are a *PCA_Metabomate* object (*model=pca.model*, this is produced by the **pca()** call), the axis definition (*pc=c(1,2)*) and a list object (*an*) with its first element specifying the colouring. 
 
-Here we colour according to the performed surgical procedure which can be either none (Pre-op), Roux-en-Y gastric bypass (RYGB, further referred to as bariatic surgery) or Sham. Sham surgery is when the operation was performed but the surgeon omitted the intended therapeutic procedure. This surgery control group was included to account for incidential effects induced by anesthesia, incision, etc.
+Here we colour according to the performed surgical procedure which can be either none (Pre-op), Roux-en-Y gastric bypass (RYGB, further referred to as bariatic surgery) or Sham. In a sham surgery an operation is performed but the surgeon omitts the intended therapeutic procedure. This is really a control group that was included to account for incidential effects induced by anesthesia, incision, etc.
 
 ```{r, fig.show='hold', fig.width = 6, fig.height = 5}
 # Plot PCA scores of the first two components
@@ -72,7 +72,7 @@ plotscores(model=pca.model, pc=c(1,2), an=list(Class=an$Class), title='PCA - Sco
 
 The scatterplot above shows PCA scores of principal components 1 and 2 plotted as the abcissa/x-axis and ordinate/y-axis, respectively. Every point represents an NMR spectrum of a urine sample. The ellipse is called Hotelling's T^2^ and represents a multivariate generalisation of a 95% confidence interval. The axis labels in parenthesis describe the amount of variation that each component describes, also termed R^2^.
 
-Additional graphics parameters can be passed on to **plotscores()** by specifying point shape and labels as list element two and three, repsectively. See the following code for an example:
+Additional graphics parameters can be passed on to **plotscores()** by specifying point shape and labels as list element of two and three *an*, repsectively. See the following code for an example:
 
 ```{r, fig.show='hold', fig.width = 6, fig.height = 5}
 # define scores that should be labelled
@@ -90,20 +90,21 @@ plotscores(model=pca.model, pc=c(1,2), an=list(
   title='PCA - Scores plot')
 ```
 
-We can visualise which variables contribute the a principal component with the **plotload()** function, whose input arguments are the PCA_MetaboMate model, NMR matrix & ppm vector and the principal component to be visualised. In the example below, PCA loadings of the first compontne in the chemical shift region from 6 to 9 ppm are visualised.
+We can visualise which variables contribute the a principal component with the **plotload()** function, whose input arguments are the PCA_MetaboMate model, NMR matrix & ppm vector and the principal component to be visualised. In the example below, PCA loadings of the first component in the chemical shift region from 6 to 9 ppm are visualised.
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # define scores that should be labelled
 plotload(pca.model, X.pqn, ppm, pc=2, shift=c(6,9))
 ```
-Plotted is the covariance of scores (*t*) with each NMR variable (*x*) over ppm, coloured according to the Pearson's correlation coefficient of *t* and *x*. Signals coloured towards the red colour spectrum are increased in spectra with positive PC 1 scores and \emph{vice versa}.
+
+Plotted is the covariance of PCA scores (*t*) with each NMR variable (*x*) over ppm, coloured according to the Pearson's correlation coefficient of *t* and *x*. Signals coloured towards the red colour spectrum are characteristic for spectra with postive (negative) scores when these point up (down) in the loadings plot and *vice versa*.
 
 ## Supervised Multivariate Analysis
 
-Althoug a clustering trend according to surgery type is visible in PCA scores plot, PCA is an unsupervised analysis method (meaning it is not designed to optimise the separation of groups or regression of numeric variables) and we apply a supervised method. Well-known in the field of metabolic phenotyping is Partial Least Squares method and extension such as Orthogonal Projections to Latent Structures, or mostly known as **Orthogonal Partial Least Squars (O-PLS)**.^[Trygg J., *et al.* (2002). Orthogonal projections to latent structures (O-PLS). *Journal of Chemometrics*, 16.3, 119-28.]
+Althoug a clustering trend according to surgery type is visible in PCA scores plot, PCA is an unsupervised analysis method meaning it is not designed to optimise the separation of groups or regress against numeric variables. This is why we apply a supervised analysis method. Well-known in the field of metabolic phenotyping is the Partial Least Squares method and its extensions, such as Orthogonal Projections to Latent Structures, mostly known as **Orthogonal Partial Least Squares (O-PLS)**.^[Trygg J., *et al.* (2002). Orthogonal projections to latent structures (O-PLS). *Journal of Chemometrics*, 16.3, 119-28.]
 
-### O-PLS model training and statistical evaluation
-Here we apply OPLS calling the function **olps()** with the input parameters X and Y, representing the NMR matrix and the dependent variable, in this case the surgical procedure. The function will automatically fit an appropriate number of components.
+### O-PLS training and statistical model evaluation
+Here we calculate an OPLS model by calling the function **olps()**. Its input parameters are X and Y, representing the NMR matrix and the dependent variable (in this case the surgical procedure), respectively. This function comes with a statsical valiation procedure which fits as many orthogonal components until a stop criterion is fullfilled and the model is returned.
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # Exclude pre-op group
@@ -114,17 +115,17 @@ Y=an$Class[idx]
 
 opls.model=opls(X,Y)
 ```
-The model summary plot above indicates an O-PLS model with one predictive and two orthogonal component was fitted to the data. The set of bars bars on the right hand side of the plot (higher alpha channel) correspond to 1 predictive and 3 orthogonal components (one orthogonal component more than actually fitted). This information is included for comparative purposes and to evaluate the fittness of the automatic stop criteria.
+The model summary plot above shows a model with one predictive and two orthogonal component was fitted to the data. The set of bars bars on the right hand side of the plot (higher alpha channel) correspond to 1 predictive and 3 orthogonal components (one orthogonal component more than actually fitted). This information is included for comparative purposes and to evaluate the fittness of the automatic stop criterion.
 
-The coloured bars represent model paramters R2X, R2Y and Q2 and AUROC_cv. R2X and R2Y respecitvely describe how much variation in X and Y the model describes, rangeing from 0 (no explanatory power) to 1 (all variation is explained by the model). A high R2Y is desirable, meaning the O-PLS model explains much of the independent variable. The indices Q2 and AUROC_cv are generated with statistical validation techniques and estimate how well the model generalise to a new, independent data set. Low values indicated that the model is overfitted (not desired), high values are a good indicator for statistically robust O-PLS models. 
+The coloured bars represent model paramters R2X, R2Y, Q2 and AUROC_cv. R2X and R2Y describe how much variation in X and Y the model describes, respecitvely. These indices range from 0 (no explanatory power) up to 1 (all variation is explained by the model). A high R2Y is desirable, indicating the O-PLS model explains much of the independent variable. The indices Q2 and AUROC_cv are generated with statistical validation techniques and estimate how well the model generalise to a new, independent data set. Low values indicated that the model is overfitted (not desired), high values are a good indicator for statistically robust O-PLS models. 
 
 ### Distance to the model in X space
 
-The distance to the model in X space (DModX) is a dianostic plot to spot model outliers (X is the mathematical descriptor of the independent variable matrix, in this case the NMR matrix). We can access the DModX  by calling the **distanceX** function:
+The distance to the model in X space (DModX) is a dianostic plot to spot model outliers (X is the mathematical descriptor of the independent variable matrix, in this case the NMR matrix). We can access the DModX  by calling the **dmodx()** function:
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 distanceX=dmodx(opls.model, plot=T)
 ```
-In the plot above each point represent a sample and the dotted line represents a 95% confidence interval. The line's y-intercept will change when modelling a different data set. Samples above this line are considered moderate outliers. In particular if the DModX plot shows any patterns a further investigation should be untertaken. The *distanceX* variable in the above code snippet is a dataframe of DModX values which can be used for further instpections.
+In the plot above each point represent a sample and the dotted line represents a 95% confidence interval. The line's y-intercept is adjusted to a particular data set and changes for other OPLS models. Samples above this line are considered moderate outliers. In particular if the DModX plot shows any patterns a further investigation should be untertaken. The *distanceX* variable in the above code snippet is a dataframe of DModX values which can be used for further instpections.
 
 ## Visualisation of O-PLS scores and loadings
 visualise OPLS scores
