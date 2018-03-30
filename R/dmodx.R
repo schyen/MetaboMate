@@ -6,10 +6,11 @@
 #' @references Bylesjö M., \emph{et al.} (2002) OPLS discriminant analysis: combining the strengthsof PLS-DA and SIMCA classification. \emph{Journal of Chemometrics}, 20, 341-51.
 #' @references Wold S. (1976) Pattern recognition by means of disjoint princi-pal components models.  \emph{Pattern Recognition}, 8, 127-39.
 #' @seealso \code{\link{opls}}
-#' @importFrom ggplot2 ggplot aes_string geom_point scale_colour_gradientn geom_hline xlab scale_y_continuous theme_bw theme element_blank element_text
+#' @importFrom ggplot2 ggplot aes_string geom_point scale_colour_gradientn geom_hline xlab scale_y_continuous theme_bw theme element_blank element_text geom_segment
 #' @importFrom colorRamps matlab.like
 #' @importFrom stats t.test sd
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
+
 # E=residual Matrix
 # N=number of samples
 # K=number of variables
@@ -34,14 +35,17 @@ dmodx=function(model, plot=T){
   ci95=tt$conf.int[2]+2*sd(dmodX)
   df=data.frame(col=model@t_cv, ID=1:length(dmodX), DmodX=dmodX, passedT.test=dmodX<tt$conf.int[2]+2*sd(dmodX))
   if(plot==T){
-    g=ggplot(df, aes_string('ID', 'DmodX', colour='col'))+
-      geom_point()+
+    g=ggplot(data=df)+
+      geom_segment(aes_string(x='ID', xend='ID', y='min(dmodX)-0.1', yend='DmodX'), colour="gray60", size=0.1)+
+      geom_point(aes_string(x='ID', y='DmodX', colour='col'))+
       scale_colour_gradientn(colours=matlab.like2(10), name=expression(t[pred]))+
-      scale_y_continuous(limits = c(min(dmodX), max(c(dmodX, ci95))), name='DModX')+
-      geom_hline(yintercept=ci95, linetype=2, colour='gray80')+
+      scale_y_continuous(limits = c(min(dmodX)-0.1, max(c(dmodX, ci95))+0.2), name='DModX', expand = c(0, 0))+
+      geom_hline(yintercept=ci95, linetype=2, colour='black')+
       xlab('Sample index')+
       theme_bw()+
       theme(panel.grid.minor.x = element_blank(),
+            panel.grid.major.x = element_blank(),
+            panel.grid.minor.y = element_blank(),
             axis.text=element_text(colour="black"))
     plot(g)
   }

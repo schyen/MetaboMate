@@ -16,12 +16,11 @@
 #' @seealso \code{\link{plotload}} \code{\link{specOverlay}} \code{\link[=OPLS_MetaboMate-class]{OPLS_MetaboMate}} \code{\link{opls}} \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}} \code{\link{pca}}
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @importFrom reshape2 melt
-#' @importFrom ggplot2 aes_string scale_x_reverse ggtitle xlab facet_grid theme_bw theme element_text geom_line scale_colour_gradientn element_blank
+#' @importFrom ggplot2 aes_string scale_x_reverse ggtitle xlab facet_grid theme_bw theme element_text geom_line scale_colour_gradientn element_blank scale_colour_brewer
 #' @importFrom colorRamps matlab.like2
 #' @importFrom scales pretty_breaks
 #' @importFrom stats as.formula
-#' @importFrom grid grid.newpage viewport grid.layout pushViewport unit
-
+#' @importFrom grid grid.newpage viewport grid.layout pushViewport unit unit.length
 
 specload1=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=0.5, pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
 
@@ -42,14 +41,6 @@ specload1=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=0.5, pc=1, ty
   }
 
   names(an)[1]='facet'
-  # if(length(an)<3){
-  #   if(length(an)==1){
-  #     an[[2]]='black'
-  #     an[[3]]='1'
-  #   }else{
-  #     an[[3]]='1'
-  #   }
-  # }
 
   if(is.null(names(an))){cat('No facet, colour and linetype names given. See an argument in ?specOverlay\n')
     names(an)=paste('an', 1:length(an), sep='')}
@@ -145,24 +136,11 @@ specload1=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=0.5, pc=1, ty
   }}
 
 theme_bare <- theme(
-  # strip.background = element_blank(),
-  # strip.text = element_blank(),
-  # axis.line = element_blank(),
-  # axis.text.x = element_blank(),
-  # axis.text.y = element_blank(),
-  # axis.ticks = element_blank(),
-  # axis.title.x = element_blank(),
-  # axis.title.y = element_blank(),
-  # #axis.ticks.length = unit(0, "lines"), # Error
-  # axis.ticks.margin = unit(c(0,0,0,0), "lines"),
   legend.position = "none",
   panel.background = element_blank(),
-  # panel.border = element_blank(),
    panel.grid.major = element_blank(),
    panel.grid.minor = element_blank(),
-  # panel.margin = unit(c(0,0,0,0), "lines"),
    plot.background = element_blank()
-  # plot.margin = unit(c(0,0,0,0), "lines")
 )
 
 
@@ -200,7 +178,8 @@ g1=ggplot()+
         axis.text.x = element_text(angle = 45, hjust = 1),
         axis.title = element_text(colour="white"),
         #legend.position="none",
-        legend.justification=c(1,1), legend.position=c(0.98,0.62))
+        legend.justification=c(1,1), legend.position=c(0.98,0.55))+
+  scale_colour_brewer(palette = "Dark2")
 
 
 if(length(an)==1){
@@ -212,8 +191,13 @@ if(length(an)==2){
     geom_line(data=df, aes_string('variable', 'value',group='ID', colour=names(an)[2]), alpha=alp, size=size)
 }
 if(length(an)==3){
-  g1=g1+
-    geom_line(data=df, aes_string('variable', 'value',group='ID', colour=names(an)[2] , linetype=names(an)[3]), alpha=alp, size=size)
+  if(length(an[[2]])==1){
+    g1=g1+
+      geom_line(data=df, aes_string('variable', 'value',group='ID', linetype=names(an)[3]), alpha=alp, size=size, colour='black')
+  }else{
+    g1=g1+
+      geom_line(data=df, aes_string('variable', 'value',group='ID', colour=names(an)[2] , linetype=names(an)[3]), alpha=alp, size=size)
+  }
 }
 
 

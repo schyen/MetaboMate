@@ -9,12 +9,14 @@
 #' @param title Plot title.
 #' @details OPLS: If \code{type='Statistical recostruction'} the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm varaible). If \code{type='Backscaled'} the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
+#' @references Cloared, O., \emph{et al.} (2005). Evaluation of the Orthogonal Projection on Latent Structure Model Limitations Caused by Chemical Shift Variability and Improved Visualization of Biomarker Changes in 1H NMR Spectroscopic Metabonomic Studies. \emph{Analytical Chemistry} 77.2, 517-26.
 #' @importFrom stats cor cov
 #' @importFrom ggplot2 ggplot geom_line scale_x_reverse scale_color_gradientn ggtitle xlab ylab theme_bw ggtitle aes_string
 #' @importFrom colorRamps matlab.like2
+#' @importFrom scales pretty_breaks
 #' @seealso \code{\link{pca}} \code{\link{opls}} \code{\link{PCA_MetaboMate-class}} \code{\link{OPLS_MetaboMate-class}}
 
-plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
+plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical reconstruction'), title=''){
 
   if(grepl('stat|recon', type, ignore.case = T)){type='Statistical reconstruction'}else{
     type='Backscaled'
@@ -60,7 +62,7 @@ plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical recons
 
     g=ggplot(df, aes_string('ppm', 'cov', colour='cor'))+
       geom_line()+
-      scale_x_reverse(breaks=seq(shift[1], shift[2], by=abs(diff(shift))/5))+
+      scale_x_reverse(breaks=pretty_breaks(n=15))+
       scale_color_gradientn(colors=matlab.like2(10), limits=raCol, name='cor(t,x)')+
       ggtitle(title)+
       xlab(expression(delta~{}^1*H~(ppm)))+
@@ -80,7 +82,7 @@ plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical recons
 
     g=ggplot(df, aes_string('ppm', 't_bs', colour='w'))+
       geom_line()+
-      scale_x_reverse(breaks=seq(shift[1], shift[2], by=abs(diff(shift))/5))+
+      scale_x_reverse(breaks=pretty_breaks(n=15))+
       scale_color_gradientn(colors=matlab.like2(10),limits=raCol, name=expression(abs~w[pred*','~sc]))+
       ggtitle(title)+
       xlab(expression(delta~{}^1*H~(ppm)))+

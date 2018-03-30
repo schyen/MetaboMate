@@ -25,18 +25,6 @@
 #' @importFrom reshape2 melt
 #' @importFrom scales pretty_breaks
 
-
-  # X=numeric n times m input matrix or data frame: n=number of samples, m=number of features (no NA's)
-# Y=numeric or two-level factor input vector (outcome)
-# center=mean centering, either True of False
-# scale=desired scaling, currently UV only implemented
-# cv.k=number of statistical resampling sets (either cross-validation or monte carlo CV)
-# desired resampling technique: k-fold CV or MC-CV. Group stratified sampling possible in case of unequal number of class memeberships
-# plotting= output plot of model descriptors (R2X, R2Y, Q2, AUROC_CV)
-# maxPCo=maximum number of components fitted (manually created stop criterion in case anything goes wrong)
-# mod=NIPALS_OPLS_component_mulitlevel(X,Y)
-# res1=NIPALS_PLS_component_multlevel(mod$`Filtered X`, Y)
-
 opls <- function(X,
                                      Y,
                                      t_pred = 1,
@@ -49,7 +37,6 @@ opls <- function(X,
   {
 
     cat('Preparing data ...\n', sep = '')
-    # ID=rownames(X)
 
     # Determine if regression (R) or discriminant analysis (DA),
     # check Y for NA or non-numeric values
@@ -106,10 +93,10 @@ opls <- function(X,
                             scale = 'UV')
 
     # Calculate Total Sum of Squares (TSS), required for calculation of Q2 etc
-    cat('Calculate total sum of squares...')
+    # cat('Calculate total sum of squares...')
     tssx <- totSS(XcsTot)
     tssy <- totSS(YcsTot) # total variance that a model can explain (theoretical reference model, used for normalisation)
-    cat('done\n')
+    # cat('done\n')
   }
 
   cat('Performing OPLS-', type, ' ...\n', sep = '')
@@ -124,12 +111,12 @@ opls <- function(X,
   nc <- 1
   enough <- F
 
-  cat('Fiting components...')
+  # cat('Fiting components...')
 
   # fit as many orthogoanl components until a stop criterion is TRUE
   while (enough == F) {
 
-    cat('Component ', nc, '...')
+    # cat('Component ', nc, '...')
     if (nc>1) { # add column for nc > 1
        preds <- cbind(preds, matrix(NA, ncol = 1, nrow = nrow(X)))
        t_cv <- cbind(t_cv, matrix(NA, ncol = 1, nrow = nrow(X)))
@@ -244,7 +231,7 @@ opls <- function(X,
 
     if (nc == 1 & Q2_1[nc] < 0.03) {
       cat('At first PC, Q2 < 0.03: ', round(Q2_1[nc], 3), '\n',  sep = '')
-      print('No sign orthogonal components - try PLS!')
+      print('No sign. orthogonal components!')
       return(NULL)
       #print(Q2_cv)
       enough = T
@@ -254,14 +241,14 @@ opls <- function(X,
     if (nc > 1) {
       if ((Q2_1[nc] - Q2_1[nc - 1]) < 0.03) {
         # if q2 does not rise by more than 0.03 with new component
-        cat('At PC ', nc, ': delta Q2 < 0.03: ', round((Q2_1[nc] - Q2_1[nc -                                                                  1]), 3), '\n',  sep = '')
+        # cat('At PC ', nc, ': delta Q2 < 0.03: ', round((Q2_1[nc] - Q2_1[nc -                                                                  1]), 3), '\n',  sep = '')
         enough = T
       }
 
     }
 
     if (Q2_1[nc] > 0.98) {
-      cat('At PC ', nc, ', Q2 > 0.98: ', round(Q2_1[nc], 3), '\n', sep = '')
+      # cat('At PC ', nc, ', Q2 > 0.98: ', round(Q2_1[nc], 3), '\n', sep = '')
       enough = T
     }
 
@@ -275,7 +262,7 @@ opls <- function(X,
     }
 
   }
-  cat('done\n\n')
+  cat('done.\nAmodel with 1 predictive and', nc, 'orthogonal component(s) was fitted.\n\n')
   if (type == 'DA') {
     model.summary = data.frame(
       R2X = round(R2x, 2),
