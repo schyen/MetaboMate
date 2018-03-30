@@ -25,6 +25,7 @@
 #' @importFrom graphics plot
 #' @importFrom reshape2 melt
 #' @importFrom scales pretty_breaks
+#' @importFrom grid unit
 
 
 plotscores=function(model, pc=c(1,2), an, title='', qc=NA, legend='in', cv.scores=T, ...){
