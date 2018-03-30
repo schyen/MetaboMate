@@ -36,7 +36,7 @@ opls <- function(X,
                                      maxPCo = 5) {
   {
 
-    cat('Preparing data ...\n', sep = '')
+    cat('Preparing data ... ', sep = '')
 
     # Determine if regression (R) or discriminant analysis (DA),
     # check Y for NA or non-numeric values
@@ -96,7 +96,7 @@ opls <- function(X,
     # cat('Calculate total sum of squares...')
     tssx <- totSS(XcsTot)
     tssy <- totSS(YcsTot) # total variance that a model can explain (theoretical reference model, used for normalisation)
-    # cat('done\n')
+     cat('done.\n')
   }
 
   cat('Performing OPLS-', type, ' ... ', sep='')
@@ -229,7 +229,7 @@ opls <- function(X,
       cat('Something went wrong, Q2 is NA for component', nc, '\n',  sep = '')
     }
 
-    if (nc == 1 & Q2_1[nc] < 0.03) {
+    if (nc == 1 & Q2_1[nc] < 0.05) {
       cat('At first PC, Q2 < 0.03: ', round(Q2_1[nc], 3), '\n',  sep = '')
       print('No sign. orthogonal components!')
       return(NULL)
@@ -239,7 +239,7 @@ opls <- function(X,
 
 
     if (nc > 1) {
-      if ((Q2_1[nc] - Q2_1[nc - 1]) < 0.03) {
+      if ((Q2_1[nc] - Q2_1[nc - 1]) < 0.05) {
         # if q2 does not rise by more than 0.03 with new component
         # cat('At PC ', nc, ': delta Q2 < 0.03: ', round((Q2_1[nc] - Q2_1[nc -                                                                  1]), 3), '\n',  sep = '')
         enough = T
@@ -277,16 +277,16 @@ opls <- function(X,
       Q2 = round(Q2_1, 2)
     )
   }
-  rownames(model.summary) = paste('PC', 1:(nrow(model.summary)))
+  rownames(model.summary) = paste('PC_o', 1:(nrow(model.summary)))
 
-  mm = cbind('PC' = rownames(model.summary), model.summary)
-  mm = melt(mm, id.vars = 'PC')
-  mm$PC = factor(mm$'PC', levels = rownames(model.summary))
+  mm = cbind('PC_o' = rownames(model.summary), model.summary)
+  mm = melt(mm, id.vars = 'PC_o')
+  mm$PC = factor(mm$'PC_o', levels = rownames(model.summary))
 
   mm$alpha1 = 1
-  mm$alpha1[mm$'PC' == paste('PC', nrow(model.summary))] = 0.7
+  mm$alpha1[mm$'PC_o' == paste('PC_o', nrow(model.summary))] = 0.7
 
-  g = ggplot(mm, aes_string('PC',' value', fill = 'variable')) +
+  g = ggplot(mm, aes_string('PC_o',' value', fill = 'variable')) +
     geom_bar(stat = 'identity',
              position = "dodge",
              colour = NA,
@@ -330,7 +330,7 @@ opls <- function(X,
       text=element_text(family="Helvetica")
     )
 
-  model.summary=model.summary[,-nrow(model.summary)]
+  model.summary=model.summary[-nrow(model.summary),]
   #
   if (plotting == T) {
     plot(g)

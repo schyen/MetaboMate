@@ -87,27 +87,27 @@ outliers[idx]=an$ID[idx]
 
 # Plot PCA scores, colour according to class, point shape according to time of sample collection and label outliers
 plotscores(model=pca.model, pc=c(1,2), an=list(
-  Class=an$Class, # point colour
+  Class=an$Class,         # point colour
   Timepoint=an$Timepoint, # point shape
-  ID=outliers), # point label
+  ID=outliers),           # point label
   title='PCA - Scores plot')
 ```
 
-We can visualise which variables contribute to a principal component with the **plotload()** function, whose input arguments are the *PCA_MetaboMate* model, NMR matrix & ppm vector and the principal component to be visualised. In the example below, PCA loadings of the first component in the chemical shift region from 6 to 9 ppm are visualised.
+We can visualise which variables contribute to a principal component with the **plotload()** function, whose input arguments are the *PCA_MetaboMate* model, NMR matrix & ppm vector and the principal component to be visualised. In the example below, PCA loadings of the second component and within the chemical shift region of 6 - 9 ppm are visualised.
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # Plot PCA loadings
 plotload(pca.model, X.pqn, ppm, pc=2, shift=c(6,9))
 ```
 
-Plotted is the covariance of PCA scores (*t*) and NMR variables (*x*) over ppm. The colour represents the Pearson's correlation coefficient of *t* and *x*. Signals coloured towards the red colour spectrum are characteristic for spectra with postive (negative) scores when these point up (down) in the loadings plot.
+Plotted is the covariance of PCA scores (*t*) and NMR variables (*x*) over ppm. The colour represents Pearson's correlation coefficient of *t* and *x*. Signals coloured towards the red colour spectrum are characteristic for spectra with postive (negative) scores when these point up (down) in the loadings plot.
 
 ## Supervised Multivariate Analysis
 
 Althoug a clustering trend according to surgery type is visible in PCA scores plot, PCA is an unsupervised analysis method meaning it is not designed to optimise the separation of groups or regress against numeric variables. This is why we apply a supervised analysis method. Well-known in the field of metabolic phenotyping is the Partial Least Squares (PLS) method and its extensions, such as Orthogonal-Projections to Latent Structures, mostly known as **Orthogonal Partial Least Squares (O-PLS)**.^[Trygg, J., *et al.* (2002). Orthogonal projections to latent structures (O-PLS). *Journal of Chemometrics*, 16.3, 119-28.]
 
 ### O-PLS model training and statistical evaluation
-Here we calculate an O-PLS model by calling the function **olps()**. Its minimum input arguments are X and Y, representing the NMR matrix and the response/outcome variable(s) (here: the surgical procedure), respectively. The *opls* function uses statsical resampling techniques to determine the optimal number of O-PLS components and returns a *OPLS_Metabomate* object. 
+Here we calculate an O-PLS model by calling the function **olps()**. Its minimum input arguments are X and Y, representing the NMR matrix and the response/outcome variable(s) (here: the surgical procedure), respectively. The *opls* function uses statsical resampling techniques to determine the optimal number of orthogonal components and returns the model as an *OPLS_Metabomate* object. 
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # Exclude pre-op group
@@ -115,11 +115,11 @@ idx=an$Class!='Pre-op'
 X=X.pqn[idx,]
 Y=an$Class[idx]
 
-
+# Train O-PLS model
 opls.model=opls(X,Y)
 ```
 
-The model summary plot above describes the O-PLS parameters, with each set of bars corresponding to one fitted predictive and the specied number of orthogonal compononents. As you can see, the final model comprises one predictive and two orthogonal components (labelled 1+2). The final set of bars on the right (increased transparency) correspond to a model with 1 predictive and 3 orthogonal components (one orthogonal component more than actually fitted). This information is included for comparative purposes and for the evaluation of the automatic stop criteria. 
+The model summary plot above describes the O-PLS parameters, with each set of bars corresponding to one fitted predictive and the specied number of orthogonal compononents. As you can see, the final model comprises one predictive and two orthogonal components (labelled 1+1). The final set of bars on the right (increased transparency) correspond to a model with 1 predictive and 2 orthogonal components (one orthogonal component more than actually fitted). This information is included for comparative purposes and for the evaluation of the automatic stop criteria. 
 
 The model summary can also be returned as a table with the following command:
 ```{r, echo=T, eval=F}
@@ -146,7 +146,7 @@ distX=dmodx(model=opls.model, plot=T)
 In the plot above each point represents a sample and the dotted horizontal line represents a 95% confidence interval. This threshold is specific for a particular model and varies for different OPLS models. Samples exceeding the confidence line are considered as moderate outliers. In particular if the DModX plot shows any patterns a further investigation should be untertaken. The *distX* variable in the above code snippet is a dataframe of DModX values which can be used for further instpections.
 
 ## Visualisation of O-PLS Scores and Loadings
-O-PLS model results are visualised in the scores plot, where the x axis represents the predictive component and the y axis an orthogonal component. The function **plotscores()** can be used for this taks (see section of PCA scores for function input arguments). An additionally argument is if cross-validated scores should be plotted. These are scores derived withing the statistical model validation procedure and are considered as more robust. See the following code for an example: 
+O-PLS model results are visualised in the scores plot, where the x-axis represents the predictive component and the y-axis an orthogonal component. The function **plotscores()** can be used for this taks (see section of PCA scores for function input arguments). An additionall input argument is whether cross-validated (CV) scores should be plotted or not. CV scores are derived withing the internal model validation procedure and are considered as statistically robust. See the following code for an example: 
 
 ```{r, fig.show='hold', fig.width = 6, fig.height = 5}
 # Plot OPLS scores
@@ -157,9 +157,9 @@ plotscores(model=opls.model, pc=c(1,2), an=list(
   cv.scores = T)                  # visualise cross-validated scores
 ```
 
-The resuling OPLS cross-validated scores plot shows an almost perfect separation of both surgery types, with all predictive power focussed on the x-axis (that is characteristic for O-PLS, compared to PLS). 
+The resuling OPLS CV scores plot shows an almost perfect separation of both surgery types, with all predictive power focussed on the x-axis (that is characteristic for O-PLS, compared to PLS). 
 
-The orthogonal component (y-axis) is - in the mathematical sense - unrelated to the outcome variable *Y*. Sometimes its interpretation can give some insights about study samples. In the present case, the first orthogonal O-PLS component is associated with different urine dilutions and effects resulting from spectral normalisation, which was part of the data pre-processing pipeline.
+The orthogonal component (y-axis) is - in the mathematical sense - unrelated to the outcome variable *Y*. In some cases, its interpretation can give some insights about the study samples. In the present case, the first orthogonal O-PLS component is associated with different urine dilutions and effects resulting from spectral normalisation, which was part of the data pre-processing pipeline.
 
 ```{r, fig.show='hold', fig.width = 6, fig.height = 5}
 plotscores(opls.model, pc=c(1,2), an=list(
@@ -172,22 +172,22 @@ The variable influence on the predictive component can be visualised with the **
 plotload(opls.model, X, ppm, type='Reconstruction', title = 'OPLS Loadings - Statistical Reconstruction', shift=c(0.5,9.5))
 ```
 
-The function's input argument *type* allows different model loadings visualisation techniques, that is either a statistical reconstruction of loadings or back-scaling loadings. For details on both methods see the help section of the *plotload* function and Cloarec *et al.*.^[Cloared, O., *et al.* (2005). Evaluation of the Orthogonal Projection on Latent Structure Model Limitations Caused by Chemical Shift Variability and Improved Visualization of Biomarker Changes in 1H NMR Spectroscopic Metabonomic Studies. *Analytical Chemistry*. 77.2, 517-26.]
+The function's input argument *type* allows different  visualisations of the model loadings, that is either a statistical reconstruction using covariances or back-scaled loadings. For details on both of these methods see *help(plotload)* or the original publication by Cloarec *et al.*.^[Cloared, O., *et al.* (2005). Evaluation of the Orthogonal Projection on Latent Structure Model Limitations Caused by Chemical Shift Variability and Improved Visualization of Biomarker Changes in 1H NMR Spectroscopic Metabonomic Studies. *Analytical Chemistry*. 77.2, 517-26.]
 
 
-The O-PLS loadings plot shown above highlights signals that are systematically different between the RYGB and Sham control group. In many cases it helpful to have a closer look at specific signals. The specload1() function can be used for this task as it combines the spectral data with O-PLS model variable weightings in a single plot. The chemical shift region of 7.45 to 7.5 ppm has high variable loadings, so let's have a closer look at the spectra:
+The O-PLS loadings plot shown above highlights signals that are systematically different between the RYGB and Sham control group. In many cases, it is helpful to compare the O-PLS model loadings with spectra within certain chemical shift regions. The function **specload1()** can be used for this task. From the loadings plot above we can see that the signals within the region of 7.45 - 7.5 ppm has a high model importance, so let's have a closer look at this:
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 5}
 specload1(model=opls.model, X=X, ppm, shift=c(7.3,7.45), an=list(
   facet='All Spectra', 
   Surgery=an$Class[idx]), 
-  type='backscaled', alp = 0.2)
+  type='backscaled', alp = 0.2, title = 'Overlayed Spectra with Backscaled Loadings')
 ```
 
-The colour gradient filled line located in the upper plot area shows the OPLS model loadings (in this case: backscaled method). Plotted below are overlayed NMR spectra where the colours represents group memberships. Visible are group-related intensity differences for two tripletts centered around 7.365 and 7.425 ppm, with on average lower intensities in the Sham group. Further information these signals will be given in the **Metabolite Indeticiation** vignettte of the *MetaboMate* package.
+The colour gradient-filled line located in the upper plot area shows the OPLS model loadings (in this case: backscaled method). Plotted below are overlayed NMR spectra where the colour represents group membership. It is easy to see that there are group-related intensity differences for two tripletts centered around 7.365 and 7.425 ppm, with on average lower intensities in the Sham group. Further information these signals will be given in the **Metabolite Indeticiation** vignettte of the *MetaboMate* package.
 
 
 # Summary and further steps
-This vignette illustrated multivariate statistical analysis of NMR-based metabolic phenotyping data with PCA and O-PLS using the *MetaboMate* package. Once a statistically robust OPLS model was established, information on variable importance was extracted using different loadings visualisation options. The next step is the identification of signals with high model importance. Please see **Metabolite Identification** vignette for more information on this.
+This vignette illustrated multivariate statistical analysis of NMR-based metabolic phenotyping data with PCA and O-PLS using the *MetaboMate* package. Once a statistically robust OPLS model was established, information on variable importance was extracted using different loadings visualisations. The next step is the identification of signals with high model importance. Please see **Metabolite Identification** vignette for more information on this.
 
 
