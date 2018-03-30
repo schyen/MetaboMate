@@ -99,7 +99,7 @@ opls <- function(X,
     # cat('done\n')
   }
 
-  cat('Performing OPLS-', type, ' ...\n', sep = '')
+  cat('Performing OPLS-', type, ' ... ', sep='')
   # k-fold cross-validation for calculation of Q2/AUROC
   # generate indices defining training set in each CV round
   cv_sets <- cv_sets_method(cv.k, Y=Y1, method = cv.type, type)
@@ -262,7 +262,7 @@ opls <- function(X,
     }
 
   }
-  cat('done.\nAmodel with 1 predictive and', nc, 'orthogonal component(s) was fitted.\n\n')
+  cat('done.\nA model with 1 predictive and', nc-1, 'orthogonal component(s) was fitted.\n\n')
   if (type == 'DA') {
     model.summary = data.frame(
       R2X = round(R2x, 2),
@@ -278,7 +278,6 @@ opls <- function(X,
     )
   }
   rownames(model.summary) = paste('PC', 1:(nrow(model.summary)))
-
 
   mm = cbind('PC' = rownames(model.summary), model.summary)
   mm = melt(mm, id.vars = 'PC')
@@ -331,6 +330,7 @@ opls <- function(X,
       text=element_text(family="Helvetica")
     )
 
+  model.summary=model.summary[,-nrow(model.summary)]
   #
   if (plotting == T) {
     plot(g)
@@ -365,10 +365,6 @@ opls <- function(X,
     )
 
 
-
-
-    #rownames(pls_comp_all$scores)=ID
-
     # define slots for OPLS_Torben object
     mod_opls = new('OPLS_MetaboMate',
       type = type,
@@ -398,7 +394,7 @@ opls <- function(X,
 
     return(mod_opls)
   } else{
-    print('No sign orthogonal components - try PLS!')
+    print('No sign. orthogonal components - try PLS!')
     return(NULL)
   }
 

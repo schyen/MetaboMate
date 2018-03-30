@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette documents a typical multivariate statistical analysis workflow for NMR-based metabolic profilig using the *MetaboMate* R package. Example data represent Proton NMR spectra of murine urine samples collected pre and post bariatric surgery^[Li, Jia V., *et al.* (2011) Metabolic surgery profoundly influences gut microbial-host metabolic cross-talk. *Gut*. 60.9, 1214-1223.]. Data have been pre-processed with *MetboMate* functions including spectral calibration, excision of chemical shift regions representing noise or unwanted signals and normalisation to account for different sample dilutions. Please see *Data Preprocessing* vignette for further information on data pre-processing.
+This vignette documents a typical multivariate statistical analysis workflow for NMR-based metabolic profilig using the *MetaboMate* R package. Example data represent Proton NMR spectra of murine urine samples collected before and after bariatric or sham surgery^[Li, Jia V., *et al.* (2011) Metabolic surgery profoundly influences gut microbial-host metabolic cross-talk. *Gut*. 60.9, 1214-1223.]. Data have been pre-processed with *MetboMate* functions including spectral calibration, excision of chemical shift regions representing noise or unwanted signals and normalisation to account for different sample dilutions. Please see *Data Preprocessing* vignette for further information on data pre-processing.
 
 ## Prerequisites
 I recommend to install RStudio. RStudio is an open-source integrated development environment for R, which includes a code editor that highlights syntax, enables quick and easy access to help pages, improves workspace management and offers various tools for plotting, history and debugging. Simply put, it makes working with R a lot more efficient.
@@ -24,7 +24,7 @@ I recommend to install RStudio. RStudio is an open-source integrated development
 ## Loading example data
 First, let's load the bariatric surgery example data with the following R commands.
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
-# Reproducibility!
+# For reproducibility!
 set.seed(153)
 
 # Load data
@@ -33,17 +33,17 @@ data(bariatric)
 
 # Declare variables
 X.pqn=bariatric$X.pqn # NMR matrix
-ppm=bariatric$ppm # ppm vector
-meta=bariatric$meta # Metadata
-an=bariatric$an # Sample annotation
+ppm=bariatric$ppm     # ppm vector
+meta=bariatric$meta   # Metadata
+an=bariatric$an       # Sample annotation
 ```
 
 For multivariate analysis the following variables should be in the R workspace:
 
-* *X.pqn* = preprocessed NMR data matrix, with rows representing spectra and columns ppm variables
-* *ppm* = ppm vector, its length equals to the number of columns of X.pqn
-* *an* = Sample annotation
-* *meta* = Spectrometer metadata (this is not essential but useful for this tutorial)
+* *X.pqn* - preprocessed NMR data matrix, with rows representing spectra and columns ppm variables
+* *ppm*   - ppm vector, its length equals to the number of columns of X.pqn
+* *an*    - Sample annotation
+* *meta*  - Spectrometer metadata (this is not essential but useful for this tutorial)
 
 
 ## Visual inspection of the NMR data
@@ -69,8 +69,8 @@ Plotting PCA scores can be achieved with the **plotscores()** function. The mini
 Here we colour according to the performed surgical procedure which can be either none (Pre-op), Roux-en-Y gastric bypass (RYGB, a specific type of bariatic surgery) or Sham^[In a sham surgery an operation is performed but the surgeon omitts the intended therapeutic procedure.]. The latter is really a control group that was included to account for incidential effects induced by the anesthesia, incision, etc.
 
 ```{r, fig.show='hold', fig.width = 6, fig.height = 5}
-# Plot PCA scores of the first two components
-plotscores(model=pca.model, pc=c(1,2), an=list(Class=an$Class), title='PCA - Scores plot')
+# Plot PCA results: scores of the first two components
+plotscores(model=pca.model, pc=c(1,2), an=list(Surgery=an$Class), title='PCA - Scores plot')
 ```
 
 The scatterplot above shows PCA scores of principal components 1 and 2 plotted as the x-axis and y-axis, respectively. Every point represents an NMR spectrum of a urine sample. The ellipse is called Hotelling's T^2^ and represents a multivariate generalisation of a 95% confidence interval. The axis labels in parenthesis describe the amount of variation that each component describes, also termed R^2^.
@@ -96,18 +96,18 @@ plotscores(model=pca.model, pc=c(1,2), an=list(
 We can visualise which variables contribute to a principal component with the **plotload()** function, whose input arguments are the *PCA_MetaboMate* model, NMR matrix & ppm vector and the principal component to be visualised. In the example below, PCA loadings of the first component in the chemical shift region from 6 to 9 ppm are visualised.
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
-# define scores that should be labelled
+# Plot PCA loadings
 plotload(pca.model, X.pqn, ppm, pc=2, shift=c(6,9))
 ```
 
-Plotted is the covariance of PCA scores (*t*) with each NMR variable (*x*) over ppm, coloured according to the Pearson's correlation coefficient of *t* and *x*. Signals coloured towards the red colour spectrum are characteristic for spectra with postive (negative) scores when these point up (down) in the loadings plot and *vice versa*.
+Plotted is the covariance of PCA scores (*t*) and NMR variables (*x*) over ppm. The colour represents the Pearson's correlation coefficient of *t* and *x*. Signals coloured towards the red colour spectrum are characteristic for spectra with postive (negative) scores when these point up (down) in the loadings plot.
 
 ## Supervised Multivariate Analysis
 
 Althoug a clustering trend according to surgery type is visible in PCA scores plot, PCA is an unsupervised analysis method meaning it is not designed to optimise the separation of groups or regress against numeric variables. This is why we apply a supervised analysis method. Well-known in the field of metabolic phenotyping is the Partial Least Squares (PLS) method and its extensions, such as Orthogonal-Projections to Latent Structures, mostly known as **Orthogonal Partial Least Squares (O-PLS)**.^[Trygg, J., *et al.* (2002). Orthogonal projections to latent structures (O-PLS). *Journal of Chemometrics*, 16.3, 119-28.]
 
 ### O-PLS model training and statistical evaluation
-Here we calculate an O-PLS model by calling the function **olps()**. Its minimum input arguments are X and Y, representing the NMR matrix and the dependent variable (here: the surgical procedure), respectively. The *opls* function uses statsical resampling techniques to determine the optimal number of O-PLS components and returns a *OPLS_Metabomate* object. 
+Here we calculate an O-PLS model by calling the function **olps()**. Its minimum input arguments are X and Y, representing the NMR matrix and the response/outcome variable(s) (here: the surgical procedure), respectively. The *opls* function uses statsical resampling techniques to determine the optimal number of O-PLS components and returns a *OPLS_Metabomate* object. 
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # Exclude pre-op group
@@ -130,7 +130,7 @@ opls.model@summary
 knitr::kable(opls.model@summary)
 ```
 
-R2X and R2Y describe how much variation the model describes in X and Y space, respecitvely. These indices range from 0 (no explanatory power) up to 1 (all variation is explained by the model). A high R2Y is desirable, indicating the O-PLS model explains much of the independent variable. 
+R2X and R2Y describe how much variation the model describes in X and Y space, respecitvely. These indices range from 0 (no explanatory power) up to 1 (all variation is explained by the model). A high R2Y is desirable, indicating the O-PLS model explains much of the outcome variable. 
 
 The indices Q2 and AUROC_cv are generated with statistical validation techniques and estimate how well the model generalise to new, independent data sets. Low values indicated that the model is overfitted (not desired), high values are a good indicator for statistically robust O-PLS models. 
 
@@ -159,7 +159,7 @@ plotscores(model=opls.model, pc=c(1,2), an=list(
 
 The resuling OPLS cross-validated scores plot shows an almost perfect separation of both surgery types, with all predictive power focussed on the x-axis (that is characteristic for O-PLS, compared to PLS). 
 
-The orthogonal component (y-axis) is - in the mathematical sense - unrelated to the independent variable *Y*. Sometimes its interpretation can give some insights about study samples. In the present case, the first orthogonal O-PLS component is associated with different urine dilutions and effects resulting from spectral normalisation, which was part of the data pre-processing pipeline.
+The orthogonal component (y-axis) is - in the mathematical sense - unrelated to the outcome variable *Y*. Sometimes its interpretation can give some insights about study samples. In the present case, the first orthogonal O-PLS component is associated with different urine dilutions and effects resulting from spectral normalisation, which was part of the data pre-processing pipeline.
 
 ```{r, fig.show='hold', fig.width = 6, fig.height = 5}
 plotscores(opls.model, pc=c(1,2), an=list(
@@ -175,16 +175,16 @@ plotload(opls.model, X, ppm, type='Reconstruction', title = 'OPLS Loadings - Sta
 The function's input argument *type* allows different model loadings visualisation techniques, that is either a statistical reconstruction of loadings or back-scaling loadings. For details on both methods see the help section of the *plotload* function and Cloarec *et al.*.^[Cloared, O., *et al.* (2005). Evaluation of the Orthogonal Projection on Latent Structure Model Limitations Caused by Chemical Shift Variability and Improved Visualization of Biomarker Changes in 1H NMR Spectroscopic Metabonomic Studies. *Analytical Chemistry*. 77.2, 517-26.]
 
 
-The O-PLS loadings plot shown above highlights signals that are systematically different between the RYGB and Sham control group. In many cases it helpful to have a closer look at specific signals. The specload1() function can be used for this task as it combines the spectral data with O-PLS model variable weightings in a single plot. The chemical shift region of 7.3 to 7.5 ppm has high variable loadings, so let's have a closer look at the spectra:
+The O-PLS loadings plot shown above highlights signals that are systematically different between the RYGB and Sham control group. In many cases it helpful to have a closer look at specific signals. The specload1() function can be used for this task as it combines the spectral data with O-PLS model variable weightings in a single plot. The chemical shift region of 7.45 to 7.5 ppm has high variable loadings, so let's have a closer look at the spectra:
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 5}
-specload1(model=opls.model, X=X, ppm, shift=c(7.3,7.5), an=list(
+specload1(model=opls.model, X=X, ppm, shift=c(7.3,7.45), an=list(
   facet='All Spectra', 
-  Cols=an$Class[idx]), 
+  Surgery=an$Class[idx]), 
   type='backscaled', alp = 0.2)
 ```
-The colour gradient filled line located in the upper plot area shows the OPLS model loadings (in this case: backscaled method). Plotted below are overlayed NMR spectra where the colours represents group memberships. Visible are group-related intensity differences for two tripletts centered around 7.365 and 7.425 ppm, with on average lower intensities in the Sham group. Further information these signals will be given in the **Metabolite Indeticiation** vignettte of the *MetaboMate* package.
 
+The colour gradient filled line located in the upper plot area shows the OPLS model loadings (in this case: backscaled method). Plotted below are overlayed NMR spectra where the colours represents group memberships. Visible are group-related intensity differences for two tripletts centered around 7.365 and 7.425 ppm, with on average lower intensities in the Sham group. Further information these signals will be given in the **Metabolite Indeticiation** vignettte of the *MetaboMate* package.
 
 
 # Summary and further steps
