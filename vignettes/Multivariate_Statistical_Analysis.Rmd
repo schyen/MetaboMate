@@ -106,7 +106,7 @@ Plotted is the covariance of PCA scores (*t*) and NMR variables (*x*) over ppm. 
 
 Althoug a clustering trend according to surgery type is visible in PCA scores plot, PCA is an unsupervised analysis method meaning it is not designed to optimise the separation of groups or regress against numeric variables. This is why we apply a supervised analysis method. Well-known in the field of metabolic phenotyping is the Partial Least Squares (PLS) method and its extensions, such as Orthogonal-Projections to Latent Structures, mostly known as **Orthogonal Partial Least Squares (O-PLS)**.^[Trygg, J., *et al.* (2002). Orthogonal projections to latent structures (O-PLS). *Journal of Chemometrics*, 16.3, 119-28.]
 
-### O-PLS model training and statistical evaluation
+### O-PLS model training and statistical validation
 Here we calculate an O-PLS model by calling the function **olps()**. Its minimum input arguments are X and Y, representing the NMR matrix and the response/outcome variable(s) (here: the surgical procedure), respectively. The *opls* function uses statsical resampling techniques to determine the optimal number of orthogonal components and returns the model as an *OPLS_Metabomate* object. 
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
