@@ -20,7 +20,7 @@
 #' @importFrom colorRamps matlab.like2
 #' @importFrom scales pretty_breaks
 #' @importFrom stats as.formula
-#' @importFrom grid grid.newpage viewport grid.layout pushViewport
+#' @importFrom grid grid.newpage viewport grid.layout pushViewport unit
 
 
 specload1=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=0.5, pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
