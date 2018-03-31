@@ -126,56 +126,41 @@ opls.par <- function(X,
 
     # cat('Component ', nc, '...')
     if (nc>1) { # add column for nc > 1
-       preds <- cbind(preds, matrix(NA, ncol = 1, nrow = nrow(X)))
-       t_cv <- cbind(t_cv, matrix(NA, ncol = 1, nrow = nrow(X)))
-       t_orth_cv <- cbind(t_orth_cv, matrix(NA, ncol = 1, nrow = nrow(X)))
+       Xo=X
+       Yo=Y
   }
         # fit each cv training set fit component and predict
         # validation set. Prediction accuracy output of is be used in stop criterion
-    res=lapply(1:length(cv_sets), function(k){
+    res=lapply(cv_sets, function(idc, Xcv=Xo, Ycv=Yo, ce=center, scale=sc){
       # scale/centre using CV trainine set samples
       idc <- cv_sets[[k]]
-      Xcs <- center_scale(X, idc, center, scale)
-      Ycs <- center_scale(Y, idc, center, scale)
-      # filter data: calc PLS component, then orthogonalise X with t_pred (=> t_o, p_o),
-      # finally remove orthogoanl variation from X: Xres=X-(t_o * p_o))
-      if (nc == 1) {
-        cv.res[[k]] = list()
-        E_opls <- NIPALS_OPLS_component_mulitlevel(X = Xcs[idc, ], Y = cbind(Ycs[idc, ]))
-        cv.res[[k]][['p_orth']] = E_opls$`Loadings X orth`
-        cv.res[[k]][['w_orth']] = E_opls$`Weights X orth`
-        cv.res[[k]][['Xres']] = E_opls$`Filtered X`
-      } else{
-        E_opls = NIPALS_OPLS_component_mulitlevel(X = cv.res[[k]][['Xres']], Y =cbind(Ycs[idc, ]))
-        cv.res[[k]][['p_orth']] = rbind(cv.res[[k]][['p_orth']], E_opls$`Loadings X orth`)
-        cv.res[[k]][['w_orth']] = rbind(cv.res[[k]][['w_orth']], E_opls$`Weights X orth`)
-        cv.res[[k]][['Xres']] = E_opls$`Filtered X`
-      }
-      # calculate predictive component with filtered matrix (Xres)
-      #print(cbind(Ycs[idc, ]))
-      pls_comp = NIPALS_PLS_component(X = cv.res[[k]][['Xres']], Y = cbind(Ycs[idc, ]))
+      Xcs <- center_scale(Xcv, idc, center=cen, scale=sc)
+      Ycs <- center_scale(Ycv, idc, center=cen, scale=sc)
 
-      # iteratively remove all orthogonal components from prediction data set
-      # potentially t_orth could be saved and output as scores orthogonal in CV round
-      e_new_orth = Xcs[-idc, ]
-      for (i in 1:nc) {
-        t_orth = e_new_orth %*% t(t(cv.res[[k]][['w_orth']][i, ])) / drop(crossprod(t(t(cv.res[[k]][['w_orth']][i, ]))))
-        e_new_orth = e_new_orth - (t_orth %*% t(cv.res[[k]][['p_orth']][i, ]))
-      }
-      #print(pls_comp)
+      # filter data: calc PLS component, then orthogonalise X with t_pred (=> t_o, p_o),
+      E_opls <- NIPALS_OPLS_component_mulitlevel(X = Xcs[idc, ], Y = cbind(Ycs[idc, ]))
+
+      p_orth=E_opls$`Loadings X orth`
+      w_orth=E_opls$`Weights X orth`
+      Xcv_res=E_opls$`Filtered X`
+
+      # calculate predictive component with filtered matrix (Xres)
+      pls_comp = NIPALS_PLS_component(X = cXcv_res, Y = cbind(Ycs[idc, ]))
+
+      E_new_orth = Xcs[-idc, ]
+      # Prediction of test data
+      t_orth = E_new_orth %*% t(t(w_orth)) / drop(crossprod(t(t(w_orth))))
+      e_new_orth = E_new_orth - (t_orth %*% t(p_orth))
+
       pred = pls_prediction(pls_mod = pls_comp, X = e_new_orth)
 
-      # Save predictions in prediction matrix (one column for nc)
-      preds[-idc, nc] = pred$Y_hat
-      t_cv[-idc, nc] = pred$Scores_pred
-      t_orth_cv[-idc, nc] = t_orth
-
-      return(list(preds, t_cv, t_orth_cv))
+      return(list(preds, t_cv, t_orth_cv, ))
     })
 
-    preds=res[[1]]
-    t_cv=res[[2]]
-    t_orth_cv=res[[3]]
+    idc=order(unlist(cv_sets))
+    preds=res[[1]][idc]
+    t_cv=res[[2]][idc]
+    t_orth_cv=res[[3]][idc]
 
     print(preds)
     stopImplicitCluster()
