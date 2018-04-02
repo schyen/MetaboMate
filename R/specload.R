@@ -32,7 +32,7 @@ specload=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=0.5, pc=1, typ
     stop('Model loadings do not fit to ppm vector.')
   }
 
-  if(class(model)=='PLS_MataboMate'){
+  if(class(model)=='PCA_MataboMate'){
     type=c('Statistical reconstruction')
   }
 
