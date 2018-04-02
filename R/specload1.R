@@ -24,16 +24,27 @@
 
 specload1=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=0.5, pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
 
-  if(length(model@Xscale)!=ncol(X)){
-    stop('Model loadings do not fit to X matrix.')
-  }
 
-  if(length(model@Xscale)!=length(ppm)){
-    stop('Model loadings do not fit to ppm vector.')
-  }
-
-  if(class(model)=='PLS_MataboMate'){
+  if(class(model)=='PCA_MetaboMate'){
     type=c('Statistical reconstruction')
+
+    if(nrow(model@p)!=ncol(X)){
+      stop('Model loadings do not fit to X matrix.')
+    }
+
+    if(nrow(model@p)!=length(ppm)){
+      stop('Model loadings do not fit to ppm vector.')
+    }
+  }else{
+
+    if(ncol(model@p_pred)!=ncol(X)){
+      stop('Model loadings do not fit to X matrix.')
+    }
+
+    if(ncol(model@p_pred)!=length(ppm)){
+      stop('Model loadings do not fit to ppm vector.')
+    }
+
   }
 
   if(is.numeric(an[[1]])){
