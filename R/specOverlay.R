@@ -24,6 +24,8 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
   if(is.null(names(an))){cat('No facet, colour and linetype names given. See an argument in ?specOverlay\n')
     names(an)=paste('an', 1:length(an), sep='')}
 
+  le.arg<-paste(length(an))
+
   if ('' %in% names(an)){
     idx=which(names(an)=='')
     names(an)[idx]=paste('an', idx, sep='')
@@ -35,8 +37,8 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
   specs=X[,idx]
   colnames(specs)=paste("Idx", idx, sep='_')
 
-  le.arg<-paste(length(an))
-  col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])
+  if(le.arg==2){
+  col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])}
   if(le.arg==3){an[[3]]=factor(an[[3]])}
 
   # create dataframe for ggplot function
