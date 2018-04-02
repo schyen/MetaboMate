@@ -24,7 +24,7 @@
 
 specload=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=0.5, pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
 
-  if(class(model)=='PCA_MataboMate'){
+  if(class(model)=='PCA_MetaboMate'){
     type=c('Statistical reconstruction')
 
     if(nrow(model@p)!=ncol(X)){
