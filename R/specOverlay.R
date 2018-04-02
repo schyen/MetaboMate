@@ -75,6 +75,10 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
                                              colour=names(an)[2]),
                          alpha=alp,
                          size=size)
+         # add multi-colour gradient if colour vector is not factor/char
+         if(col.cat==F){
+           g<-g + scale_colour_gradientn(colors=matlab.like2(10))
+         }
          },
          '3' = {g<- g+
                geom_line(data=df, aes_string(x='variable',
@@ -83,13 +87,13 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
                                              colour=names(an)[2],
                                              linetype=names(an)[3]),
                          alpha=alp, size=size)
+         # add multi-colour gradient if colour vector is not factor/char
+         if(col.cat==F){
+           g<-g + scale_colour_gradientn(colors=matlab.like2(10))
+         }
            }
          )
 
-  # add multi-colour gradient if colour vector is not factor/char
-  if(col.cat==F){
-    g<-g + scale_colour_gradientn(colors=matlab.like2(10))
-  }
 
   return(g)
 }
