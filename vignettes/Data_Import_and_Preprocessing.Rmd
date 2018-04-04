@@ -49,15 +49,14 @@ From this overview we can see that the spectral width ranges from -5 to approxim
 
 There are different higher-level plotting functions available that allow a more comprehensive spectral visualisation of individual peaks or peak areas. One of this function is **specOverlay()**, which is comparable to **matspec()** shown above. 
 
-For illustration purposes we plot the TSP signal (a component of the sample preparation buffer) coloured accroding to the receiver gain (*RG*) parameter in *meta* dataframe, the linetype corresponds to the experiment type (*EXP*) defined with the spectrometer operation software.
+For illustration purposes we plot the TSP signal (a component of the sample preparation buffer) coloured according to the receiver gain (*RG*) parameter in *meta* dataframe, the linetype corresponds to the experiment type (*EXP*) defined with the spectrometer operation software.
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # plot TSP signal
 specOverlay(X, ppm, shift=c(-0.05,0.05), 
             an=list('Facet'='All spectra', # facetting (here: a single panel) 
-                    'Receiver Gain'=as.numeric(meta$a_RG), # colour
+                    'Receiver Gain'=as.numeric(meta$a_RG), #, # colour
                     'Experiment'=factor(meta$a_EXP))) # linetype
-
 ```
 
 The RG value amplifies the NMR signal (free induction decay) before it is converted to a digital signal. In the plot above you can see, that there were different types of experiments performed (indicated by different linetypes) and that the RG is related to the TSP signal strength within each experiment type. In metabolic phenotyping, the RG is often fixed for spectra acquired within one analytical run as it sometimes can be diffucult to account for. 

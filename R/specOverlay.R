@@ -37,9 +37,13 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
   specs=X[,idx]
   colnames(specs)=paste("Idx", idx, sep='_')
 
-  if(le.arg==2){
-  col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])}
-  if(le.arg==3){an[[3]]=factor(an[[3]])}
+  # if(le.arg==2){
+  #   col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])
+  #   }
+  # if(le.arg==3){
+  #   col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])
+  #   an[[3]]=factor(an[[3]])
+  #   }
 
   # create dataframe for ggplot function
   df=data.frame(do.call(cbind.data.frame, an), ID=1:nrow(specs), alp, specs)
@@ -76,11 +80,13 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
                          alpha=alp,
                          size=size)
          # add multi-colour gradient if colour vector is not factor/char
+         col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])
          if(col.cat==F){
-           g<-g + scale_colour_gradientn(colors=matlab.like2(10))
-         }
+           g<-g + scale_colour_gradientn(colors=matlab.like2(length(an[[2]])))
+          }
          },
-         '3' = {g<- g+
+         '3' = {an[[3]]=factor(an[[3]])
+           g<- g+
                geom_line(data=df, aes_string(x='variable',
                                              y='value',
                                              group='ID',
@@ -88,10 +94,11 @@ specOverlay=function(X, ppm, shift=c(-0.01,0.01), an=list('facet' , 'col', 'ltyp
                                              linetype=names(an)[3]),
                          alpha=alp, size=size)
          # add multi-colour gradient if colour vector is not factor/char
+         col.cat=is.factor(an[[2]])|is.character(an[[2]])|is.logical(an[[2]])
          if(col.cat==F){
-           g<-g + scale_colour_gradientn(colors=matlab.like2(10))
+           g<-g + scale_colour_gradientn(colors=matlab.like2(length(an[[2]])))
+          }
          }
-           }
          )
 
 
