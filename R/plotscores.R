@@ -30,6 +30,7 @@
 
 plotscores=function(model, pc=c(1,2), an, title='', qc=NA, legend='in', cv.scores=T, ...){
 
+  if(missing(an)) an=list('NA')
   # define plot dimensions
   switch(class(model),
          'pcaRes' = {

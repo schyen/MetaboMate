@@ -32,21 +32,38 @@ pca=function(X, pc=2, scale=c('None', 'UV', 'Pareto'), center=T, method='nipals'
 
     #total.var<-sum(diag(cov(X))) #Calculate total variance in
     total.var<-totSS(X)
-    prop.var<-rep(NA,ncol(Tpc));
-    cum.var<-rep(NA,ncol(Tpc)) #Create #Calculate proportion of variance explained and cumulative
-    for(i in 1:ncol(Tpc)){prop.var[i]<-var(Tpc[,i])/total.var}
+    prop.var<-rep(NA, ncol(Tpc));
+    print(dim(Tpc))
+    print(dim(Ppc))
+
+    cum.var<-rep(NA, ncol(Tpc)) #Create #Calculate proportion of variance explained and cumulative
+    for(i in 1:ncol(Tpc)){
+      prop.var[i]<-totSS(Tpc[,i] %o% Ppc[,i])/total.var
+      #prop.var[i]<-var(Tpc[,i])/total.var
+      }
+
+
     mod_pca=new('PCA_MetaboMate',
                 t=Tpc,
                 p=Ppc,
                 nc=pc,
                 R2=prop.var)
   }else{
+
     mod=pcaMethods::pca(X, nPcs=pc, scale='none', center=F, method=method)
+
+    r2<-mod@R2cum
+    for(i in 1:pc){
+      if(i==1){next}else{
+        r2[i]<-r2[i]-cumsum(r2[1:(i-1)])
+      }
+    }
+
     mod_pca=new('PCA_MetaboMate',
                 t=mod@scores,
                 p=mod@loadings,
                 nc=pc,
-                R2=mod@R2cum)
+                R2=r2)
   }
 
   return(mod_pca)

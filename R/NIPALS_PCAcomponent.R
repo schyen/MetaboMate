@@ -27,10 +27,11 @@ NIPALS_PCAcomponent<-function(X){
     dd<-sum((t_h[1,]-t_new[1,])^2); #print(dd)
 
     t_h<-t_new
-    if(count>100){stop('Failed to converge!!!')}
+    if(count>5000){stop('Failed to converge!!!')}
     #print(count)
     count<-count+1
   }
+  cat('iterations: ', count, '\n', sep='')
 
   X_res<-X-(t_h %*% (p_h))
 
