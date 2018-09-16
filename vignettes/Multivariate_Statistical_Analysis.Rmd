@@ -21,21 +21,26 @@ This vignette documents a typical multivariate statistical analysis workflow for
 ## Prerequisites
 I recommend to install RStudio. RStudio is an open-source integrated development environment for R, which includes a code editor that highlights syntax, enables quick and easy access to help pages, improves workspace management and offers various tools for plotting, history and debugging. Simply put, it makes working with R a lot more efficient.
 
-## Loading example data
 First, let's load the bariatric surgery example data with the following R commands.
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
-# For reproducibility!
+# For reproducibility
 set.seed(153)
 
-# Load data
+# Load package
 library(MetaboMate)
+```
+
+## Loading example data
+First, let's import the bariatric surgery data with the following R commands.
+```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
+# Load data
 data(bariatric)
 
 # Declare variables
-X.pqn=bariatric$X.pqn # NMR matrix
-ppm=bariatric$ppm     # ppm vector
-meta=bariatric$meta   # Metadata
-an=bariatric$an       # Sample annotation
+X.pqn<-bariatric$X.pqn # NMR matrix
+ppm<-bariatric$ppm     # ppm vector
+meta<-bariatric$meta   # Metadata
+an<-bariatric$an       # Sample annotation
 ```
 
 For multivariate analysis the following variables should be in the R workspace:
@@ -50,15 +55,15 @@ For multivariate analysis the following variables should be in the R workspace:
 Let's start with a visual inspection of the pre-processed NMR spectra using the **matspec()** function:
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # visualise first ten spectra
-matspec(ppm, X.pqn[1:10,], shift = range(ppm))
+matspec(ppm, X.pqn[1:10,], shift = c(0,10))
 ```
 
-The pre-processed specra range from 0.5 to 9.5 ppm. If you have some experience in urinary NMR analysis you might recognise some unusual and interesting chemical shifts in the above plot. Some of these signals are most likely induced by the surgical procedure, others are clearly of microbial origin. We will find out more about this in the **Metabolite Identification** vignette of *MetaboMate*.
+The pre-processed specra range from 0.5 to 9.5 ppm. If you have some experience in NMR spectroscopy you might suspect some unusual (and interesting) chemical shifts in the above plot. Most of these signals are endogenous, some are induced by the surgical procedure and others are clearly of microbial origin. We will find out more about this in the **Metabolite Identification** vignette of *MetaboMate* (currently work in progress).
 
 ## Unsupervised Multivariate Analysis
-Let's start with an exploratory analysis approach using Principal Component Analysis (PCA). This projection method tries to find latent (in the sense of unobserved) factors in the data and summarises these in so called principal components. This drastically reduces the dimensionality of the data with the effect that we can visualise it in few dimensions.
+Let's start with an exploratory analysis approach using Principal Component Analysis (PCA). This projection method summarises the data by weighting and linearly combining the orginal variables, to derive a latent (in the sense of unobserved) factor, so called principal component (PC). A PC is basically a new coordinate axis that is a weighted composite of the original variables. The weighting of each original variable is mainly based on its variation across samples and collinear variables have similar weightings. Usually, more than one principal component are calculated, and while each original variable is represented in each component, their weightings (also called loadings) change and are orthogonal (unrelated) to each other. In metabonomics, spectroscopic data are usually highly dimensional and collinear, and PCA allows to become a fairly good overview of the main sources of variation in the data by looking at the first few PCA components.
 
-Performing PCA can be achieved with the **pca()** function. Its input arguments are the pre-processed NMR matrix (*X=X.pqn*), information on how many prinicipal components should be fitted (*pc=2*) and centering and scaling parameters. Here the data will be unit variance scaled (*scale="UV"*) and mean centered (*center=TRUE*). 
+Calculating a PCA model can be achieved with the **pca()** function. Its input arguments are the pre-processed NMR matrix (*X=X.pqn*), information on how many prinicipal components should be fitted (*pc=2*) and centering and scaling parameters. Here the data will be unit variance scaled (*scale="UV"*) and mean centered (*center=TRUE*). 
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # Perform PCA
@@ -73,17 +78,17 @@ Here we colour according to the performed surgical procedure which can be either
 plotscores(model=pca.model, pc=c(1,2), an=list(Surgery=an$Class), title='PCA - Scores plot')
 ```
 
-The scatterplot above shows PCA scores of principal components 1 and 2 plotted as the x-axis and y-axis, respectively. Every point represents an NMR spectrum of a urine sample. The ellipse is called Hotelling's T^2^ and represents a multivariate generalisation of a 95% confidence interval. The axis labels in parenthesis describe the amount of variation that each component describes, also termed R^2^.
+The scatterplot above shows PCA scores of the first two principal components (PC 1 and PC2) plotted against each other. In the scores plot, every point represents an NMR spectrum of a urine sample. The axis labels in parenthesis describe the amount of variation that is modelled by the repsective principal component, relative to the total amount of variablity in the data (this is also termed R^2^). The ellipse is the Hotelling's T^2^ which is a multivariate generalisation of a 95% confidence interval that can be used to spot outlier samples. 
 
-Additional graphics parameters can be passed on to **plotscores()** by specifying point shape and labels as list element two and three of the *an* variable, repsectively. See the following code for an example:
+Additional graphics parameters can be passed on to **plotscores()**. For example, point shape and labels are specified as elements two and three of the *an* list argument, repsectively. See the following code for an example:
 
 ```{r, fig.show='hold', fig.width = 6, fig.height = 5}
 # define scores that should be labelled
-idx=which(pca.model@t[,2]>20 & an$Class=='RYGB') # PC 2 scores above 20 and in group RYGB
+idx<-which(pca.model@t[,2]>20 & an$Class=='RYGB') # PC 2 scores above 20 and in group RYGB
 
 # construct label vector with mouse IDs
-outliers=rep('', nrow(an))
-outliers[idx]=an$ID[idx]
+outliers<-rep('', nrow(an))
+outliers[idx]<-an$ID[idx]
 
 # Plot PCA scores, colour according to class, point shape according to time of sample collection and label outliers
 plotscores(model=pca.model, pc=c(1,2), an=list(
@@ -93,14 +98,14 @@ plotscores(model=pca.model, pc=c(1,2), an=list(
   title='PCA - Scores plot')
 ```
 
-We can visualise which variables contribute to a principal component with the **plotload()** function, whose input arguments are the *PCA_MetaboMate* model, NMR matrix & ppm vector and the principal component to be visualised. In the example below, PCA loadings of the second component and within the chemical shift region of 6 - 9 ppm are visualised.
+We can visualise PCA loadings, these are the original the weightings on each PC, with the **plotload()** function. The funtion's input arguments are the *PCA_MetaboMate* model, the NMR matrix & ppm vector and the  number of the PC to be visualised. In the example below, PCA loadings of the second principal component and within the chemical shift region of 6 - 9 ppm are visualised.
 
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # Plot PCA loadings
 plotload(pca.model, X.pqn, ppm, pc=2, shift=c(6,9))
 ```
 
-Plotted is the covariance of PCA scores (*t*) and NMR variables (*x*) over ppm. The colour represents Pearson's correlation coefficient of *t* and *x*. Signals coloured towards the red colour spectrum are characteristic for spectra with postive (negative) scores when these point up (down) in the loadings plot.
+The plot above is a statistical reconstruction of PCA variable loadings while at the same time resembling an NMR spectrum. The x axis describes the chemical shift of each variable in ppm, just like in an ordinary NMR spectrum, the y axis is the covariance of the PCA scores and original variables (indicating the peak magnitude and positive or negative model loadings), and the colour represents the importance of each variable for the component. Variables coloured towards the red colour spectrum are characteristic for spectra with postive (negative) scores when these point up (down) in the loadings plot.
 
 ## Supervised Multivariate Analysis
 
