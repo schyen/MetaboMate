@@ -3,9 +3,10 @@ The R toolbox for NMR-based metabolic profiling
 
 ## R Installation 
 Installing MetaboMate package from GitHub requires the developer tools R package:
-
-`install.packages('devtools')`
-`library(devtools)`
+```r
+install.packages('devtools')
+library(devtools)
+```
 
 The following command installs the MetaboMate package, including tutorials. The installation can take up to about 3 minutes as the installation builds the tutorials, which come with high-resolution NMR example data.
 
