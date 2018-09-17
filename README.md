@@ -2,7 +2,7 @@
 
 This package is all you need to perform data analysis in the filed of NMR-based metabolic profiling. It covers all basic processing steps, which includes importing 1D spectra from Bruker file format, data pre-processing (referencing, baseline correction, excision of spectral areas, etc.), spectral normalisation methods (eg., probablistic quotient normalisation) and multivariate statistics (PCA, O-PLS), all combined with aestethically pleasing visualisations using ggplot2. Many of the provided functions can also be used for mass spectrometry data analysis. All functions are well documented.
 
-## Installation 
+# Installation 
 Installing the MetaboMate package from GitHub requires the developer tools R package:
 ```r
 install.packages('devtools')
@@ -32,7 +32,7 @@ Install the required package(s) from Bioconductor.org
 You can check if the installation was successful by loading the package into your R session: `library(MetaboMate)` - all is fine if no error message is returned.
 
 
-## Tutorials / Vignettes
+# Tutorials / Vignettes
 Tutorials are also called vignettes in R. MetaboMate comes currently with two tutorials describing
 
 1. Data Import and Preprocessing,
@@ -44,14 +44,14 @@ vignette('Data_Import_and_Preprocessing')
 vignette('Multivariate_Statistical_Analysis')
 ```
 
-## Future Work
+# Future Work
 Future work will focus on functionalities related to 
 - metabolite identification, 
 - pathway and metabolic network analysis, 
 - 2D NMR analysis.
 
-## Feedback
+# Feedback
 We all need some interaction with the outside world now and then. So, please get in touch and let me know what you think: tkimhofer@gmail.com
 
-## About the Author
-tkimhofer.com
+# About the Author
+https://tkimhofer.com
