@@ -14,12 +14,12 @@ The following command installs the MetaboMate package, including tutorials. The 
 `devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)`
 
 
-### Installation Notes for R beginners
+### Installation Notes for R Beginners
 
 There might come up **warning messages** (eg. *time zone unknown*). These are not a problem! :pray:
 However, **error messages** are a problem as these stop the installation process. 
 
-#### Solutions to common installation errors:
+#### Solutions to Common Installation Errors:
 
 >`Installation failed: 'exdir' does not exist`
 
