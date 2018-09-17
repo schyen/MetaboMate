@@ -34,16 +34,12 @@ You can check if the installation was successful by loading the package into you
 ## Tutorials / Vignettes
 Tutorials are also called vignettes in R. MetaboMate comes currently with two tutorials describing
 
-1. Data Import and Preprocessing
-2. Multivariate Statistical Analysis
+1. Data Import and Preprocessing,
+2. Multivariate Statistical Analysis.
 
 To open these on your computer, type the following commands:
 ```r
 vignette('Data_Import_and_Preprocessing')
 vignette('Multivariate_Statistical_Analysis')
 ```
-
-`vignette(package='MetaboMate')`
-
-You can open these by simply clicking on them. For 
 
