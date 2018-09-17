@@ -54,4 +54,4 @@ Future work will focus on functionalities related to
 We all need some interaction with the outside world now and then. So, please get in touch and let me know what you think: tkimhofer@gmail.com
 
 # About the Author
-https://tkimhofer.com
+See my [webpage](https://tkimhofer.com).
