@@ -9,10 +9,11 @@ install.packages('devtools')
 library(devtools)
 ```
 
-The following command installs the MetaboMate package, including tutorials. The installation can take up to about 3 minutes as the installation builds the tutorials, which come with high-resolution NMR example data.
+The following command installs the MetaboMate package, including tutorials.
 
 `devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)`
 
+The installation can take up to about 3 minutes as the installation builds the tutorials, which come with high-resolution NMR example data.
 
 ### Installation Notes for R Beginners
 
