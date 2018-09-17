@@ -1,5 +1,5 @@
 # MetaboMate
-The R toolbox for NMR-based metabolic profiling
+The R toolbox for NMR-based metabolic profiling, containing functions for performing all steps of the metabolic profiling analysis pipeline. This includes reading-in 1D spectra from Bruker file format, data pre-processing, various normalisation methods, unsupervised and supervised multivariate statistical analysis techniques. Most of the provided functions can also be used for mass spectrometry data analysis (such as PQN normalisation or mutlivariate statistics). All combined with aestethically pleasing visualisations using ggplot2.
 
 ## Installation 
 Installing the MetaboMate package from GitHub requires the developer tools R package:
