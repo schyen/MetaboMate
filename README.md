@@ -1,6 +1,4 @@
-# MetaboMate
-**The R toolbox for NMR-based metabolic profiling**
-
+# About MetaboMate
 
 This package is all you need to perform data analysis in the filed of NMR-based metabolic profiling. It covers all basic processing steps, which includes importing 1D spectra from Bruker file format, data pre-processing (referencing, baseline correction, excision of spectral areas, etc.), spectral normalisation methods (eg., probablistic quotient normalisation) and multivariate statistics (PCA, O-PLS), all combined with aestethically pleasing visualisations using ggplot2. Many of the provided functions can also be used for mass spectrometry data analysis. All functions are well documented.
 
@@ -54,3 +52,6 @@ Future work will focus on functionalities related to
 
 ## Feedback
 We all need some interaction with the outside world now and then. So, please get in touch and let me know what you think: tkimhofer@gmail.com
+
+## About the Author
+tkimhofer.com
