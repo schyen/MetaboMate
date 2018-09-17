@@ -9,7 +9,7 @@ install.packages('devtools')
 library(devtools)
 ```
 
-The following command installs the MetaboMate package, including tutorials.
+The following command installs the MetaboMate package, including two tutorials.
 
 `devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)`
 
