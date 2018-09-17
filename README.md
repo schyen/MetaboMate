@@ -12,10 +12,11 @@ The following command installs the MetaboMate package, including tutorials. The 
 `devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)`
 
 > For R beginners: There might come up **warning messages** (eg. 'unknown time zone'). These are not a problem. However, **error messages** are a problem as these stop the installation process. 
-
+>
 >Solutions to common error messages: 
+>
 > **Installation failed: 'exdir' does not exist** - Workspace directory not writable, change location of the workspace
-
+>
 > ***Dependency package missing*** - Install the required package from CRAN or Bioconductor.org
 
 
