@@ -21,12 +21,14 @@ However, **error messages** are a problem as these stop the installation process
 #### Solutions to common error messages: 
 
 >`Installation failed: 'exdir' does not exist`
+
 Workspace directory not writable, change location of the workspace
 
->***Dependency package missing***
-Install the required package from CRAN or Bioconductor.org
+>`Dependency package missing`
 
-You can check if the installation was successful by loading the package into your R session `library(MetaboMate)` - all is fine if no error message is returned.
+Install the required package(s) from Bioconductor.org
+
+You can check if the installation was successful by loading the package into your R session: `library(MetaboMate)` - all is fine if no error message is returned.
 
 
 ## Tutorials / Vignettes
