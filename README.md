@@ -1,7 +1,7 @@
 # MetaboMate
 The R toolbox for NMR-based metabolic profiling
 
-## R Installation 
+## Installation 
 Installing MetaboMate package from GitHub requires the developer tools R package:
 ```r
 install.packages('devtools')
@@ -12,13 +12,15 @@ The following command installs the MetaboMate package, including tutorials. The 
 
 `devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)`
 
-For R beginners: There might come up **warning messages** (eg. 'unknown time zone'). These are not a problem! :pray:
+### Installation Notes for R beginners
+
+There might come up **warning messages** (eg. 'unknown time zone'). These are not a problem! :pray:
 However, **error messages** are a problem as these stop the installation process. 
 
-### Solutions to common error messages: 
+#### Solutions to common error messages: 
 
--**Installation failed: 'exdir' does not exist** - Workspace directory not writable, change location of the workspace
--***Dependency package missing*** - Install the required package from CRAN or Bioconductor.org
+- **Installation failed: 'exdir' does not exist** - Workspace directory not writable, change location of the workspace
+- ***Dependency package missing*** - Install the required package from CRAN or Bioconductor.org
 
 
 ## Tutorials / Vignettes
