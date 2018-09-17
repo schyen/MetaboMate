@@ -1,8 +1,8 @@
 # MetaboMate
-The R toolbox for NMR-based metabolic profiling.
+**The R toolbox for NMR-based metabolic profiling**
 
-## MetaboMate
-This package is all you need to perform data analysis in the filed of NMR-based metabolic profiling. It covers all basic processing steps, which includes importing 1D spectra from Bruker file format, data pre-processing (referencing, baseline correction, excision of spectral areas, etc.), spectral normalisation methods (eg., probablistic quotient normalisation), unsupervised and supervised multivariate statistis combined with aestethically pleasing visualisations using ggplot2. Many of the provided functions can also be used for mass spectrometry data analysis. All functions are well documented.
+
+This package is all you need to perform data analysis in the filed of NMR-based metabolic profiling. It covers all basic processing steps, which includes importing 1D spectra from Bruker file format, data pre-processing (referencing, baseline correction, excision of spectral areas, etc.), spectral normalisation methods (eg., probablistic quotient normalisation) and multivariate statistics (PCA, O-PLS), all combined with aestethically pleasing visualisations using ggplot2. Many of the provided functions can also be used for mass spectrometry data analysis. All functions are well documented.
 
 ## Installation 
 Installing the MetaboMate package from GitHub requires the developer tools R package:
@@ -18,14 +18,14 @@ The following command installs the MetaboMate package, including tutorials. The 
 
 ### Installation Notes for R beginners
 
-There might come up **warning messages** (eg. 'unknown time zone'). These are not a problem! :pray:
+There might come up **warning messages** (eg. *time zone unknown*). These are not a problem! :pray:
 However, **error messages** are a problem as these stop the installation process. 
 
 #### Solutions to common error messages: 
 
 >`Installation failed: 'exdir' does not exist`
 
-Workspace directory not writable, change location of the workspace
+Workspace directory not writable, change the location of the workspace
 
 >`Dependency package missing`
 
