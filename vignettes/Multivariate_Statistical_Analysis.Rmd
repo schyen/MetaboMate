@@ -21,7 +21,7 @@ This vignette documents a typical multivariate statistical analysis workflow for
 ## Prerequisites
 I recommend to install RStudio. RStudio is an open-source integrated development environment for R, which includes a code editor that highlights syntax, enables quick and easy access to help pages, improves workspace management and offers various tools for plotting, history and debugging. Simply put, it makes working with R a lot more efficient.
 
-First, let's load the bariatric surgery example data with the following R commands.
+Let's get started with the analysis:
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # For reproducibility
 set.seed(153)
