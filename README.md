@@ -53,4 +53,4 @@ Future work will focus on functionalities related to
 - 2D NMR analysis
 
 ## Feedback
-We all need interaction with the outside world from time to time. So, please let me know what you think: tkimhofer@gmail.com
+We all need some interaction with the outside world now and then. So, please let me know what you think: tkimhofer@gmail.com
