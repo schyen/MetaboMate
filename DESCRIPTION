@@ -4,12 +4,12 @@ Title: R tools for NMR-based metabonomics
 Version: 0.1.0
 Authors@R: c(person("Kimhofer", "Torben", email = "tkimhofer@gmail.com",
   role = c("aut", "cre")),
-  person("Holmes", "Elaine", email = "e.holmes@imperial.ac.uk", role = c("aut")),
-  person("Nicholson", "Jeremy K.", email = "j.nicholson@imperial.ac.uk", role = c("aut")),
-  person("Li", "Jia V.", email = "jia.li@imperial.ac.uk", role = c("ctb")),
-  person("Wist", "Julian", email = "",  role = c("aut", "ctb")))
+  person("Holmes", "Elaine", role = c("exp", "rth")),
+  person("Nicholson", "Jeremy K.", role = c("exp", "rth")),
+  person("Li", "Jia V.", role = c("exp", "rth")),
+  person("Wist", "Julian", role = c("exp", "rtm", "ctb")))
 Maintainer: Torben Kimhofer <tkimhofer@gmail.com>
-Description: R tools for NMR-based metabonomics. Fully validated and comprehensive library that covers all basic steps of the metabonomics analysis pipeline. This includes reading-in 1D spectra from Bruker file format, data preprocessing, various normalisation methods, unsupervised and supervised multivariate analysis techniques and feature extraction. Most of the provided functions can also be used for MS data analysis (such as PQN normalisation or OPLS). All combined with aestethically pleasing visualisations using ggplot2.
+Description: R toolbox for NMR-based metabolic profiling. Fully validated and comprehensive library that covers all basic steps of the metabolic profiling analysis pipeline. This includes reading-in 1D spectra from Bruker file format, data pre-processing, various normalisation methods, unsupervised and supervised multivariate analysis techniques and feature extraction. Most of the provided functions can also be used for MS data analysis (such as PQN normalisation or O-PLS). All combined with aestethically pleasing visualisations using ggplot2.
 License: CC BY-NC-ND 4.0
 Encoding: UTF-8
 LazyData: true

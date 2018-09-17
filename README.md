@@ -2,7 +2,7 @@
 The R toolbox for NMR-based metabolic profiling
 
 ## Installation 
-Installing MetaboMate package from GitHub requires the developer tools R package:
+Installing the MetaboMate package from GitHub requires the developer tools R package:
 ```r
 install.packages('devtools')
 library(devtools)
@@ -37,7 +37,7 @@ Tutorials are also called vignettes in R. MetaboMate comes currently with two tu
 1. Data Import and Preprocessing,
 2. Multivariate Statistical Analysis.
 
-To open these on your computer, type the following commands:
+To open these on your computer, type the following commands into your R console:
 ```r
 vignette('Data_Import_and_Preprocessing')
 vignette('Multivariate_Statistical_Analysis')
