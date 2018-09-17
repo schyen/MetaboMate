@@ -46,5 +46,11 @@ vignette('Data_Import_and_Preprocessing')
 vignette('Multivariate_Statistical_Analysis')
 ```
 
+## Future Work
+Future work will focus on functionalities related to 
+- metabolite identification, 
+- pathway and metabolic network analysis, 
+- 2D NMR analysis
+
 ## Feedback
-Please let me know what you have in mind: tkimhofer@gmail.com
+We all need interaction with the outside world from time to time. So, please let me know what you think: tkimhofer@gmail.com
