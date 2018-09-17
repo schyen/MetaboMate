@@ -19,11 +19,11 @@ The following command installs the MetaboMate package, including tutorials. The 
 There might come up **warning messages** (eg. *time zone unknown*). These are not a problem! :pray:
 However, **error messages** are a problem as these stop the installation process. 
 
-#### Solutions to common error messages: 
+#### Solutions to common installation errors:
 
 >`Installation failed: 'exdir' does not exist`
 
-Workspace directory not writable, change the location of the workspace
+Workspace directory not writable, change the location of the current workspace
 
 >`Dependency package missing`
 
