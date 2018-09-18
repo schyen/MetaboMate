@@ -1,0 +1,9 @@
+---
+title: "Metabomate"
+author: "Torben Kimhofer"
+---
+
+## Including Plots
+
+You can also embed plots, for example:
+
