@@ -11,7 +11,7 @@
 
 
 
-<title>About</title>
+<title>MetaboMate</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -221,12 +221,52 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">About</h1>
+<h1 class="title toc-ignore">MetaboMate</h1>
 
 </div>
 
 
-<p>MetaboMate is all you need to perform data analysis in the filed of NMR-based metabolic profiling. It covers all basic processing steps, which includes importing 1D spectra from Bruker file format, data pre-processing (referencing, baseline correction, excision of spectral areas, etc.), spectral normalisation methods (eg., probablistic quotient normalisation) and multivariate statistics (PCA, O-PLS), all combined with aestethically pleasing visualisations using ggplot2. Many of the provided functions can also be used for mass spectrometry data analysis. All functions are well documented.</p>
+<div id="all-you-need-to-perform-data-analysis-for-nmr-based-metabolic-profiling" class="section level4">
+<h4><strong>All you need to perform data analysis for NMR-based metabolic profiling!</strong></h4>
+<hr />
+<p>The R toobox covers all basic processing and analysis steps, including:</p>
+<ul>
+<li><strong>Data Import</strong>
+<ul>
+<li>Fast read-in of 1D NMR spectra in Bruker file format</li>
+<li>Metadata for each sample
+<ul>
+<li>Spectrometer-related acquisition parameters (eg. frequency, pulse program, receiver gain)</li>
+<li>Pre-processing details (eg. time of acquisition, number or data points in time domain, selected AU program)</li>
+</ul></li>
+</ul></li>
+<li><strong>Spectral Quality Assessment</strong>
+<ul>
+<li>Detection of baseline distortions</li>
+<li>Water suppression - quality index</li>
+<li>Effectiveness shimming / magnetic field homogeneiety using TSP line widths</li>
+</ul></li>
+<li><strong>Data Pre-Processing</strong>
+<ul>
+<li>Referencing to external standard (TSP) or glucose,</li>
+<li>Non-linear baseline correction,</li>
+<li>Easy excision of spectral areas (eg. residual water)</li>
+</ul></li>
+<li><strong>Sample Normalisation</strong>
+<ul>
+<li>Probablistic quotient normalisation (PQN)</li>
+</ul></li>
+<li><strong>Multivariate Statistics and Associated Analytics</strong>
+<ul>
+<li>Principal Comenent Analysis (PCA)</li>
+<li>Distance to Model in X space analytics</li>
+<li>Orthogoanal-Patial Least Squares (O-PLS)</li>
+</ul></li>
+</ul>
+<p>Data and statistical model interpretation is supported by aestethically pleasing visualisations using ggplot2.</p>
+<p>Many of the provided functions can also be applied to mass spectrometry data.</p>
+<p>All functions are well-documented, assessible with the <code>help()</code> function in R.</p>
+</div>
 
 
 
