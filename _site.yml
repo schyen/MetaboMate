@@ -1,6 +1,5 @@
 name: "MetaboMate"
 output_dir: "."
-theme: jekyll-theme-architect
 navbar:
   title: "MetaboMate"
   left:
@@ -19,3 +18,7 @@ navbar:
         - text: 'PCA and O-PLS'
           href: MVA.html
 
+output:
+  html_document:
+  theme: yekyll-theme-modernist
+  highligth: textmate
