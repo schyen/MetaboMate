@@ -1,6 +1,3 @@
-# About
-
-MetaboMate is all you need to perform data analysis in the filed of NMR-based metabolic profiling. It covers all basic processing steps, which includes importing 1D spectra from Bruker file format, data pre-processing (referencing, baseline correction, excision of spectral areas, etc.), spectral normalisation methods (eg., probablistic quotient normalisation) and multivariate statistics (PCA, O-PLS), all combined with aestethically pleasing visualisations using ggplot2. Many of the provided functions can also be used for mass spectrometry data analysis. All functions are well documented.
 
 # Installation 
 Installing the MetaboMate package from GitHub requires the developer tools R package:

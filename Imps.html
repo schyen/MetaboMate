@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MetaboMate</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">About</a>
+</li>
+<li>
+  <a href="Imps.html">Examples</a>
+</li>
+<li>
+  <a href="README.html">Installation</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p>This vignette documents a typical pre-processing workflow for NMR-based metabolic profilig using the <em>MetaboMate</em> R package. Example data represent thirty Proton NMR (<sup>1</sup>H NMR) spectra of murine urine samples collected pre and post bariatric surgery. One dimensional spectra were acquired on a 600 MHz Bruker Avance III spectrometer, equipped with a 5 mm triple resonance (TXI) probe operating at 300 K. Further information on sample collection, processing and data acquisition can be obtained from the original publication by Jia V. Li <em>et al.</em><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<p>Although not essential for this tutorial, I recommend to install RStudio. RStudio is an open-source integrated development environment for R, which includes a code editor that highlights syntax, enables quick and easy access to help pages, improves workspace management and offers various tools for plotting, history and debugging. Simply put, it makes working with R a lot more efficient.</p>
+</div>
+<div id="reading-1d-nmr-spectra" class="section level2">
+<h2>Reading 1D NMR spectra</h2>
+<p>The first step is to load NMR spectra into the R workspace. This can be accomplished with the <strong>readBruker()</strong> function, whose only imput argument is the path to the NMR experiment folder. The function recursively searches for relevant NMR files in all subfolders and imports all spectra into matrix format, with rows representing spectra and columns metabolic features (ppm variables).</p>
+<pre class="r"><code>library(MetaboMate)
+readBruker(path=system.file(&quot;extdata/&quot;, package = &quot;MetaboMate&quot;))
+#&gt; Reading 30 spectra.
+ls()
+#&gt;  [1] &quot;dilF.pqn&quot;    &quot;dilF.ta&quot;     &quot;idx&quot;         &quot;idx.noiseDF&quot; &quot;idx.TSP&quot;    
+#&gt;  [6] &quot;idx.water&quot;   &quot;meta&quot;        &quot;ppm&quot;         &quot;spec.qc&quot;     &quot;TSP.lw.Hz&quot;  
+#&gt; [11] &quot;X&quot;           &quot;X.bl&quot;        &quot;X.cali&quot;      &quot;X.pqn&quot;       &quot;X.ta&quot;</code></pre>
+<p>This function automatically declares three variables to the R workspace:</p>
+<ul>
+<li><em>X</em> = NMR data matrix</li>
+<li><em>ppm</em> = ppm vector</li>
+<li><em>meta</em> = spectrometer metadata</li>
+</ul>
+<p>The rownames of <em>X</em> are the experiment folder names which can be used to match NMR spectra with metadata. The dataframe <strong>meta</strong> contains detailed information about acquisition and processing parameters for each spectrum, including acquistion date and run order, with rows representing specta, and each column repesents a different parameter. The column name prefix <em>a</em> or <em>p</em> indicates if the parameter was extracted from the <em>acqus</em> or <em>procs</em> file, respectively. For example, the column <em>a_RG</em> contains the receiver gain (RG) value for each spectrum, which was extracted from the experiment’s <em>acqus</em> file.</p>
+</div>
+<div id="plotting-spectra" class="section level2">
+<h2>Plotting spectra</h2>
+<p>For the visualisation of NMR spectra there are two low-level plotting functions (<strong>spec()</strong> and <strong>matspec()</strong>), which allow plotting an individual spectrum or multiple spectra, respectively. Both of these functions are fairly fast. Let’s have a first look at all imported spectra over the entire ppm range with the <strong>matspec()</strong> function.</p>
+<pre class="r"><code>matspec(ppm, X, shift = range(ppm))</code></pre>
+<p><img src="Imps_files/figure-html/unnamed-chunk-2-1.png" width="691.2" /></p>
+<p>From this overview we can see that the spectral width ranges from -5 to approximately 15 ppm with the residual water signal resonating around 4.8 ppm.</p>
+<p>There are different higher-level plotting functions available that allow a more comprehensive spectral visualisation of individual peaks or peak areas. One of this function is <strong>specOverlay()</strong>, which is comparable to <strong>matspec()</strong> shown above.</p>
+<p>For illustration purposes we plot the TSP signal (a component of the sample preparation buffer) coloured according to the receiver gain (<em>RG</em>) parameter in <em>meta</em> dataframe, the linetype corresponds to the experiment type (<em>EXP</em>) defined with the spectrometer operation software.</p>
+<pre class="r"><code># plot TSP signal
+specOverlay(X, ppm, shift=c(-0.05,0.05), 
+            an=list(&#39;Facet&#39;=&#39;All spectra&#39;, # facetting (here: a single panel) 
+                    &#39;Receiver Gain&#39;=as.numeric(meta$a_RG), # colour scale
+                    &#39;Experiment&#39;=factor(meta$a_EXP))) # linetype</code></pre>
+<p><img src="Imps_files/figure-html/unnamed-chunk-3-1.png" width="691.2" /></p>
+<p>The RG value amplifies the NMR signal (free induction decay) before it is converted to a digital signal. In the plot above you can see, that there were different types of experiments performed (indicated by different linetypes) and that the RG is related to the TSP signal strength within each experiment type. In metabolic phenotyping, the RG is often fixed for spectra acquired within one analytical run as it sometimes can be diffucult to account for.</p>
+</div>
+<div id="phasing-and-calibration" class="section level2">
+<h2>Phasing and calibration</h2>
+<p>[Phasing script not available but work in progress.]</p>
+<p>Spectral calibration is an essential step in NMR data processing, where the entire spectrum is shifted until the peak apex of a reference compound reaches a defined ppm position. For urine NMR analysis the reference compounds is usually TSP, which gives rise to a singlet defined at zero ppm.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>We can calibrate the urine spectra using the <strong>calibrate()</strong> function, as shown with the following code:</p>
+<pre class="r"><code># calibrate urinary NMR spectra to TSP
+X.cali=calibration(X, ppm, type=&#39;Urine&#39;)
+
+# plot TSP overlay with calibrated data, facetted for each different experiment type
+specOverlay(X.cali, ppm, shift=c(-0.05,0.05), 
+            an=list(&#39;Experiment&#39;=meta$a_EXP , 
+                    &#39;Run Order&#39;=meta$a_RunOrder))</code></pre>
+<p><img src="Imps_files/figure-html/unnamed-chunk-4-1.png" width="691.2" /></p>
+<p>The plot above shows three panels, each for every experiment type and each spectra is coloured according to the run order. Now you can see that all TSP signals are nicely aligned with the peak apex centered at zero ppm (that was not the case before).</p>
+<p>Both of the experiment types labelled <strong>&lt;&gt;</strong> and <strong>&lt;OB_flowtest&gt;</strong> (upper and lower panel in the above plot) are calibration experiments and were performed at the beginning of the run (as indicated by the colour). For quantitative analysis these are not suitable and therefore, we filter for the desired experiment type (<strong>&lt;JL-noe1d&gt;</strong>) before we continue with the analysis.</p>
+<pre class="r"><code># Exclude calibration experiments
+idx=grep(&#39;noe1d&#39;, meta$a_EXP)
+X=X[idx,]
+meta=meta[idx,]</code></pre>
+</div>
+<div id="assessment-of-spectral-quality" class="section level2">
+<h2>Assessment of spectral quality</h2>
+<p>In metabolic phenotyping and in any other field where multiple NMR spectra are compared quantitatively, the quality of spectra is of particular importance. Assessment of spectral quality usually is a visual inspection of the water suppresion quality, spectral line widths and baseline stability as well as the average signal to noise (SN) ratio.</p>
+<p>High throughput NMR often does not allow a manual inspection of each individual spectrum and automatically generated quality indices are used to exclude low quality spectra. The <strong>spec.qc()</strong> function derives several spectral quality control indices and produces an overview plot if the function argument plot is set to TRUE:</p>
+<pre class="r"><code># calculate quality control measures
+spec.qc=spec.quality(X.cali, ppm, ppm.noise=c(9.4,9.5), plot=TRUE)</code></pre>
+<p><img src="Imps_files/figure-html/unnamed-chunk-6-1.png" width="691.2" /></p>
+<p>The output of this function is a dataframe containing the quality control indices for each sample:</p>
+<ul>
+<li>TSP line widht in ppm (related to the shim quality)</li>
+<li>Area of the residual water signal (quality of water suppression)</li>
+<li>Baseline area</li>
+<li>Average signal to noise ratio</li>
+</ul>
+<p>The latter two paramters are primarily influenced by biological factors. For example, the area of the baseline depends on sample dilution (higher diluted samples have lower signals intensities, which leads to smaller baseline areas). However, these can still be useful for spotting extreme outliers of biological as well as technical nature.</p>
+<p>The first few rows of the quality indices table are shown just below. Like for the NMR matrix <em>X</em>, the row names are the experiment folders.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">TSP.lw.ppm</th>
+<th align="right">Residual.water</th>
+<th align="right">Baseline</th>
+<th align="right">SN.ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="right">0.00340</td>
+<td align="right">326192.6</td>
+<td align="right">18228.11</td>
+<td align="right">1.966967</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="right">0.00292</td>
+<td align="right">532977.1</td>
+<td align="right">27214.51</td>
+<td align="right">2.076296</td>
+</tr>
+<tr class="odd">
+<td>101</td>
+<td align="right">0.00350</td>
+<td align="right">2738791.2</td>
+<td align="right">218445.59</td>
+<td align="right">6.554764</td>
+</tr>
+<tr class="even">
+<td>102</td>
+<td align="right">0.00364</td>
+<td align="right">2081086.1</td>
+<td align="right">272931.87</td>
+<td align="right">6.875540</td>
+</tr>
+<tr class="odd">
+<td>103</td>
+<td align="right">0.00313</td>
+<td align="right">1255470.6</td>
+<td align="right">46483.65</td>
+<td align="right">3.092912</td>
+</tr>
+<tr class="even">
+<td>104</td>
+<td align="right">0.00324</td>
+<td align="right">5687148.5</td>
+<td align="right">402266.62</td>
+<td align="right">6.978859</td>
+</tr>
+</tbody>
+</table>
+<p>Currently, the line width estimate of the <strong>spec.quality()</strong> function (<em>TSP.lw.ppm</em>) requires a TSP signal or any other external reference compound that resonates at zero ppm. The respective line width in Hertz can be derived by multiplying <em>TSP.lw.ppm</em> with the spectrometer frequency in the <em>meta</em> dataframe:</p>
+<pre class="r"><code># TSP line widht in Hz
+TSP.lw.Hz=spec.qc$&quot;TSP.lw.ppm&quot; * meta$&quot;a_SFO1&quot;
+hist(TSP.lw.Hz, xlab=&#39;TSP line widht (Hz)&#39;, main=&#39;Histogram&#39;, breaks = &quot;FD&quot;)</code></pre>
+<p><img src="Imps_files/figure-html/unnamed-chunk-8-1.png" width="691.2" /></p>
+</div>
+<div id="excision-of-chemical-shifts-regions-and-baseline-correction" class="section level2">
+<h2>Excision of chemical shifts regions and baseline correction</h2>
+<p>Further downstream analysis requires the excision of chemical shift regions where signals from external sources (e.g. buffer) are present or are non-quantitative. In urinary NMR analyses these include the TSP and residual water signal as well as ppm regions where there is no signal but only noise.</p>
+<p>The function <strong>get.idx()</strong> can be used to obtain indices of the desired shift range from the ppm vector. These indices can then be further used to exclude the relevant columns in the NMR matrix and ppm vector. This is illustrated in the following code snippet.</p>
+<pre class="r"><code># Indexing TSP region and upfield noise...
+idx.TSP=get.idx(range=c(min(ppm), 0.5), ppm)
+# ... water region...
+idx.water=get.idx(range=c(4.6, 5), ppm)
+# ... as well as downfield noise regions
+idx.noiseDF=get.idx(range=c(9.5, max(ppm)), ppm)
+
+# Exision of TSP, res. water and noise regions
+X.cali=X.cali[,-c(idx.TSP, idx.water, idx.noiseDF)]
+ppm=ppm[-c(idx.TSP, idx.water, idx.noiseDF)]</code></pre>
+<p>Baseline correction can be performed with the function <strong>bline()</strong>. See <strong>?bline</strong> for further methodological information.</p>
+<pre class="r"><code># Baseline correction
+X.bl=bline(X.cali)
+
+# compare spectra before and after baseline correction
+specOverlay(X.cali, ppm, shift=c(3.6,4), 
+            an=list(panel=&#39;Not BL corrected&#39;, 
+                    &#39;Est Baseline&#39;=spec.qc$Baseline))
+
+specOverlay(X.bl, ppm, shift=c(3.6,4), 
+            an=list(panel=&#39;BL corrected&#39; , 
+                    &#39;Est S.N ratio&#39;=spec.qc$SN.ratio))</code></pre>
+<p><img src="Imps_files/figure-html/unnamed-chunk-10-1.png" width="691.2" /><img src="Imps_files/figure-html/unnamed-chunk-10-2.png" width="691.2" /></p>
+</div>
+<div id="spectral-normalisation" class="section level2">
+<h2>Spectral normalisation</h2>
+<p>Depending on the sample type, multivariate analysis requires normalisation of spectra. In urinary NMR studies for example, the sample dilution varies across samples, perhaps due to the uptake of different amounts of water.</p>
+<p>There are several normalisation methods avaiable. Among the most commonly applied ones are Total Area (TA) normalisaton and Probablistic Quotient Normalisation (PQN).<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> In this tutorial, we normalise the spectra using both methods and compare the results. Therefore the functions <strong>pqn()</strong> and <strong>totaArea()</strong> are called, returning the normalised NMR matrix. The additional input argument <em>add.DilF</em> indicates if the calculated dilution factor should be exported as a variable. If that is the case, then the argument should specify a variable name, otherwise the argument should be set to <em>NULL</em>.</p>
+<pre class="r"><code>
+X.pqn=pqn(X.bl, add.DilF = &#39;dilF.pqn&#39;)
+X.ta=totalArea(X.bl, add.DilF=&#39;dilF.ta&#39;)
+
+plot(log10(dilF.pqn), log10(dilF.ta), xlab=&#39;PQN Dilution Factor&#39;, ylab=&#39;Total Area (scaled)&#39;)
+abline(a = c(0,1), col=&#39;red&#39;)</code></pre>
+<p><img src="Imps_files/figure-html/unnamed-chunk-11-1.png" width="691.2" /></p>
+<p>Plotting the dilution factors of both normalisation factors against each other, shows that these are genearlly lower for PQN than for TA normalisation. Which normalisation method is more appropriate generally depends on the sample type, experimental setup and analysis platform. In NMR-based untargeted metabolic phenotyping studies using urine as a sample matrix I recommend using PQN instead of TA normalisation.</p>
+<p>The last step is a final visual inspection of the pre-processed NMR spectra:</p>
+<pre class="r"><code>matspec(ppm, X.pqn, shift = range(ppm))
+matspec(ppm, X.pqn, shift = c(2,4))
+matspec(ppm, X.pqn, shift = c(4,6))
+matspec(ppm, X.pqn, shift = c(6,9))</code></pre>
+<p><img src="Imps_files/figure-html/unnamed-chunk-12-1.png" width="691.2" /><img src="Imps_files/figure-html/unnamed-chunk-12-2.png" width="691.2" /><img src="Imps_files/figure-html/unnamed-chunk-12-3.png" width="691.2" /><img src="Imps_files/figure-html/unnamed-chunk-12-4.png" width="691.2" /></p>
+</div>
+<div id="summary-and-further-steps" class="section level1">
+<h1>Summary and further steps</h1>
+<p>The pre-processed spectra are calibrated, free of unwanted signals or noise regions and normalised to account for dilution effects. Low quality spectra could be further excluded based on the quality control indices dervied with the <strong>spec.quality()</strong> function.</p>
+<p>The next step is a multivariate statistical analysis with projection methods such as Prinicpal Component Analysis (PCA) and Partial-Least Squares (PLS) or extensions of it (Orthogonal-Partial Least Squares). For more information please see vignette <strong>Multivariate Statistical Analysis</strong> of the <em>MetaboMate</em> package.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Li, Jia V., <em>et al.</em> (2011) Metabolic surgery profoundly influences gut microbial-host metabolic cross-talk. <em>Gut</em> 60.9, 1214-1223.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Dona, A.C., <em>et al.</em> (2014) Precision high-throughput proton NMR spectroscopy of human urine, serum, and plasma for large-scale metabolic phenotyping. <em>Analytical Chemistry</em>. 86.19. 9887-94.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Dieterly, F.,  (2006), Probabilistic Quotient Normalization as Robust Method to Account for Dilution of Complex Biological Mixtures. Application in 1H NMR Metabonomics, , 78.3, 4281-90<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

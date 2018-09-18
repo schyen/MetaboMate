@@ -3,9 +3,10 @@ output_dir: "."
 navbar:
   title: "MetaboMate"
   left:
-    - text: 'Homesing'
+    - text: 'About'
       href: index.html
-    - text: 'About 1'
+    - text: 'Examples'
+      href: Imps.html
+    - text: 'Installation'
       href: README.html
-    - text: 'Example Workflow'
-      href: about.html
+
