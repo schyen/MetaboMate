@@ -1,5 +1,6 @@
 name: "MetaboMate"
 output_dir: "."
+theme: jekyll-theme-architect
 navbar:
   title: "MetaboMate"
   left:
