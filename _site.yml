@@ -5,8 +5,16 @@ navbar:
   left:
     - text: 'About'
       href: index.html
-    - text: 'Examples'
-      href: Imps.html
     - text: 'Installation'
       href: README.html
+    - text: 'Examples'
+      icon: fa-gear
+      menu:
+        - text: 'Pre-processing'
+        - text: 'Import and Preprocessing'
+          href: Imps.html
+        - text: '----------'
+        - text: 'Multivariate Statistics'
+        - text: 'PCA and O-PLS'
+          href: MVA.html
 
