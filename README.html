@@ -181,7 +181,7 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">About</a>
+  <a href="index.html">Content</a>
 </li>
 <li>
   <a href="README.html">Installation</a>
@@ -206,6 +206,9 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li>
+  <a href="README.html">About</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -228,11 +231,12 @@ $(document).ready(function () {
 <pre class="r"><code>install.packages(&#39;devtools&#39;)
 library(devtools)</code></pre>
 <p>The following command installs the MetaboMate package, including two tutorials.</p>
-<p><code>devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)</code></p>
+<p><strong><code>devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)</code></strong></p>
 <p>The installation can take up to about 3 minutes as the installation builds the tutorials, which come with high-resolution NMR example data.</p>
-<div id="installation-notes-for-r-beginners" class="section level3">
-<h3>Installation Notes for R Beginners</h3>
+<div id="installation-notes-for-r-beginners" class="section level4">
+<h4>Installation Notes for R Beginners</h4>
 <p>There might come up <strong>warning messages</strong> (eg. <em>time zone unknown</em>). These are not a problem! :pray: However, <strong>error messages</strong> are a problem as these stop the installation process.</p>
+</div>
 <div id="solutions-to-common-installation-errors" class="section level4">
 <h4>Solutions to Common Installation Errors:</h4>
 <blockquote>
@@ -245,30 +249,6 @@ library(devtools)</code></pre>
 <p>Install the required package(s) from Bioconductor.org</p>
 <p>You can check if the installation was successful by loading the package into your R session: <code>library(MetaboMate)</code> - all is fine if no error message is returned.</p>
 </div>
-</div>
-</div>
-<div id="tutorials-vignettes" class="section level1">
-<h1>Tutorials / Vignettes</h1>
-<p>Tutorials are also called vignettes in R. MetaboMate comes currently with two tutorials describing</p>
-<ol style="list-style-type: decimal">
-<li>Data Import and Preprocessing,</li>
-<li>Multivariate Statistical Analysis.</li>
-</ol>
-<p>To open these on your computer, type the following commands into your R console:</p>
-<pre class="r"><code>vignette(&#39;Data_Import_and_Preprocessing&#39;)
-vignette(&#39;Multivariate_Statistical_Analysis&#39;)</code></pre>
-</div>
-<div id="future-work" class="section level1">
-<h1>Future Work</h1>
-<p>Planned future work will focus on functionalities related to - metabolite identification, - pathway and metabolic network analysis, - 2D NMR analysis.</p>
-</div>
-<div id="feedback" class="section level1">
-<h1>Feedback</h1>
-<p>We all need some interaction with the outside world now and then. So, please get in touch if you like: <a href="mailto:tkimhofer@gmail.com">tkimhofer@gmail.com</a></p>
-</div>
-<div id="about-the-author" class="section level1">
-<h1>About the Author</h1>
-<p>See my <a href="https://tkimhofer.com">webpage</a>.</p>
 </div>
 
 

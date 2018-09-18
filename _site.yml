@@ -3,7 +3,7 @@ output_dir: "."
 navbar:
   title: "MetaboMate"
   left:
-    - text: 'About'
+    - text: 'Content'
       href: index.html
     - text: 'Installation'
       href: README.html
@@ -17,3 +17,5 @@ navbar:
         - text: 'Multivariate Statistics'
         - text: 'PCA and O-PLS'
           href: MVA.html
+    - text: 'About'
+      href: README.html
