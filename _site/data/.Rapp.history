@@ -1,7 +1,0 @@
-load("/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata")
-ls()
-bariatric=bariatric1
-save(bariatric, "/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata")
-save(bariatric, file="/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata")
-exit
-quit()
