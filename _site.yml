@@ -1,4 +1,5 @@
 name: "MetaboMate"
+output_dir: "."
 navbar:
   title: "MetaboMate"
   left:
@@ -6,4 +7,3 @@ navbar:
       href: index.html
     - text: 'About'
       href: about.html
-output_dir: "."
