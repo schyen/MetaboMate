@@ -1,0 +1,11 @@
+##TITLE= Parameter file, TOPSPIN		Version 2.0.a
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 2	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= jli
+$$ 2009-10-14 14:15:23.644 +0100  IC\jli@BC-WANGYL
+$$ C:/data/jli/nmr/JL_bariatricrat/101/pdata/1/assocs
+$$ process C:\Bruker\TOPSPIN\prog\mod\dataserver.exe
+##$MULTDISP= <C:/data/jli/nmr/JL_bariatricrat/113/pdata/1>
+##END=

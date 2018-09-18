@@ -1,0 +1,2 @@
+set wp(psetVersion)	1.30.2.6
+set GParValue(aSlprts) [list "" "Injection" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""]
