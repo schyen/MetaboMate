@@ -6,4 +6,6 @@ navbar:
     - text: 'Home'
       href: index.html
     - text: 'About'
+      href: README.html
+    - text: 'Example Workflow'
       href: about.html
