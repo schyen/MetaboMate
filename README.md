@@ -12,6 +12,9 @@ The following command installs the MetaboMate package, including two tutorials.
 
 The installation can take up to about 3 minutes as the installation builds the tutorials, which come with high-resolution NMR example data.
 
+
+&nbsp;
+
 #### Installation Notes for R Beginners
 
 There might come up **warning messages** (eg. *time zone unknown*). These are not a problem! :pray:
