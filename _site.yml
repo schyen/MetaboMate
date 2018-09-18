@@ -18,4 +18,4 @@ navbar:
         - text: 'PCA and O-PLS'
           href: MVA.html
     - text: 'About'
-      href: README.html
+      href: about.html
