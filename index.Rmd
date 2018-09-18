@@ -1,6 +1,5 @@
 ---
 title: "Metabomate"
-author: "Torben Kimhofer"
 ---
 
 ## Including Plots
