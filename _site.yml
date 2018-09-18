@@ -17,8 +17,3 @@ navbar:
         - text: 'Multivariate Statistics'
         - text: 'PCA and O-PLS'
           href: MVA.html
-
-output:
-  html_document:
-  theme: yekyll-theme-modernist
-  highligth: textmate

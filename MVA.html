@@ -318,7 +318,7 @@ opls.model=opls(X,Y)
 #&gt; Performing OPLS-DA ... done.
 #&gt; A model with 1 predictive and 1 orthogonal component(s) was fitted.</code></pre>
 <p><img src="MVA_files/figure-html/unnamed-chunk-8-1.png" width="691.2" /></p>
-<p>The model summary plot above describes the O-PLS parameters, with each set of bars corresponding to one fitted predictive and the specied number of orthogonal compononents. As you can see, the final model comprises one predictive and two orthogonal components (labelled 1+1). The final set of bars on the right (increased transparency) correspond to a model with 1 predictive and 2 orthogonal components (one orthogonal component more than actually fitted). This information is included for comparative purposes and for the evaluation of the automatic stop criteria.</p>
+<p>The model summary plot above describes the O-PLS parameters, with each set of bars corresponding to one fitted predictive and the specied number of orthogonal compononents. As you can see, the final model comprises one predictive and one orthogonal components (labelled 1+1). The last set of bars on the right-hand side of the plot (increased transparency) correspond to a model with 1 predictive and 2 orthogonal components (so one orthogonal component more than found appropriate). This information is included for comparative purposes and for the evaluation of the automatic stop criteria.</p>
 <p>The model summary can also be returned as a table with the following command:</p>
 <pre class="r"><code>opls.model@summary</code></pre>
 <table>
@@ -342,7 +342,7 @@ opls.model=opls(X,Y)
 </tbody>
 </table>
 <p>R2X and R2Y describe how much variation the model describes in X and Y space, respecitvely. These indices range from 0 (no explanatory power) up to 1 (all variation is explained by the model). A high R2Y is desirable, indicating the O-PLS model explains much of the outcome variable.</p>
-<p>The indices Q2 and AUROC_cv are generated with statistical validation techniques and estimate how well the model generalise to new, independent data sets. Low values indicated that the model is overfitted (not desired), high values are a good indicator for statistically robust O-PLS models.</p>
+<p>The indices Q2 and AUROC_cv are calculated using statistical validation techniques and therefore, are estimates of how well the model generalise to new, independent data sets. Low values indicated that the model is overfitted (not desired), high values (max value for both is 1) are a good indicator for statistically robust O-PLS models.</p>
 <p><strong>The Q2 is designed for regression tasks (numeric <em>Y</em> variable) and the AUROC_cv is designed for classification tasks (categorical <em>Y</em> variable).</strong> An AUROC exceeding 0.9 is often considered as excellent, a value of 0.8-0.9 as good, 0.7-0.8 as fair and below 0.7 as poor or failing to accurately define class memberships.</p>
 </div>
 <div id="distance-to-the-model-in-x-space" class="section level3">
@@ -363,7 +363,7 @@ plotscores(model=opls.model, pc=c(1,2), an=list(
   title=&#39;OPLS - Scores plot&#39;,     # plot title
   cv.scores = T)                  # visualise cross-validated scores</code></pre>
 <p><img src="MVA_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
-<p>The resuling OPLS CV scores plot shows an almost perfect separation of both surgery types, with all predictive power focussed on the x-axis (that is characteristic for O-PLS, compared to PLS).</p>
+<p>The resuling OPLS CV scores plot shows a perfect separation of both surgery types, with all predictive power focussed on the x-axis (that is characteristic for O-PLS, compared to PLS).</p>
 <p>The orthogonal component (y-axis) is - in the mathematical sense - unrelated to the outcome variable <em>Y</em>. In some cases, its interpretation can give some insights about the study samples. In the present case, the first orthogonal O-PLS component is associated with different urine dilutions and effects resulting from spectral normalisation, which was part of the data pre-processing pipeline.</p>
 <pre class="r"><code>plotscores(opls.model, pc=c(1,2), an=list(
   Dilution=log10(meta$dilF.pqn[idx])), 
