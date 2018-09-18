@@ -7,11 +7,11 @@ navbar:
       href: index.html
     - text: 'Installation'
       href: README.html
-    - text: 'Examples'
+    - text: 'Tutorials'
       icon: fa-gear
       menu:
         - text: 'Pre-processing'
-        - text: 'Import and Preprocessing'
+        - text: 'Import and Pre-processing'
           href: Imps.html
         - text: '----------'
         - text: 'Multivariate Statistics'

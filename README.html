@@ -190,14 +190,14 @@ $(document).ready(function () {
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-gear"></span>
      
-    Examples
+    Tutorials
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Pre-processing</li>
     <li>
-      <a href="Imps.html">Import and Preprocessing</a>
+      <a href="Imps.html">Import and Pre-processing</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Multivariate Statistics</li>
@@ -207,7 +207,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li>
-  <a href="README.html">About</a>
+  <a href="about.html">About</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -227,15 +227,17 @@ $(document).ready(function () {
 
 <div id="installation" class="section level1">
 <h1>Installation</h1>
-<p>Installing the MetaboMate package from GitHub requires the developer tools R package:</p>
+<p>The MetaboMate package is currently hosted on GitHub. Installing it requires the developer tools R package:</p>
 <pre class="r"><code>install.packages(&#39;devtools&#39;)
 library(devtools)</code></pre>
-<p>The following command installs the MetaboMate package, including two tutorials.</p>
+<p>Now, the following command installs the MetaboMate package:</p>
 <p><strong><code>devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)</code></strong></p>
-<p>The installation can take up to about 3 minutes as the installation builds the tutorials, which come with high-resolution NMR example data.</p>
-<div id="installation-notes-for-r-beginners" class="section level4">
-<h4>Installation Notes for R Beginners</h4>
-<p>There might come up <strong>warning messages</strong> (eg. <em>time zone unknown</em>). These are not a problem! :pray: However, <strong>error messages</strong> are a problem as these stop the installation process.</p>
+<p>The installation process can take up to about 3 minutes as the tutorials are build locally with high-resolution NMR example data.</p>
+<p> </p>
+<div id="installation-notes-for-r-starters" class="section level4">
+<h4>Installation Notes for R Starters</h4>
+<p>There might come up <strong>warning messages</strong> (eg. <em>unknown time zone</em>). These are not a problem! :pray: However, <strong>error messages</strong> are a problem as these stop the installation process.</p>
+<p> </p>
 </div>
 <div id="solutions-to-common-installation-errors" class="section level4">
 <h4>Solutions to Common Installation Errors:</h4>
@@ -247,6 +249,7 @@ library(devtools)</code></pre>
 <p><code>Dependency package missing</code></p>
 </blockquote>
 <p>Install the required package(s) from Bioconductor.org</p>
+<p> </p>
 <p>You can check if the installation was successful by loading the package into your R session: <code>library(MetaboMate)</code> - all is fine if no error message is returned.</p>
 </div>
 </div>
