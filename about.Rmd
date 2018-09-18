@@ -1,7 +1,0 @@
----
-title: "My ws"
-author: "Torben Kimhofer"
-date: "18 September 2018"
----
-
-Hello, About Website!
