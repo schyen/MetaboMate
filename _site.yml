@@ -8,7 +8,6 @@ navbar:
     - text: 'Installation'
       href: README.html
     - text: 'Tutorials'
-      icon: fa-gear
       menu:
         - text: 'Pre-processing'
         - text: 'Import and Pre-processing'
