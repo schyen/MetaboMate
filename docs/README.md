@@ -4,6 +4,7 @@ MetaboMate is a R toolbox for performing data analysis in the field of NMR-based
 
 ## Getting started
 
+### Instsallation
 The MetaboMate package is currently hosted on GitHub. Installing it requires the developer tools R package:
 ```r
 install.packages('devtools')
