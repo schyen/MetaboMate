@@ -1,0 +1,33 @@
+---
+footer: "18 September 2018"
+---
+
+# Tutorials / Vignettes
+Tutorials (also called vignettes in R) can also be accessed through the R console after the MetaboMate package was installed successfully. To open these on your computer, type the following commands into your R console:
+```r
+vignette('Data_Import_and_Preprocessing')
+vignette('Multivariate_Statistical_Analysis')
+```
+
+&nbsp;
+
+# Support and Feedback
+We all need some interaction with the outside world now and then. So, please do get in touch if you have questions or comments: **tkimhofer@gmail.com** `r emo::ji("smile")`
+
+
+&nbsp;
+
+# Planned Future Work
+Future work will focus on functionalities related to 
+
+* Metabolite identification, 
+* Pathway and metabolic network analysis, 
+* 2D NMR analysis.
+
+
+&nbsp;
+
+# About the Author
+Torben Kimhofer has several years experience in analysing NMR data generated from human biofluid samples. He holds a PhD in chemoinformatics and is currently working at the Centre for Computational and Systems Medicine within the Department of Surgery and Cancer at Imperial College London. See here for his [personal website](https://tkimhofer.com).
+
+
