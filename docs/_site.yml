@@ -18,3 +18,12 @@ navbar:
           href: MVA.html
     - text: 'About'
       href: about.html
+  right:
+    - icon: fa-envelope fa-lg
+      href: mailto:'tkimhofer@gmail.com'
+    - icon: fa-github fa-lg
+      href: http://github.com/kimshce
+    - icon: fa-twitter fa-lg
+      href: https://twitter.com/torben364
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/torben-kimhofer-6337a725/
