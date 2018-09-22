@@ -22,7 +22,7 @@ navbar:
     - icon: fa-envelope fa-lg
       href: mailto:'tkimhofer@gmail.com'
     - icon: fa-github fa-lg
-      href: http://github.com/kimshce
+      href: http://github.com/kimsche/MetaboMate
     - icon: fa-twitter fa-lg
       href: https://twitter.com/torben364
     - icon: fa-linkedin fa-lg
