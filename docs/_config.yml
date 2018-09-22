@@ -1,4 +1,4 @@
 baseurl: ""
 url: "https://kimsche.github.io"
-theme: jekyll-theme-modernist
+theme: jekyll-theme-slate
 footer_text: "Copyright 2017"
