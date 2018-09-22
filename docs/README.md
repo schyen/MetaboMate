@@ -1,5 +1,6 @@
 
 # [MetaboMate](https://kimsche.github.io/MetaboMate/)
+MetaboMate is a R toolbox for performing data analysis in the field of NMR-based metabolic profiling.
 
 # Installation 
 
