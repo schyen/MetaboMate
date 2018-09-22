@@ -1,3 +1,6 @@
+
+# [MetaboMate](https://kimsche.github.io/MetaboMate/)
+
 # Installation 
 
 The MetaboMate package is currently hosted on GitHub. Installing it requires the developer tools R package:
