@@ -1,15 +1,15 @@
-#' Reading 1D NMR spectra from Bruker
+#' Importing 1D NMR spectra from Bruker
 #' @export
-#' @description  Reading 1D NMR spectra from Bruker. This function is recurisvely searching for matching processing, acquisition and spectrum data (r1) files in a given experiment folder.
-#' @param path Path to experiment folder.
-#' @param filter Logical, if set TRUE then experiments with matching \emph{acqus}, \emph{procs} and \emph{1r} files are read-in. If set FALSE, the algorihm will stop if file systems are corrupt or 2D experiments are presenr. The latter option is for more for running file system tests.
+#' @description  Reading-in 1D NMR spectra in Bruker file format. The function recursively descends the directory tree of a given location and is searching for corresponding processing (\emph{procs}), acquisition (\emph{acqus}) and spectrum (\emph{r1}) files.
+#' @param path A character string - specifying the path of the experiment folder location.
+#' @param filter Logical, if set to TRUE then experiments with matching \emph{acqus}, \emph{procs} and \emph{1r} files are read-in, ignored are corrupt file systems and 2D experiments. If set to FALSE, the algorihm will be abborted if a file system is corrupt or if 2D experiments are present. Generally the filter=TRUE option should be preferred unless for some testing operations.
 #' @return The following variables are automatically returned as globally defined variables:
-#' \item{X}{Imported NMR matrix where NMR spectra in rows and ppm variables in columns.}
-#' \item{ppm}{Ppm vector.}
-#' \item{meta}{Spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).}
+#' \item{X - two-dimensional NMR matrix with spectra in rows and chmemical shift variables in columns.}
+#' \item{ppm - chemical shift vector (ppm).}
+#' \item{meta - spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).}
 #' @importFrom stats approxfun complete.cases
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
-#' @details Paremeters with prefix \code{a} or \code{p} were extracted from the \emph{acqus} or \emph{procs} file, respectively. Paremeters without any prefix were calculated on the fly.
+#' @details Columns in meta represent spectrometer meta-vairables. Prefix \code{a} and \code{p} indicated if a parameter was extracted from the \emph{acqus} or \emph{procs} file, respectively. Paremeters without any prefix were calculated on the fly (eg run-order).
 
 
 readBruker=function(path, filter=T){

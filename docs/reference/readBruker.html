@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reading 1D NMR spectra from Bruker — readBruker • MetaboMate</title>
+<title>Importing 1D NMR spectra from Bruker — readBruker • MetaboMate</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Reading 1D NMR spectra from Bruker — readBruker" />
+<meta property="og:title" content="Importing 1D NMR spectra from Bruker — readBruker" />
 
-<meta property="og:description" content="Reading 1D NMR spectra from Bruker. This function is recurisvely searching for matching processing, acquisition and spectrum data (r1) files in a given experiment folder." />
+<meta property="og:description" content="Reading-in 1D NMR spectra in Bruker file format. The function recursively descends the directory tree of a given location and is searching for corresponding processing (procs), acquisition (acqus) and spectrum (r1) files." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,14 +118,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Reading 1D NMR spectra from Bruker</h1>
+    <h1>Importing 1D NMR spectra from Bruker</h1>
     <small class="dont-index">Source: <a href='https://github.com/kimsche/MetaboMate/blob/master/R/readBruker.R'><code>R/readBruker.R</code></a></small>
     <div class="hidden name"><code>readBruker.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Reading 1D NMR spectra from Bruker. This function is recurisvely searching for matching processing, acquisition and spectrum data (r1) files in a given experiment folder.</p>
+    <p>Reading-in 1D NMR spectra in Bruker file format. The function recursively descends the directory tree of a given location and is searching for corresponding processing (<em>procs</em>), acquisition (<em>acqus</em>) and spectrum (<em>r1</em>) files.</p>
     
     </div>
 
@@ -136,21 +136,18 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>path</th>
-      <td><p>Path to experiment folder.</p></td>
+      <td><p>A character string - specifying the path of the experiment folder location.</p></td>
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>Logical, if set TRUE then experiments with matching <em>acqus</em>, <em>procs</em> and <em>1r</em> files are read-in. If set FALSE, the algorihm will stop if file systems are corrupt or 2D experiments are presenr. The latter option is for more for running file system tests.</p></td>
+      <td><p>Logical, if set to TRUE then experiments with matching <em>acqus</em>, <em>procs</em> and <em>1r</em> files are read-in, ignored are corrupt file systems and 2D experiments. If set to FALSE, the algorihm will be abborted if a file system is corrupt or if 2D experiments are present. Generally the filter=TRUE option should be preferred unless for some testing operations.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The following variables are automatically returned as globally defined variables:</p>
-<dt>X</dt><dd><p>Imported NMR matrix where NMR spectra in rows and ppm variables in columns.</p></dd>
-<dt>ppm</dt><dd><p>Ppm vector.</p></dd>
-<dt>meta</dt><dd><p>Spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).</p></dd>
-
+<dt>X - two-dimensional NMR matrix with spectra in rows and chmemical shift variables in columns.</dt><dd><p></p></dd><dt>ppm - chemical shift vector (ppm).</dt><dd><p></p></dd><dt>meta - spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).</dt><dd><p></p></dd>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 

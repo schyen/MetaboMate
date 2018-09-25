@@ -96,9 +96,31 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install MetaboMate from github with:</p>
+<p>The MetaboMate package is currently hosted on GitHub. Installing it requires the developer tools R package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"kimsche/MetaboMate"</span>)</code></pre></div>
+<p>The installation process can take up to about 3 minutes as the tutorials are build locally with high-resolution NMR example data.</p>
+<p> </p>
+<div id="installation-notes-for-r-starters" class="section level4">
+<h4 class="hasAnchor">
+<a href="#installation-notes-for-r-starters" class="anchor"></a>Installation Notes for R Starters</h4>
+<p>There might come up <strong>warning messages</strong> (eg. <em>unknown time zone</em>). These are not a problem! :pray: However, <strong>error messages</strong> are a problem as these stop the installation process.</p>
+<p> </p>
+</div>
+<div id="solutions-to-common-installation-errors" class="section level4">
+<h4 class="hasAnchor">
+<a href="#solutions-to-common-installation-errors" class="anchor"></a>Solutions to Common Installation Errors:</h4>
+<blockquote>
+<p><code>Installation failed: 'exdir' does not exist</code></p>
+</blockquote>
+<p>Workspace directory not writable, change the location of the current workspace</p>
+<blockquote>
+<p><code>Dependency package missing</code></p>
+</blockquote>
+<p>Install the required package(s) from Bioconductor.org</p>
+<p> </p>
+<p>You can check if the installation was successful by loading the package into your R session: <code>library(MetaboMate)</code> - all is fine if no error message is returned.</p>
+</div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">

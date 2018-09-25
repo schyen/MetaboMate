@@ -6,10 +6,3 @@ articles:
   MetaboMate: MetaboMate.html
   Multivariate_Statistical_Analysis: Multivariate_Statistical_Analysis.html
 
-development:
-  mode: development
-
-navbar:
-  structure:
-    left:  [home, intro, reference, articles, tutorials, news]
-    right: [githubs]
