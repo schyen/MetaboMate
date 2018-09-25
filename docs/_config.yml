@@ -1,5 +1,0 @@
-baseurl: ""
-url: "https://kimsche.github.io"
-destination: docs/
-theme: jekyll-theme-slate
-footer_text: "Copyright 2017"
