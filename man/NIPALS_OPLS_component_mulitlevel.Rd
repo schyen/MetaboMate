@@ -2,7 +2,7 @@
 % Please edit documentation in R/NIPALS_OPLS_component_multilevel.R
 \name{NIPALS_OPLS_component_mulitlevel}
 \alias{NIPALS_OPLS_component_mulitlevel}
-\title{Calculate PLS, orthogonalise X and remove orthogonal information}
+\title{Calculate PLS component, orthogonalise X and remove orthogonal information}
 \usage{
 NIPALS_OPLS_component_mulitlevel(X, Y)
 }
@@ -23,7 +23,7 @@ Returned is a list with the following entries:
 \item{Loadings Y}{PLS component Y loadings.}
 }
 \description{
-Calculate PLS, orthogonalise X and remove orthogonal information
+Calculate PLS component, orthogonalise X and remove orthogonal information. This function is not for general use, rather than part of the opls function.
 }
 \author{
 Torben Kimhofer \email{tkimhofer@gmail.com}

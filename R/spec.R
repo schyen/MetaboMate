@@ -1,4 +1,4 @@
-#' Plotting a single NMR spectrum
+#' Simple plotting of a single NMR spectrum
 #' @export
 #' @param ppm ppm vector.
 #' @param x NMR spectrum.

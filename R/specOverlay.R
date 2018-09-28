@@ -1,4 +1,4 @@
-#' Plotting overlayed NMR specra
+#' Higher level plotting function for overlay of NMR specra (ggplo2 based)
 #' @aliases specOverlay
 #' @export
 #' @param X Input NMR data matrix with row representing spectra.

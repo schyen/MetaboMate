@@ -30,7 +30,7 @@ opls.par(X, Y, t_pred = 1, center = T, scale = "UV", cv.k = 7,
 This function returns an \emph{OPLS_MetaboMate} S4 object.
 }
 \description{
-This function is used to fit  Orthogonal-Partial Least Squares (O-PLS) models. It can be used to carry out regression or discriminant analysis. In the latter case the outcome can have two or more levels.
+This function is used to fit  Orthogonal-Partial Least Squares (O-PLS) models. It can be used to carry out regression or discriminant analysis. In the latter case the outcome can have two or more levels. It automatically uses all cores available on the machine.
 }
 \details{
 Models are fully statistically validated, currently only k-fold cross validation (CV) and class-balanced k-fold cross validation is implemented. Further extensions, e.g. Monte-Carlo CV, are work in progress. Although the algorithm accepts three and more levels as Y, model interpretation is more straightforward for pairwise group comparisons.

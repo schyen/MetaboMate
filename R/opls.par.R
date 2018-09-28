@@ -1,6 +1,5 @@
 #' Fitting Orthogonal-Partial Least Squares Models - parallelised
-#' @export
-#' @description This function is used to fit  Orthogonal-Partial Least Squares (O-PLS) models. It can be used to carry out regression or discriminant analysis. In the latter case the outcome can have two or more levels.
+#' @description This function is used to fit  Orthogonal-Partial Least Squares (O-PLS) models. It can be used to carry out regression or discriminant analysis. In the latter case the outcome can have two or more levels. It automatically uses all cores available on the machine.
 #' @param X Numeric input matrix (measurements derived by NMR spectroscopy or MS) with each row representing an observation and each column a metabolic feature.
 #' @param Y Response vector or matrix with same length or number of columns than rows in X, respectively.
 #' @param t_pred Parameter specifying the maximum number of predictive components (needed only for multi-factor Y)
@@ -102,7 +101,7 @@ opls.par <- function(X,
 
     # Calculate Total Sum of Squares (TSS), required for calculation of Q2 etc
     # cat('Calculate total sum of squares...')
-    tssx <- MetaboMate:::totSS(XcsTot)
+    tssx <- totSS(XcsTot)
     tssy <- totSS(YcsTot) # total variance that a model can explain (theoretical reference model, used for normalisation)
      cat('done.\n')
   }
@@ -154,7 +153,7 @@ opls.par <- function(X,
 
       pred = pls_prediction(pls_mod = pls_comp, X = e_new_orth)
 
-      return(list(preds, t_cv, t_orth_cv, ))
+      return(list(preds, t_cv, t_orth_cv))
     })
 
     idc=order(unlist(cv_sets))

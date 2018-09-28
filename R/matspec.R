@@ -1,4 +1,4 @@
-#' Plotting multiple NMR spectra
+#' Simple plotting of multiple NMR spectra overlayed
 #' @export
 #' @param ppm ppm vector.
 #' @param X NMR matrix with spectra represented in rows.

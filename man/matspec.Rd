@@ -2,7 +2,7 @@
 % Please edit documentation in R/matspec.R
 \name{matspec}
 \alias{matspec}
-\title{Plotting multiple NMR spectra}
+\title{Simple plotting of multiple NMR spectra overlayed}
 \usage{
 matspec(ppm, X, shift = c(0, 9.5), add = F, ...)
 }
@@ -18,7 +18,7 @@ matspec(ppm, X, shift = c(0, 9.5), add = F, ...)
 \item{...}{Additional parameters to be passed on to the plot function.}
 }
 \description{
-Plotting multiple NMR spectra
+Simple plotting of multiple NMR spectra overlayed
 }
 \details{
 Low-level plotting function for NMR spectra.

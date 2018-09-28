@@ -1,4 +1,5 @@
-#' Calculate PLS, orthogonalise X and remove orthogonal information
+#' Calculate PLS component, orthogonalise X and remove orthogonal information
+#' @description Calculate PLS component, orthogonalise X and remove orthogonal information. This function is not for general use, rather than part of the opls function.
 #' @param X Input matrix with rows and columns representing observations and variables
 #' @param Y Dependend variable, in form of dummy matrix (multi-levels allowed) or numeric column vector
 #' @return Returned is a list with the following entries:

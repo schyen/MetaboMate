@@ -2,7 +2,7 @@
 % Please edit documentation in R/specOverlay.R
 \name{specOverlay}
 \alias{specOverlay}
-\title{Plotting overlayed NMR specra}
+\title{Higher level plotting function for overlay of NMR specra (ggplo2 based)}
 \usage{
 specOverlay(X, ppm, shift = c(-0.01, 0.01), an = list("facet", "col",
   "ltype"), alp = 0.7, size = 0.5, title = "", ...)

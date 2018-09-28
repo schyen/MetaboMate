@@ -1,8 +1,0 @@
-pandoc: 1.19.2.1
-pkgdown: 1.1.0
-pkgdown_sha: ~
-articles:
-  Data_Import_and_Preprocessing: Data_Import_and_Preprocessing.html
-  MetaboMate: MetaboMate.html
-  Multivariate_Statistical_Analysis: Multivariate_Statistical_Analysis.html
-

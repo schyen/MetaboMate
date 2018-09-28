@@ -1,7 +1,7 @@
 Package: MetaboMate
 Type: Package
 Title: The R toolbox for NMR-based metabolic profiling.
-Version: 0.1.0
+Version: 0.0.0.9
 Authors@R: c(person("Kimhofer", "Torben", email = "tkimhofer@gmail.com",
   role = c("aut", "cre")),
   person("Holmes", "Elaine", role = c("exp", "rth")),
@@ -9,8 +9,8 @@ Authors@R: c(person("Kimhofer", "Torben", email = "tkimhofer@gmail.com",
   person("Li", "Jia V.", role = c("exp", "rth")),
   person("Wist", "Julian", role = c("exp", "rtm", "ctb")))
 Maintainer: Torben Kimhofer <tkimhofer@gmail.com>
-Description: R toolbox for NMR-based metabolic profiling. Comprehensive library that covers all basic steps of the metabolic profiling analysis pipeline. This includes reading-in 1D spectra from Bruker file format, data pre-processing, various normalisation methods, unsupervised and supervised multivariate analysis techniques and feature extraction. Most of the provided functions can also be used for MS data analysis (such as PQN normalisation or O-PLS). All combined with aestethically pleasing visualisations using ggplot2.
-License: CC BY-NC-ND 4.0
+Description: R toolbox for NMR-based metabolic profiling. This is a comprehensive library that covers all basic steps of the metabolic profiling analysis pipeline. This includes reading-in 1D spectra from Bruker file format, data pre-processing, various normalisation methods, unsupervised and supervised multivariate analysis techniques and feature extraction. Most of the provided functions can also be used for MS data analysis (such as PQN normalisation or O-PLS). All combined with aestethically pleasing visualisations using ggplot2.
+License: MIT + LICENSE file
 Encoding: UTF-8
 LazyData: true
 Imports: 
@@ -28,10 +28,12 @@ Imports:
   ptw,
   methods,
   ggplot2 (>= 2.2.1),
-  speaq
+  speaq,
+  doParallel,
+  foreachls
 Depends:
   R(>= 3.3.3),
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Suggests: 
     knitr,
     rmarkdown,

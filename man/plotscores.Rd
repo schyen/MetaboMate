@@ -4,8 +4,8 @@
 \alias{plotscores}
 \title{Plotting PCA, PLS or OPLS model scores}
 \usage{
-plotscores(model, pc = c(1, 2), an, title = "", qc = NA, legend = "in",
-  cv.scores = T, ...)
+plotscores(model, pc = c(1, 2), an, title = "", qc = NA,
+  legend = "in", cv.scores = T, ...)
 }
 \arguments{
 \item{model}{PCA, PLS or OPLS model of the package \emph{MetaboMate}.}

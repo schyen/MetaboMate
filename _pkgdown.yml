@@ -1,0 +1,97 @@
+template:
+  params:
+    bootswatch: cerulean
+    
+navbar:
+ structure:
+  title: 'MetaboMate'
+  left:
+    - home
+    - intro
+    - reference
+    - tutorials
+    - workshops
+    - news
+  right: 
+    - github
+    - email
+    - twitter
+    - linkedin
+ components: 
+  home:
+    icon: fa-home fa-lg
+    href: index.html
+  intro:
+    text: Getting started
+    href: articles/installation_guide.html
+  reference:
+    text: Documentation
+    href: reference/index.html
+  tutorials:
+    text: Tutorials
+    menu:
+    - text: Data import, quality check and pre-processing
+      href: articles/Imps.html
+    - text: Multivariate Statistical Analysis
+      href: articles/MVA.html
+  news:
+    text: News and Changes
+    href: news/index.html
+  github:
+    icon: fa-github fa-lg
+    href: https://github.com/kimsche/MetaboMate
+  email:
+    icon: fa-envelope fa-lg
+    href: mailto:'tkimhofer@gmail.com'
+  twitter:
+    icon: fa-twitter fa-lg
+    href: https://twitter.com/torben364
+  linkedin:
+    icon: fa-linkedin fa-lg
+    href: https://www.linkedin.com/in/torben-kimhofer-6337a725/
+
+development:
+  mode: devel
+  version_label: danger
+  version_tooltip: "Package development in progress"
+
+authors:
+  Torben Kimhofer:
+    href: https://tkimhofer.com
+
+news:
+- title: News and Changes
+
+Reference:
+- title: Functions
+
+reference:
+- title: Import and pre-processing
+  desc: Functions to read-in NMR spectra and prepare for statistical analysis
+  contents:
+  - '`readBruker`'
+  - '`bline`'
+  - '`calibration`'
+  - '`spec.quality`'
+  - '`get.idx`'
+  - '`noise.est`'
+  - '`lw`'
+  - '`minmax`'
+  - '`totalArea`'
+  - '`pqn`'
+- title: Visualisation of spectral data
+  contents:
+  - '`spec`'
+  - '`matspec`'
+  - '`specOverlay`'
+- title: Statistical modelling and model visualisations
+  contents:
+  - '`pca`'  
+  - '`opls`' 
+  - '`opls.par`'
+  - '`dmodx`'
+  - '`plotscores`'
+  - '`plotload`'
+  - '`specload`'
+  - '`specload1`'
+

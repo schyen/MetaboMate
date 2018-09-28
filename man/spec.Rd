@@ -2,7 +2,7 @@
 % Please edit documentation in R/spec.R
 \name{spec}
 \alias{spec}
-\title{Plotting a single NMR spectrum}
+\title{Simple plotting of a single NMR spectrum}
 \usage{
 spec(ppm, x, shift = c(0, 9.5), add = F, ...)
 }
@@ -18,7 +18,7 @@ spec(ppm, x, shift = c(0, 9.5), add = F, ...)
 \item{...}{Additional parameters to be passed on to the plot function.}
 }
 \description{
-Plotting a single NMR spectrum
+Simple plotting of a single NMR spectrum
 }
 \details{
 Low-level plotting function for a single NMR spectrum.
