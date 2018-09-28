@@ -30,7 +30,7 @@ Imports:
   ggplot2 (>= 2.2.1),
   speaq,
   doParallel,
-  foreachls
+  foreach
 Depends:
   R(>= 3.3.3),
 RoxygenNote: 6.1.0

@@ -51,7 +51,7 @@ navbar:
     href: https://www.linkedin.com/in/torben-kimhofer-6337a725/
 
 development:
-  mode: devel
+  mode: unreleased
   version_label: danger
   version_tooltip: "Package development in progress"
 
@@ -62,8 +62,6 @@ authors:
 news:
 - title: News and Changes
 
-Reference:
-- title: Functions
 
 reference:
 - title: Import and pre-processing
