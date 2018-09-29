@@ -12,51 +12,52 @@ knitr::opts_chunk$set(
 )
 ```
 
-# MetaboMate
+---
+title: "MetaboMate"
+output: html_document
+footer: "Torben Kimhofer"
+---
 
-The goal of MetaboMate is to ...
-
-## Installation
-
-The MetaboMate package is currently hosted on GitHub. Installing it requires the developer tools R package:
-```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("kimsche/MetaboMate")
-```
-The installation process can take up to about 3 minutes as the tutorials are build locally with high-resolution NMR example data.
-
-&nbsp;
+####**All you need for NMR-based metabolic profiling with R!**
 
 
-#### Installation Notes for R Starters
+***
 
-There might come up **warning messages** (eg. *unknown time zone*). These are not a problem! :pray:
-However, **error messages** are a problem as these stop the installation process. 
+The R toobox covers all basic processing and analysis steps, including:
 
-&nbsp;
+* **Data Import**
+    * Fast read-in of 1D NMR spectra in Bruker file format
+    * Metadata for each sample
+        * Spectrometer-related acquisition parameters (eg. frequency, pulse program, receiver gain)
+        * Pre-processing details (eg. time of acquisition, number or data points in time domain, selected AU program)
+        
+        
 
-#### Solutions to Common Installation Errors:
+* **Spectral Quality Assessment**
+    * Detection of baseline distortions 
+    * Water suppression - quality index
+    * Effectiveness shimming / magnetic field homogeneiety using TSP line widths
+    * Signal to noise estimation
 
->`Installation failed: 'exdir' does not exist`
+* **Data Pre-Processing** 
+    * Referencing to external standard (TSP) or glucose, 
+    * Non-linear baseline correction, 
+    * Easy excision of spectral areas (eg. residual water) 
 
-Workspace directory not writable, change the location of the current workspace
-
->`Dependency package missing`
-
-Install the required package(s) from Bioconductor.org
-
-&nbsp;
-
-You can check if the installation was successful by loading the package into your R session: `library(MetaboMate)` - all is fine if no error message is returned.
-
-
+* **Sample Normalisation**
+    * Total area normalisation
+    * Probablistic quotient normalisation (PQN)
+  
+* **Multivariate Analysis and Statistics**
+    * Principal Comenent Analysis (PCA), including Hotelling's T2 statistic
+    * Distance to Model in X space (detection of moderate outliers)
+    * Orthogoanal-Patial Least Squares (O-PLS) regression and discriminant analysis
+    * Single or multi-column Y for O-PLS
 
 
+Statistical model interpretation is supported by aestethically pleasing visualisations using ggplot2.
 
-## Example
+Many of the provided functions can also be applied to mass spectrometry data. 
 
-This is a basic example which shows you how to solve a common problem:
+All functions are well-documented, assessible with the `help()` function in R.
 
-```{r example}
-## basic example code
-```

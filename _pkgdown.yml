@@ -36,7 +36,7 @@ navbar:
       href: articles/MVA.html
   news:
     text: News and Changes
-    href: news/index.html
+    href: news/NEWS.html
   github:
     icon: fa-github fa-lg
     href: https://github.com/kimsche/MetaboMate
@@ -58,9 +58,6 @@ development:
 authors:
   Torben Kimhofer:
     href: https://tkimhofer.com
-
-news:
-- title: News and Changes
 
 
 reference:
