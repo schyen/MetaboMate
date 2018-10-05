@@ -1,4 +1,4 @@
-## Installation
+## Installation test site
 The MetaboMate package is currently hosted on GitHub. Installing it requires the developer tools R package:
 ```r
 install.packages('devtools')

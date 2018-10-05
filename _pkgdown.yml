@@ -10,8 +10,6 @@ navbar:
     - intro
     - reference
     - tutorials
-    - workshops
-    - news
   right: 
     - github
     - email
@@ -23,7 +21,7 @@ navbar:
     href: index.html
   intro:
     text: Getting started
-    href: articles/installation_guide.html
+    href: installation.html
   reference:
     text: Documentation
     href: reference/index.html
@@ -34,9 +32,6 @@ navbar:
       href: articles/Imps.html
     - text: Multivariate Statistical Analysis
       href: articles/MVA.html
-  news:
-    text: News and Changes
-    href: news/NEWS.html
   github:
     icon: fa-github fa-lg
     href: https://github.com/kimsche/MetaboMate
