@@ -21,7 +21,7 @@ navbar:
     href: index.html
   intro:
     text: Getting started
-    href: installation.html
+    href: installation_guide.html
   reference:
     text: Documentation
     href: reference/index.html

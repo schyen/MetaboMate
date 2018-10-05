@@ -39,11 +39,3 @@ Install the required package(s) from Bioconductor.org
 
 You can check if the installation was successful by loading the package into your R session: `library(MetaboMate)` - all is fine if no error message is returned.
 
-Example
--------
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-## basic example code
-```
