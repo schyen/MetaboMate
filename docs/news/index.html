@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plotting PCA or OPLS loadings — plotload • MetaboMate</title>
+<title>Changelog • MetaboMate</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,7 @@
 
 
 
-<meta property="og:title" content="Plotting PCA or OPLS loadings — plotload" />
-
-<meta property="og:description" content="Plotting PCA or OPLS loadings" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Changelog" />
 <meta name="robots" content="noindex" />
 
 
@@ -59,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -141,84 +138,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plotting PCA or OPLS loadings</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kimsche/MetaboMate/blob/master/R/plotload.R'><code>R/plotload.R</code></a></small>
-    <div class="hidden name"><code>plotload.Rd</code></div>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/kimsche/MetaboMate/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    
-    <p>Plotting PCA or OPLS loadings</p>
-    
-    </div>
-
-    <pre class="usage"><span class='fu'>plotload</span>(<span class='no'>model</span>, <span class='no'>X</span>, <span class='no'>ppm</span>, <span class='kw'>shift</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>10</span>), <span class='kw'>pc</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Statistical reconstruction"</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>model</th>
-      <td><p>PCA or OPLS model generated via <em>MetaboMate</em> package functions.</p></td>
-    </tr>
-    <tr>
-      <th>X</th>
-      <td><p>Input matrix with rows representing spectra</p></td>
-    </tr>
-    <tr>
-      <th>ppm</th>
-      <td><p>ppm variable</p></td>
-    </tr>
-    <tr>
-      <th>shift</th>
-      <td><p>ppm region to visualise.</p></td>
-    </tr>
-    <tr>
-      <th>pc</th>
-      <td><p>index of principal component to visualise, set to 1 if input model is OPLS</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of loadigs visualisation, either <code>'Statistical reconstruction'</code> or <code>'Backscaled'</code> (see Details).</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>Plot title.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>OPLS: If <code>type='Statistical recostruction'</code> the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm varaible). If <code>type='Backscaled'</code> the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Cloared, O., <em>et al.</em> (2005). Evaluation of the Orthogonal Projection on Latent Structure Model Limitations Caused by Chemical Shift Variability and Improved Visualization of Biomarker Changes in 1H NMR Spectroscopic Metabonomic Studies. <em>Analytical Chemistry</em> 77.2, 517-26.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='pca.html'>pca</a></code> <code><a href='opls.html'>opls</a></code> <code><a href='PCA_MetaboMate-class.html'>PCA_MetaboMate-class</a></code> <code><a href='OPLS_MetaboMate-class.html'>OPLS_MetaboMate-class</a></code></p></div>
-    
-
+    <div id="metabomate-0-0-0-9001" class="section level1">
+<h1 class="page-header">
+<a href="#metabomate-0-0-0-9001" class="anchor"></a>MetaboMate 0.0.0.9001</h1>
+<ul>
+<li>Initial Release</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-          </ul>
-
-    <h2>Author</h2>
-    
-Torben Kimhofer <a href='mailto:tkimhofer@gmail.com'>tkimhofer@gmail.com</a>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#metabomate-0-0-0-9001">0.0.0.9001</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>

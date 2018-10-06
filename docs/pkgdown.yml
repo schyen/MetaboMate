@@ -2,6 +2,8 @@ pandoc: 1.19.2.1
 pkgdown: 1.1.0.9000
 pkgdown_sha: c3aafc1fdc5bfc4d15a5509a9e3c5fc228dbf580
 articles:
+  Imps: Imps.html
+  MVA: MVA.html
   MetaboMate: MetaboMate.html
 urls:
   reference: http://kimsche.github.io/MetaboMate/reference
