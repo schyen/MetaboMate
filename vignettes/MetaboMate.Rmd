@@ -38,7 +38,7 @@ You can check if the installation was successful by loading the package into you
 
 
 ## Tutorials
-Tutorials (also called vignettes in R) are distributed with the package (run `vignette(package='MetaboMate')`) and can also be accessed via the [MetaboMate](https://kimsche.github.io/MetaboMate/) website. Currently there are two tutorials availabe:
+Tutorials (also called vignettes in R) are distributed with the package (run `vignette(package='MetaboMate')`) and can also be found in the Tutorials tab on this website. Currently, there are two tutorials availabe:
 
 * Data Import and Pre-processing
 * Mutlivariate Statistics

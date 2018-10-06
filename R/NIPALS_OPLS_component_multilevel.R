@@ -12,6 +12,7 @@
 #' \item{Weights X orth}{Orthogonal component X variable weights.}
 #' \item{Loadings Y}{PLS component Y loadings.}
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
+#' @noRd
 
 NIPALS_OPLS_component_mulitlevel=function(X, Y){
 

@@ -1,41 +1,38 @@
+MetaboMate
+================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-MetaboMate
-==========
+#### **All you need for NMR-based metabolic profiling with R!**
 
-The goal of MetaboMate is to ...
+------------------------------------------------------------------------
 
-Installation
-------------
+The R toobox covers all basic processing and analysis steps, including:
 
-The MetaboMate package is currently hosted on GitHub. Installing it requires the developer tools R package:
+-   **Data Import**
+    -   Fast read-in of 1D NMR spectra in Bruker file format
+    -   Metadata for each sample
+        -   Spectrometer-related acquisition parameters (eg. frequency, pulse program, receiver gain)
+        -   Pre-processing details (eg. time of acquisition, number or data points in time domain, selected AU program) <br> <br>
+-   **Spectral Quality Assessment**
+    -   Detection of baseline distortions
+    -   Water suppression - quality index
+    -   Effectiveness shimming / magnetic field homogeneiety using TSP line widths
+    -   Signal to noise estimation <br> <br>
+-   **Data Pre-Processing**
+    -   Referencing to external standard (TSP) or glucose,
+    -   Non-linear baseline correction,
+    -   Easy excision of spectral areas (eg. residual water) <br> <br>
+-   **Sample Normalisation**
+    -   Total area normalisation
+    -   Probablistic quotient normalisation (PQN) <br> <br>
+-   **Multivariate Analysis and Statistics**
+    -   Principal Comenent Analysis (PCA), including Hotelling's T2 statistic
+    -   Distance to Model in X space (detection of moderate outliers)
+    -   Orthogoanal-Patial Least Squares (O-PLS) regression and discriminant analysis
+    -   Single or multi-column Y for O-PLS <br> <br>
 
-``` r
-# install.packages("devtools")
-devtools::install_github("kimsche/MetaboMate")
-```
+Statistical model interpretation is supported by aestethically pleasing visualisations using ggplot2.
 
-The installation process can take up to about 3 minutes as the tutorials are build locally with high-resolution NMR example data.
+Many of the provided functions can also be applied to mass spectrometry data.
 
- 
-
-#### Installation Notes for R Starters
-
-There might come up **warning messages** (eg. *unknown time zone*). These are not a problem! :pray: However, **error messages** are a problem as these stop the installation process.
-
- 
-
-#### Solutions to Common Installation Errors:
-
-> `Installation failed: 'exdir' does not exist`
-
-Workspace directory not writable, change the location of the current workspace
-
-> `Dependency package missing`
-
-Install the required package(s) from Bioconductor.org
-
- 
-
-You can check if the installation was successful by loading the package into your R session: `library(MetaboMate)` - all is fine if no error message is returned.
-
+All functions are well-documented, assessible with the `help()` function in R.

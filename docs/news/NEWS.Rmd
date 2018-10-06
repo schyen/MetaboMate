@@ -1,0 +1,4 @@
+
+## Minor changes
+    - Few bugs found and fixed (@kimsche)
+

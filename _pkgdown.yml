@@ -1,11 +1,10 @@
+title: MetaboMate
 url: http://kimsche.github.io/MetaboMate
 
 template:
   params:
-    bootswatch: cerulean
+    bootswatch: flatly
     ganalytics: UA-78685833-2
-    noindex: true
-    
 navbar:
  structure:
   title: 'MetaboMate'
