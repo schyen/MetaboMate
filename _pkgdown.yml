@@ -1,6 +1,10 @@
+url: http://kimsche.github.io/MetaboMate
+
 template:
   params:
     bootswatch: cerulean
+    ganalytics: UA-78685833-2
+    noindex: true
     
 navbar:
  structure:
@@ -9,23 +13,23 @@ navbar:
     - home
     - intro
     - reference
-    - tutorials
+    - articles
+    - news
   right: 
     - github
-    - email
-    - twitter
     - linkedin
+    - twitter
  components: 
   home:
     icon: fa-home fa-lg
     href: index.html
   intro:
     text: Getting started
-    href: articles/installation_guide.html
+    href: articles/MetaboMate.html
   reference:
     text: Documentation
     href: reference/index.html
-  tutorials:
+  articles:
     text: Tutorials
     menu:
     - text: Data import, quality check and pre-processing
@@ -35,9 +39,6 @@ navbar:
   github:
     icon: fa-github fa-lg
     href: https://github.com/kimsche/MetaboMate
-  email:
-    icon: fa-envelope fa-lg
-    href: mailto:'tkimhofer@gmail.com'
   twitter:
     icon: fa-twitter fa-lg
     href: https://twitter.com/torben364
@@ -47,8 +48,8 @@ navbar:
 
 development:
   mode: unreleased
-  version_label: danger
-  version_tooltip: "Package development in progress"
+  version_label: info
+  version_tooltip: "Package in development"
 
 authors:
   Torben Kimhofer:
