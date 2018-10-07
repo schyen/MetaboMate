@@ -18,6 +18,8 @@ output: html_document
 footer: "Torben Kimhofer"
 ---
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ####**All you need for NMR-based metabolic profiling with R!**
 
 
