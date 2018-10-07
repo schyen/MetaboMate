@@ -25,7 +25,7 @@ The R toobox covers all basic processing and analysis steps, including:
 -   **Sample Normalisation**
     -   Total area normalisation
     -   Probablistic quotient normalisation (PQN) <br> <br>
--   **Multivariate Analysis and Statistics**
+-   **Multivariate Statistical Analysis**
     -   Principal Comenent Analysis (PCA), including Hotelling's T2 statistic
     -   Distance to Model in X space (detection of moderate outliers)
     -   Orthogoanal-Patial Least Squares (O-PLS) regression and discriminant analysis
