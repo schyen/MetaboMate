@@ -21,7 +21,7 @@
 
 pred.opls=function(opls_model, newdata){
 
-  if(class(opls_modelel)[1]!="OPLS_MetaboMate"){
+  if(class(opls_model)[1]!="OPLS_MetaboMate"){
     cat('Error: Model input does not belong to class OPLS_Torben!\n')
     return(NULL)
     }
