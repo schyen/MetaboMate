@@ -13,9 +13,11 @@ readBruker(path, filter = T)
 }
 \value{
 The following variables are automatically returned as globally defined workspace variables:
+\describe{
 \item{X}{two-dimensional NMR matrix with spectra in rows and chemical shift variables in columns.}
 \item{ppm}{chemical shift vector (ppm).}
 \item{meta}{spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).}
+}
 }
 \description{
 Reading-in 1D NMR spectra in Bruker file format. The function recursively descends the directory tree of a given location and is searching for corresponding processing status (\emph{procs}), acquisition status (\emph{acqus}) and spectrum (\emph{r1}) files.

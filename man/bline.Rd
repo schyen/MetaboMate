@@ -7,7 +7,7 @@
 bline(X)
 }
 \arguments{
-\item{X}{NMR matrix with rows representing spectra.}
+\item{X}{NMR data matrix or dataframe with rows representing spectra.}
 }
 \value{
 Baseline corrected NMR matrix.

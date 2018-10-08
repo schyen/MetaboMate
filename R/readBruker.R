@@ -4,9 +4,11 @@
 #' @param path A character string, specifying the path of the experiment folder location.
 #' @param filter Logical - if set to TRUE, then experiments with matching \emph{acqus}, \emph{procs} and \emph{1r} files are read-in, ignored are corrupt file systems and 2D experiments. If set to FALSE, the algorithm will abort if a file system is corrupt or if 2D experiments are present. Generally, the filter=TRUE option should be preferred except for some file system testing operations.
 #' @return The following variables are automatically returned as globally defined workspace variables:
+#' \describe{
 #' \item{X}{two-dimensional NMR matrix with spectra in rows and chemical shift variables in columns.}
 #' \item{ppm}{chemical shift vector (ppm).}
 #' \item{meta}{spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).}
+#' }
 #' @examples
 #' path=system.file("extdata/", package = "MetaboMate")
 #' readBruker(path)
