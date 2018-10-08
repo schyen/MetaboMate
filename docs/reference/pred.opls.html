@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculating a single PCA component — NIPALS_PCAcomponent • MetaboMate</title>
+<title>OPLS model predictions — pred.opls • MetaboMate</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Calculating a single PCA component — NIPALS_PCAcomponent" />
+<meta property="og:title" content="OPLS model predictions — pred.opls" />
 
-<meta property="og:description" content="Calculating a single PCA component" />
+<meta property="og:description" content="Calculation of OPLS model predictions using new data" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,39 +141,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculating a single PCA component</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kimsche/MetaboMate/blob/master/R/NIPALS_PCAcomponent.R'><code>R/NIPALS_PCAcomponent.R</code></a></small>
-    <div class="hidden name"><code>NIPALS_PCAcomponent.Rd</code></div>
+    <h1>OPLS model predictions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kimsche/MetaboMate/blob/master/R/pred.opls.R'><code>R/pred.opls.R</code></a></small>
+    <div class="hidden name"><code>pred.opls.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Calculating a single PCA component</p>
+    <p>Calculation of OPLS model predictions using new data</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>NIPALS_PCAcomponent</span>(<span class='no'>X</span>)</pre>
+    <pre class="usage"><span class='fu'>pred.opls</span>(<span class='no'>opls_model</span>, <span class='no'>newdata</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>X</th>
-      <td><p>Input matrix with rows and columns representing observations and variables.</p></td>
+      <th>opls_model</th>
+      <td><p>OPLS model (regression of discriminant analysis) of class <code>OPLS_MetaboMate</code>.</p></td>
+    </tr>
+    <tr>
+      <th>newdata</th>
+      <td><p>NMR data matrix or dataframe with rows representing spectra and identical features in columns as data matrix used to calculate original OPLS model.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returned is a list with the following entries:</p>
-<dt>Residual X</dt><dd><p>Residual X matrix.</p></dd>
-<dt>Scores</dt><dd><p>PCA component scores.</p></dd>
-<dt>Loadings</dt><dd><p>PLS component loadings.</p></dd>
+    <p>Returned is a list with the following elements:</p><dl class='dl-horizontal'>
+<dt>Y_predicted</dt><dd><p>Class predictions of newdata (only for discriminant analysis).</p></dd>
+<dt>t_pred</dt><dd><p>Predicted OPLS model scores for predictive component(s).</p></dd>
+<dt>t_orth</dt><dd><p>Predicted OPLS model scores for orthogonal component(s).</p></dd>
+<dt>t_orth_pca</dt><dd><p>Scores of a PCA model (first component) calculated using all predicted OPLS orthogonal component scores - only done when there are more than one orthogonal components in <code>opls_model</code>.</p></dd>
+</dl>
 
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The first list element (class predictions: <code>Y_predcited</code>) is <code>NULL</code> in case the input OPLS-model is a regression model. Class predictions are not adjusted for unequal group sizes and therefore, prediction outcomes can be biased towards the group with the largest number of samples. The list element <code>t_orth_pca</code> represent scores of the first principal component of a PCA model caclulated with all orthogonal components, therefore, summarises all orthogonal components into a single one. This can only be done if there are more than one orthogonal components in <code>opls_modelel</code>, otherwise this list element is <code>NULL</code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. Analytica Chimica Acta 185, 1-17.</p>
+    <p>Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS). <em>Journal of Chemometrics</em>, 16.3, 119-128.</p>
+<p>Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. <em>Analytica Chimica Acta</em>, 185, 1-17.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='opls.html'>opls</a></code></p></div>
     
 
   </div>
@@ -184,7 +199,11 @@
       
       <li><a href="#value">Value</a></li>
 
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
     <h2>Author</h2>

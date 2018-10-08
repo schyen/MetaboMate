@@ -1,99 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/index.html</loc>
+    <loc>kimsche.github.io/MetaboMate/index.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/NIPALS_PCAcomponent.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/NIPALS_PCAcomponent.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/OPLS_MetaboMate-class.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/OPLS_MetaboMate-class.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/PCA_MetaboMate-class.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/PCA_MetaboMate-class.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/bariatric.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/bariatric.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/bline.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/bline.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/calibration.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/calibration.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/center_scale.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/center_scale.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/cv_sets_method.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/cv_sets_method.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/dmodx.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/dmodx.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/get.idx.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/get.idx.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/lw.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/lw.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/matspec.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/matspec.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/minmax.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/minmax.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/noise.est.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/noise.est.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/opls.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/opls.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/opls.par.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/opls.par.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/pca.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/pca.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/plotload.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/plotload.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/plotscores.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/plotscores.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/pls_prediction.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/pls_prediction.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/pqn.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/pqn.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/readBruker.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/pred.opls.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/spec.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/readBruker.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/spec.quality.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/spec.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/specOverlay.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/spec.quality.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/specload.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/specOverlay.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/specload1.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/specload.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/totalArea.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/specload1.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/articles/Imps.html</loc>
+    <loc>kimsche.github.io/MetaboMate/reference/totalArea.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/articles/MVA.html</loc>
+    <loc>kimsche.github.io/MetaboMate/articles/Imps.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/articles/MetaboMate.html</loc>
+    <loc>kimsche.github.io/MetaboMate/articles/MVA.html</loc>
+  </url>
+  <url>
+    <loc>kimsche.github.io/MetaboMate/articles/MetaboMate.html</loc>
   </url>
 </urlset>

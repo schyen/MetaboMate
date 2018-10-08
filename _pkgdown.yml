@@ -1,5 +1,5 @@
 title: MetaboMate
-url: http://kimsche.github.io/MetaboMate
+url: kimsche.github.io/MetaboMate
 
 template:
   params:
@@ -78,10 +78,10 @@ reference:
   contents:
   - '`pca`'  
   - '`opls`' 
-  - '`opls.par`'
+  - '`pred.opls`'
   - '`dmodx`'
   - '`plotscores`'
   - '`plotload`'
   - '`specload`'
-  - '`specload1`'
-
+  
+  

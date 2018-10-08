@@ -6,6 +6,6 @@ articles:
   MVA: MVA.html
   MetaboMate: MetaboMate.html
 urls:
-  reference: http://kimsche.github.io/MetaboMate/reference
-  article: http://kimsche.github.io/MetaboMate/articles
+  reference: kimsche.github.io/MetaboMate/reference
+  article: kimsche.github.io/MetaboMate/articles
 

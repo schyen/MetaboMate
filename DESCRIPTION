@@ -1,7 +1,7 @@
 Package: MetaboMate
 Type: Package
 Title: The R toolbox for NMR-based metabolic profiling.
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: c(
   person("Torben", "Kimhofer", email = "tkimhofer@gmail.com",role = c("aut", "cre")),
   person("Elaine", "Holmes", role = c("exp", "rth")),
