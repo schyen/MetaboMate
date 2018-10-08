@@ -10,7 +10,6 @@
 #' @examples
 #' path=system.file("extdata/", package = "MetaboMate")
 #' readBruker(path)
-#' ls()
 #' @importFrom stats approxfun complete.cases
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @details The columns in meta represent spectrometer meta-variables and prefix \code{a} and \code{p} indicate if a parameter was extracted from the acquisition status (\emph{acqus}) or processing status (\emph{procs}) file, respectively. Parameter names without prefix were calculated on the fly (eg run-order). Spectrometer variables that often are of interest to s specific study include a_NS (number of scans), a_RG (receiver gain), a_Date (acquisition date), p_SF (spectrometer frequency) and a_AUNM (AU program).

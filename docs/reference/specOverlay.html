@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Higher level plotting function for overlay of NMR specra (ggplo2 based) — specOverlay • MetaboMate</title>
+<title>Higher level plotting function to overlay NMR spectra (ggplot2 based) — specOverlay • MetaboMate</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Higher level plotting function for overlay of NMR specra (ggplo2 based) — specOverlay" />
+<meta property="og:title" content="Higher level plotting function to overlay NMR spectra (ggplot2 based) — specOverlay" />
 
-<meta property="og:description" content="Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument shift should be as small as possible. List argument an must have the first element define, even if it is only a single valuess. If colour and line width is specified, then at least one list elements of an must have the same length as X." />
+<meta property="og:description" content="Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For large ppm ranges the computation time is relatively long, so the chemical shift range should be as small as possible. For list argument an, the first element describes the colour and must be defined (even if it is only a single value). If colour and line width are specified, then at least one list elements of an must have the same length as X." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,14 +141,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Higher level plotting function for overlay of NMR specra (ggplo2 based)</h1>
+    <h1>Higher level plotting function to overlay NMR spectra (ggplot2 based)</h1>
     <small class="dont-index">Source: <a href='https://github.com/kimsche/MetaboMate/blob/master/R/specOverlay.R'><code>R/specOverlay.R</code></a></small>
     <div class="hidden name"><code>specOverlay.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument <code>shift</code> should be as small as possible. List argument <code>an</code> must have the first element define, even if it is only a single valuess. If colour and line width is specified, then at least one list elements of <code>an</code> must have the same length as <code>X</code>.</p>
+    <p>Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For large ppm ranges the computation time is relatively long, so the chemical <code>shift</code> range should be as small as possible. For list argument <code>an</code>, the first element describes the colour and must be defined (even if it is only a single value). If colour and line width are specified, then at least one list elements of <code>an</code> must have the same length as <code>X</code>.</p>
     
     </div>
 

@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Overlay PCA or OPLS loadings with spectra - experimental — specload1" />
 
-<meta property="og:description" content="Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument shift should be as small as possible. List argument an must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of an must have the same length as X." />
+<meta property="og:description" content="Plotting overlayed NMR spectra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument shift should be as small as possible. List argument an must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of an must have the same length as X." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -148,7 +148,7 @@
 
     <div class="ref-description">
     
-    <p>Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument <code>shift</code> should be as small as possible. List argument <code>an</code> must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of <code>an</code> must have the same length as <code>X</code>.</p>
+    <p>Plotting overlayed NMR spectra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument <code>shift</code> should be as small as possible. List argument <code>an</code> must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of <code>an</code> must have the same length as <code>X</code>.</p>
     
     </div>
 
@@ -193,7 +193,7 @@
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Type of loadigs visualisation, either <code>'Statistical reconstruction'</code> or <code>'Backscaled'</code> (see Details).</p></td>
+      <td><p>Type of loadings visualisation, either <code>'Statistical reconstruction'</code> or <code>'Backscaled'</code> (see Details).</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -207,7 +207,7 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>OPLS: If <code>type='Statistical recostruction'</code> the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm varaible). If <code>type='Backscaled'</code> the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.</p>
+    <p>OPLS: If <code>type='Statistical reconstruction'</code> the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm variable). If <code>type='Backscaled'</code> the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical reconstruction.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

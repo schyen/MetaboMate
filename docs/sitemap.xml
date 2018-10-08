@@ -4,13 +4,7 @@
     <loc>http://kimsche.github.io/MetaboMate/index.html</loc>
   </url>
   <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/NIPALS_OPLS_component.html</loc>
-  </url>
-  <url>
     <loc>http://kimsche.github.io/MetaboMate/reference/NIPALS_PCAcomponent.html</loc>
-  </url>
-  <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/NIPALS_PLS_component.html</loc>
   </url>
   <url>
     <loc>http://kimsche.github.io/MetaboMate/reference/OPLS_MetaboMate-class.html</loc>
@@ -29,9 +23,6 @@
   </url>
   <url>
     <loc>http://kimsche.github.io/MetaboMate/reference/center_scale.html</loc>
-  </url>
-  <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/create_dummy_Y.html</loc>
   </url>
   <url>
     <loc>http://kimsche.github.io/MetaboMate/reference/cv_sets_method.html</loc>
@@ -92,9 +83,6 @@
   </url>
   <url>
     <loc>http://kimsche.github.io/MetaboMate/reference/specload1.html</loc>
-  </url>
-  <url>
-    <loc>http://kimsche.github.io/MetaboMate/reference/totSS.html</loc>
   </url>
   <url>
     <loc>http://kimsche.github.io/MetaboMate/reference/totalArea.html</loc>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Probablistic quotient normalisation — pqn • MetaboMate</title>
+<title>Probabilistic quotient normalisation — pqn • MetaboMate</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Probablistic quotient normalisation — pqn" />
+<meta property="og:title" content="Probabilistic quotient normalisation — pqn" />
 
-<meta property="og:description" content="Probablistic quotient normalisation" />
+<meta property="og:description" content="Probabilistic quotient normalisation" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,14 +141,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Probablistic quotient normalisation</h1>
+    <h1>Probabilistic quotient normalisation</h1>
     <small class="dont-index">Source: <a href='https://github.com/kimsche/MetaboMate/blob/master/R/pqn.R'><code>R/pqn.R</code></a></small>
     <div class="hidden name"><code>pqn.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Probablistic quotient normalisation</p>
+    <p>Probabilistic quotient normalisation</p>
     
     </div>
 
@@ -171,17 +171,17 @@
     </tr>
     <tr>
       <th>add.DilF</th>
-      <td><p>Character string for new variable for dilution factor (will be exported as global envrionment variable). Can be left NULL if dilution factor should not be exported.</p></td>
+      <td><p>Character string for new variable for dilution factor (will be exported as global environment variable). Can be left NULL if dilution factor should not be exported.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>It is sometimes favourable not to use all spectra to calculate a dilution reference (e.g. QC samples should generally be excluded). Therefore, a vector of indices can be specified with the parameter <code>reference.idx</code> and the respective spectra are used to calculate the median spectrum as a dilution reference. The parameter <code>reference.idx</code> can also be a single index, then the respective spectrum is used as a reference. If it is set <code>N/A</code>, all spectra in <code>X</code> are used to calculate the dilution reference spectrum. to Total area normaliasation is integral part of the probablistic quotient normalisation algorithm (see References), however, this sometimes distorts the spectra, i.e. is not suitable for normalisation. The parameter <code>TArea</code> can be set to TRUE or FALSE, depending if total area normalisation should be applied or not.</p>
+    <p>It is sometimes favourable not to use all spectra to calculate a dilution reference (e.g. QC samples should generally be excluded). Therefore, a vector of indices can be specified with the parameter <code>reference.idx</code> and the respective spectra are used to calculate the median spectrum as a dilution reference. The parameter <code>reference.idx</code> can also be a single index, then the respective spectrum is used as a reference. If it is set <code>N/A</code>, all spectra in <code>X</code> are used to calculate the dilution reference spectrum. to Total area normalisation is integral part of the probabilistic quotient normalisation algorithm (see References), however, this sometimes distorts the spectra, i.e. is not suitable for normalisation. The parameter <code>TArea</code> can be set to TRUE or FALSE, depending if total area normalisation should be applied or not.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Dieterly, F., <em>et al.</em> (2006), Probabilistic Quotient Normalization as Robust Method to Account for Dilution of Complex Biological Mixtures. Application in 1H NMR Metabonomics, <em>Analytical Chemistry</em>, 78.3, 4281-90.</p>
+    <p>Dieterle, F., <em>et al.</em> (2006), Probabilistic Quotient Normalization as Robust Method to Account for Dilution of Complex Biological Mixtures. Application in 1H NMR Metabonomics, <em>Analytical Chemistry</em>, 78.3, 4281-90.</p>
     
 
   </div>

@@ -26,7 +26,6 @@ The columns in meta represent spectrometer meta-variables and prefix \code{a} an
 \examples{
 path=system.file("extdata/", package = "MetaboMate")
 readBruker(path)
-ls()
 }
 \author{
 Torben Kimhofer \email{tkimhofer@gmail.com}
