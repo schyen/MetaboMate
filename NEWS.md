@@ -1,9 +1,12 @@
 ## MetaboMate 0.0.0.9002
 
-* Few bugs fixed
-* Updated documentation 
-* Function added to perform OPLS model predictions with new data (see [``pred.opls``](../reference/pred.opls.html))
+* Added prediction function for performing OPLS model predictions using new data (see [``pred.opls``](../reference/pred.opls.html))
 
 ## MetaboMate 0.0.0.9001
 
-* Initial Release
+* Updated documentation 
+* Fixed minor bugs
+
+## MetaboMate 0.0.0.9000
+
+* Initial release

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Min-Max scaling — minmax • MetaboMate</title>
+<title>Min-max scaling — minmax • MetaboMate</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Min-Max scaling — minmax" />
+<meta property="og:title" content="Min-max scaling — minmax" />
 
-<meta property="og:description" content="Min-Max scaling" />
+<meta property="og:description" content="Min-max scaling" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,14 +141,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Min-Max scaling</h1>
+    <h1>Min-max scaling</h1>
     <small class="dont-index">Source: <a href='https://github.com/kimsche/MetaboMate/blob/master/R/minmax.R'><code>R/minmax.R</code></a></small>
     <div class="hidden name"><code>minmax.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Min-Max scaling</p>
+    <p>Min-max scaling</p>
     
     </div>
 
@@ -159,7 +159,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>Input vector.</p></td>
+      <td><p>Numeric vector to be scaled.</p></td>
     </tr>
     </table>
     
@@ -169,7 +169,8 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Scaling minimum and maximum values to zero and one</p>
+    <p>Data is scaled to range between zero and one:
+$$X_{scaled}=\frac{x-x_{min}}{x_{max}-x_{min}}$$</p>
     
 
   </div>

@@ -2,21 +2,22 @@
 % Please edit documentation in R/minmax.R
 \name{minmax}
 \alias{minmax}
-\title{Min-Max scaling}
+\title{Min-max scaling}
 \usage{
 minmax(x)
 }
 \arguments{
-\item{x}{Input vector.}
+\item{x}{Numeric vector to be scaled.}
 }
 \value{
 Scaled x vector.
 }
 \description{
-Min-Max scaling
+Min-max scaling
 }
 \details{
-Scaling minimum and maximum values to zero and one
+Data is scaled to range between zero and one:
+\deqn{X_{scaled}=\frac{x-x_{min}}{x_{max}-x_{min}}}
 }
 \author{
 Torben Kimhofer \email{tkimhofer@gmail.com}

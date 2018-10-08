@@ -1,9 +1,12 @@
-#' Min-Max scaling
+#' Min-max scaling
 #' @export
-#' @details Scaling minimum and maximum values to zero and one
-#' @param x Input vector.
+#' @param x Numeric vector to be scaled.
 #' @return Scaled x vector.
+#'
+#' @details Data is scaled to range between zero and one:
+#' \deqn{X_{scaled}=\frac{x-x_{min}}{x_{max}-x_{min}}}
 #' @usage minmax(x)
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
+
 minmax<-function(x){
   (x-min(x))/(max(x)-min(x))}

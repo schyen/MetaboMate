@@ -24,7 +24,7 @@ Returned is a list with the following elements:
 Calculation of OPLS model predictions using new data
 }
 \details{
-The first list element (class predictions: \code{Y_predcited}) is \code{NULL} in case the input OPLS-model is a regression model. Class predictions are not adjusted for unequal group sizes and therefore, prediction outcomes can be biased towards the group with the largest number of samples. The list element \code{t_orth_pca} represent scores of the first principal component of a PCA model caclulated with all orthogonal components, therefore, summarises all orthogonal components into a single one. This can only be done if there are more than one orthogonal components in \code{opls_modelel}, otherwise this list element is \code{NULL}.
+Class predictions for discriminant analysis are not adjusted for unbalanced sample sizes and therefore, predictions can be biased towards the group with the largest number of samples. The list element \code{t_orth_pca} represent scores of the first principal component of a PCA model caclulated with all orthogonal components, therefore, summarises all orthogonal components into a single one. This can only be done if there are more than one orthogonal components in \code{opls_modelel}, otherwise this list element is \code{NULL}.
 }
 \references{
 Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS). \emph{Journal of Chemometrics}, 16.3, 119-128.
