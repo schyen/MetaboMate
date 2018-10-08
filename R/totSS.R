@@ -3,6 +3,7 @@
 #' @return Total sum of squares.
 #' @details Input matrix rows correspond to n observations and columns to m variables. For large matrices (here defined by m>3k), X is subsampled to speed up computation time. Currently, subsampling is achieved by selecting each selecting each third row element.
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
+#' @noRd
 
 totSS<-function(X){
   # to speed calculations up, sample X matrix if large enought

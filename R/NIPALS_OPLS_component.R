@@ -13,6 +13,8 @@
 #' @description Calculating a single OPLS component. This function should only be used for two level-Y, coded as a numeric vector.
 #' @references Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS). \emph{Journal of Chemometrics}, 16.3, 119-128.
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
+#' @noRd
+
 NIPALS_OPLS_component<-function(X, Y){
 
   # 4 initialise scores u with column of Y, this is for two level outcome
