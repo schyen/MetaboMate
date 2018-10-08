@@ -14,7 +14,7 @@ pred.opls(opls_model, newdata)
 \value{
 Returned is a list with the following elements:
 \describe{
-\item{Y_predicted}{Class predictions of newdata (only for discriminant analysis).}
+\item{Y_predicted}{Class or numeric outcome predictions for discriminant analysis or regression, repspectively.}
 \item{t_pred}{Predicted OPLS model scores for predictive component(s).}
 \item{t_orth}{Predicted OPLS model scores for orthogonal component(s).}
 \item{t_orth_pca}{Scores of a PCA model (first component) calculated using all predicted OPLS orthogonal component scores - only done when there are more than one orthogonal components in \code{opls_model}.}

@@ -7,12 +7,12 @@
 
 #' @return Returned is a list with the following elements:
 #' \describe{
-#' \item{Y_predicted}{Class predictions of newdata (only for discriminant analysis).}
+#' \item{Y_predicted}{Class or numeric outcome predictions for discriminant analysis or regression, repspectively.}
 #' \item{t_pred}{Predicted OPLS model scores for predictive component(s).}
 #' \item{t_orth}{Predicted OPLS model scores for orthogonal component(s).}
 #' \item{t_orth_pca}{Scores of a PCA model (first component) calculated using all predicted OPLS orthogonal component scores - only done when there are more than one orthogonal components in \code{opls_model}.}
 #' }
-#' @details The first list element (class predictions: \code{Y_predcited}) is \code{NULL} in case the input OPLS-model is a regression model. Class predictions are not adjusted for unequal group sizes and therefore, prediction outcomes can be biased towards the group with the largest number of samples. The list element \code{t_orth_pca} represent scores of the first principal component of a PCA model caclulated with all orthogonal components, therefore, summarises all orthogonal components into a single one. This can only be done if there are more than one orthogonal components in \code{opls_modelel}, otherwise this list element is \code{NULL}.
+#' @details Class predictions for discriminant analysis are not adjusted for unbalanced sample sizes and therefore, predictions can be biased towards the group with the largest number of samples. The list element \code{t_orth_pca} represent scores of the first principal component of a PCA model caclulated with all orthogonal components, therefore, summarises all orthogonal components into a single one. This can only be done if there are more than one orthogonal components in \code{opls_modelel}, otherwise this list element is \code{NULL}.
 #' @references Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS). \emph{Journal of Chemometrics}, 16.3, 119-128.
 #' @references Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
