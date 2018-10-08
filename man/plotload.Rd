@@ -18,7 +18,7 @@ plotload(model, X, ppm, shift = c(0, 10), pc = 1,
 
 \item{pc}{index of principal component to visualise, set to 1 if input model is OPLS}
 
-\item{type}{Type of loadigs visualisation, either \code{'Statistical reconstruction'} or \code{'Backscaled'} (see Details).}
+\item{type}{Type of loadings visualisation, either \code{'Statistical reconstruction'} or \code{'Backscaled'} (see Details).}
 
 \item{title}{Plot title.}
 }
@@ -26,10 +26,10 @@ plotload(model, X, ppm, shift = c(0, 10), pc = 1,
 Plotting PCA or OPLS loadings
 }
 \details{
-OPLS: If \code{type='Statistical recostruction'} the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm varaible). If \code{type='Backscaled'} the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.
+OPLS: If \code{type='Statistical reconstruction'} the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm variable). If \code{type='Backscaled'} the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.
 }
 \references{
-Cloared, O., \emph{et al.} (2005). Evaluation of the Orthogonal Projection on Latent Structure Model Limitations Caused by Chemical Shift Variability and Improved Visualization of Biomarker Changes in 1H NMR Spectroscopic Metabonomic Studies. \emph{Analytical Chemistry} 77.2, 517-26.
+Cloarec, O., \emph{et al.} (2005). Evaluation of the Orthogonal Projection on Latent Structure Model Limitations Caused by Chemical Shift Variability and Improved Visualization of Biomarker Changes in 1H NMR Spectroscopic Metabonomic Studies. \emph{Analytical Chemistry} 77.2, 517-26.
 }
 \seealso{
 \code{\link{pca}} \code{\link{opls}} \code{\link{PCA_MetaboMate-class}} \code{\link{OPLS_MetaboMate-class}}

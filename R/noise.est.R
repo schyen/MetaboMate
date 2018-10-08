@@ -1,9 +1,9 @@
 #' Estimation of noise level
 #' @export
-#' @param NMR Input matrix with rows repesenting sepctra.
+#' @param NMR Input matrix with rows representing spectra.
 #' @param ppm ppm vector with its length equals to \code{ncol(X)}.
 #' @param where Signal free region across all NMR spectra (see Details).
-#' @details Estiamation of noise level in NMR spectra. This is useful for quality control checks (e.g., before and after spectral normalisation). Noise estimation requires a singal-free ppm region across all spectra, usually this is at the extreme ends or the spectrum. This function requires a minimum number of 50 data points to robustly estimate noise levels.
+#' @details Estimation of noise level in NMR spectra. This is useful for quality control checks (e.g., before and after spectral normalisation). Noise estimation requires a signal-free ppm region across all spectra, usually this is at the extreme ends or the spectrum. This function requires a minimum number of 50 data points to robustly estimate noise levels.
 #' @return Returned is a vector of noise levels for each spectrum.
 #' @seealso \code{\link{readBruker}}
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}

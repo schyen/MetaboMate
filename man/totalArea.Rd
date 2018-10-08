@@ -9,7 +9,7 @@ totalArea(X, add.DilF = "ta.dilf")
 \arguments{
 \item{X}{Input matrix where rows represent samples.}
 
-\item{add.DilF}{Character string for new variable for dilution factor (will be exported as global envrionment variable). Can be left NULL if dilution factor should not be exported.}
+\item{add.DilF}{Character string for new variable for dilution factor (will be exported as global environment variable). Can be left NULL if dilution factor should not be exported.}
 }
 \description{
 Total area normalisation

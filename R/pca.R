@@ -6,7 +6,7 @@
 #' @param scale Desired scaling: None, unit variance (UV) or Pareto scaling
 #' @param method Algorithm for computing PCA. NIPALS is standard and usually fine. It can handle small amounts of missing/NA values.
 #' @details Other methods include: 'svd', 'rnipals', 'bpca', 'ppca', 'svdImpute', 'robustPca', 'nlpca', 'llsImpute', 'llsImputeAll'. If these methods are specified, the \code{pca} function from the \code{pcaMethods} package is used to fit PCA model (see References).
-#' @param center Logical indicating if data should be mean centred.
+#' @param center Logical indicating if data should be mean centered.
 #' @references Geladi, P and Kowalski, B.R. (1986), Partial least squares and regression: a tutorial. \emph{Analytica Chimica Acta}, 185, 1-17.
 #' @return This function returns a \emph{PCA_MetaboMate} S4 object.
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}

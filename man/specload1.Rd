@@ -25,17 +25,17 @@ specload1(model, X, ppm, shift = c(0, 10), an, alp = 0.3, size = 0.5,
 
 \item{pc}{index of principal component to visualise, set to 1 if input model is OPLS}
 
-\item{type}{Type of loadigs visualisation, either \code{'Statistical reconstruction'} or \code{'Backscaled'} (see Details).}
+\item{type}{Type of loadings visualisation, either \code{'Statistical reconstruction'} or \code{'Backscaled'} (see Details).}
 
 \item{title}{Plot title.}
 
 \item{...}{Additional paramters passe on to ggplot's facet function.}
 }
 \description{
-Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument \code{shift} should be as small as possible. List argument \code{an} must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of \code{an} must have the same length as \code{X}.
+Plotting overlayed NMR spectra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument \code{shift} should be as small as possible. List argument \code{an} must have the first element define, even if it is only a single value. If colour and line width is specified, then at least one list elements of \code{an} must have the same length as \code{X}.
 }
 \details{
-OPLS: If \code{type='Statistical recostruction'} the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm varaible). If \code{type='Backscaled'} the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical recostruction.
+OPLS: If \code{type='Statistical reconstruction'} the function calculates the covariance (y axis) and Pearson's correlation (colouring) of the predictive OPLS scores with each X variable (x axis is ppm variable). If \code{type='Backscaled'} the OPLS loadings are backscaled with X feature standard deviations. Results are plotted over ppm, coloured according to OPLS model weights. Often, the latter method visualises model importance more robust due to the presence of false positive correlations. PCA: Function always calculates the statistical reconstruction.
 }
 \seealso{
 \code{\link{plotload}} \code{\link{specOverlay}} \code{\link[=OPLS_MetaboMate-class]{OPLS_MetaboMate}} \code{\link{opls}} \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}} \code{\link{pca}}

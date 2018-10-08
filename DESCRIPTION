@@ -9,7 +9,7 @@ Authors@R: c(
   person("Jia V.", "Li", role = c("exp", "rtm")),
   person("Julian", "Wist", role = c("exp", "rtm", "ctb")))
 Maintainer: Torben Kimhofer <tkimhofer@gmail.com>
-Description: R toolbox for NMR-based metabolic profiling. This is a comprehensive library that covers all basic steps of the metabolic profiling analysis pipeline. This includes reading-in 1D spectra from Bruker file format, data pre-processing, various normalisation methods, unsupervised and supervised multivariate analysis techniques and feature extraction. Most of the provided functions can also be used for MS data analysis (such as PQN normalisation or O-PLS). All combined with aestethically pleasing visualisations using ggplot2.
+Description: R toolbox for NMR-based metabolic profiling. This is a comprehensive library that covers all basic steps of the metabolic profiling analysis pipeline. This includes reading-in 1D spectra from Bruker file format, data pre-processing, various normalisation methods, unsupervised and supervised multivariate analysis techniques and feature extraction. Most of the provided functions can also be used for MS data analysis (such as PQN normalisation or O-PLS). All combined with aesthetically pleasing visualisations using ggplot2.
 License: MIT + LICENSE file
 Encoding: UTF-8
 LazyData: true

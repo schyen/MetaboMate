@@ -1,15 +1,20 @@
 #' Importing 1D NMR spectra from Bruker
 #' @export
-#' @description  Reading-in 1D NMR spectra in Bruker file format. The function recursively descends the directory tree of a given location and is searching for corresponding processing (\emph{procs}), acquisition (\emph{acqus}) and spectrum (\emph{r1}) files.
+#' @description  Reading-in 1D NMR spectra in Bruker file format. The function recursively descends the directory tree of a given location and is searching for corresponding processing status (\emph{procs}), acquisition status (\emph{acqus}) and spectrum (\emph{r1}) files.
 #' @param path A character string, specifying the path of the experiment folder location.
-#' @param filter Logical, if set to TRUE then experiments with matching \emph{acqus}, \emph{procs} and \emph{1r} files are read-in, ignored are corrupt file systems and 2D experiments. If set to FALSE, the algorihm will be abborted if a file system is corrupt or if 2D experiments are present. Generally the filter=TRUE option should be preferred unless for some testing operations.
-#' @return The following variables are automatically returned as globally defined variables:
-#' \item{X}{two-dimensional NMR matrix with spectra in rows and chmemical shift variables in columns.}
+#' @param filter Logical - if set to TRUE, then experiments with matching \emph{acqus}, \emph{procs} and \emph{1r} files are read-in, ignored are corrupt file systems and 2D experiments. If set to FALSE, the algorithm will abort if a file system is corrupt or if 2D experiments are present. Generally, the filter=TRUE option should be preferred except for some file system testing operations.
+#' @return The following variables are automatically returned as globally defined workspace variables:
+#' \item{X}{two-dimensional NMR matrix with spectra in rows and chemical shift variables in columns.}
 #' \item{ppm}{chemical shift vector (ppm).}
 #' \item{meta}{spectrometer metadata extracted from acqus and procs files (eg time of spectral acquisition).}
+#' @examples
+#' path=system.file("extdata/", package = "MetaboMate")
+#' readBruker(path)
+#' ls()
 #' @importFrom stats approxfun complete.cases
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @details The columns in meta represent spectrometer meta-variables and prefix \code{a} and \code{p} indicate if a parameter was extracted from the acquisition status (\emph{acqus}) or processing status (\emph{procs}) file, respectively. Parameter names without prefix were calculated on the fly (eg run-order). Spectrometer variables that often are of interest to s specific study include a_NS (number of scans), a_RG (receiver gain), a_Date (acquisition date), p_SF (spectrometer frequency) and a_AUNM (AU program).
+
 
 
 readBruker=function (path, filter = T)

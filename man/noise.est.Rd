@@ -7,7 +7,7 @@
 noise.est(NMR, ppm, where = c(14.6, 14.7))
 }
 \arguments{
-\item{NMR}{Input matrix with rows repesenting sepctra.}
+\item{NMR}{Input matrix with rows representing spectra.}
 
 \item{ppm}{ppm vector with its length equals to \code{ncol(X)}.}
 
@@ -20,7 +20,7 @@ Returned is a vector of noise levels for each spectrum.
 Estimation of noise level
 }
 \details{
-Estiamation of noise level in NMR spectra. This is useful for quality control checks (e.g., before and after spectral normalisation). Noise estimation requires a singal-free ppm region across all spectra, usually this is at the extreme ends or the spectrum. This function requires a minimum number of 50 data points to robustly estimate noise levels.
+Estimation of noise level in NMR spectra. This is useful for quality control checks (e.g., before and after spectral normalisation). Noise estimation requires a signal-free ppm region across all spectra, usually this is at the extreme ends or the spectrum. This function requires a minimum number of 50 data points to robustly estimate noise levels.
 }
 \seealso{
 \code{\link{readBruker}}

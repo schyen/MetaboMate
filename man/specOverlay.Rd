@@ -2,7 +2,7 @@
 % Please edit documentation in R/specOverlay.R
 \name{specOverlay}
 \alias{specOverlay}
-\title{Higher level plotting function for overlay of NMR specra (ggplo2 based)}
+\title{Higher level plotting function to overlay NMR spectra (ggplot2 based)}
 \usage{
 specOverlay(X, ppm, shift = c(-0.01, 0.01), an = list("facet", "col",
   "ltype"), alp = 0.7, size = 0.5, title = "", ...)
@@ -25,7 +25,7 @@ specOverlay(X, ppm, shift = c(-0.01, 0.01), an = list("facet", "col",
 \item{...}{Additional paramters passed on to ggplot's facet function.}
 }
 \description{
-Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For high ppm ranges computation time is relatively, so the range of input argument \code{shift} should be as small as possible. List argument \code{an} must have the first element define, even if it is only a single valuess. If colour and line width is specified, then at least one list elements of \code{an} must have the same length as \code{X}.
+Plotting overlayed NMR specra. This function is based on ggplot2, a high-level plotting R package. For large ppm ranges the computation time is relatively long, so the chemical \code{shift} range should be as small as possible. For list argument \code{an}, the first element describes the colour and must be defined (even if it is only a single value). If colour and line width are specified, then at least one list elements of \code{an} must have the same length as \code{X}.
 }
 \seealso{
 \code{\link{readBruker}}

@@ -18,9 +18,9 @@ The projection distance of each observation in the model (\code{DModX}).
 Calculating distance to the model in X space
 }
 \references{
-Bylesjö M., \emph{et al.} (2002) OPLS discriminant analysis: combining the strengthsof PLS-DA and SIMCA classification. \emph{Journal of Chemometrics}, 20, 341-51.
+Bylesjö M., \emph{et al.} (2002) OPLS discriminant analysis: combining the strengths of PLS-DA and SIMCA classification. \emph{Journal of Chemometrics}, 20, 341-51.
 
-Wold S. (1976) Pattern recognition by means of disjoint princi-pal components models.  \emph{Pattern Recognition}, 8, 127-39.
+Wold S. (1976) Pattern recognition by means of disjoint principal components models.  \emph{Pattern Recognition}, 8, 127-39.
 }
 \seealso{
 \code{\link{opls}}

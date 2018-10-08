@@ -14,7 +14,7 @@ pca(X, pc = 2, scale = c("None", "UV", "Pareto"), center = T,
 
 \item{scale}{Desired scaling: None, unit variance (UV) or Pareto scaling}
 
-\item{center}{Logical indicating if data should be mean centred.}
+\item{center}{Logical indicating if data should be mean centered.}
 
 \item{method}{Algorithm for computing PCA. NIPALS is standard and usually fine. It can handle small amounts of missing/NA values.}
 }

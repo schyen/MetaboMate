@@ -3,14 +3,14 @@
 #' @aliases plotscores
 #' @description Function for plotting PCA, PLS or OPLS model scores.
 #' @param model PCA, PLS or OPLS model of the package \emph{MetaboMate}.
-#' @param pc Specifies which model components should be plotted on abcissa and ordinate (see Details).
+#' @param pc Specifies which model components should be plotted on abscissa and ordinate (see Details).
 #' @param an Colour and label specification (see Details).
 #' @param title Plot title.
 #' @param qc Row indices of QC samples. Can be left NA, however, if specified QC samples will be highlighted in the plot.
 #' @param legend Position of the plot legend, set to NA if legend should be outside of the plotting area.
 #' @param cv.scores Logical value (TRUE or FALSE) indicating if cross-validated scores should be plotted for the predictive component(s) (only for PLS and O-PLS).
 #' @param ... Additional values passed on to \code{\link[ggplot2]{scale_colour_gradientn}}.
-#' @details Scores colouring is specified with the argument \code{an}, which is a list of three elements. The first list element specifies the coulour (class factor required for categorical variables), the second list element specifies a point labeling (class character or factor) and the third list element specifies point shape. The Hotelling's \out{T<sup>2</sup>} ellipse is automatically included and calculated for the dimensions selected by the \code{pc} argument.
+#' @details Scores colouring is specified with the argument \code{an}, which is a list of three elements. The first list element specifies the colour (class factor required for categorical variables), the second list element specifies a point labeling (class character or factor) and the third list element specifies point shape. The Hotelling's \out{T<sup>2</sup>} ellipse is automatically included and calculated for the dimensions selected by the \code{pc} argument.
 #' @references Trygg J. and Wold, S. (2002) Orthogonal projections to latent structures (O-PLS). \emph{Journal of Chemometrics}, 16.3, 119-128.
 #' @references Hotelling, H. (1931) The generalization of Student’s ratio. \emph{Ann. Math. Stat.}, 2, 360-378.
 #' @return This function returns a \emph{ggplot2} plot object.

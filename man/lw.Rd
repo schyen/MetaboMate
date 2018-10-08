@@ -14,7 +14,7 @@ lw(X, ppm, shift = c(-0.01, 0.01))
 \item{shift}{Signal shift to calculate line width}
 }
 \value{
-Array of line widhts in ppm. To convert from ppm to Hertz (Hz), multiply values with the spectrometer frequency (column \code{a_SF01} in \code{meta} data frame).
+Array of line widths in ppm. To convert from ppm to Hertz (Hz), multiply values with the spectrometer frequency (column \code{a_SF01} in \code{meta} data frame).
 }
 \description{
 Calculating full width at half maximum (FWHM, aka line width). This function simply returns the ppm difference where peak line crosses half of the peak height. It requires one signal across all spectra within ppm ranges specified in \code{shift}.

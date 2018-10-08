@@ -2,7 +2,7 @@
 #' @export
 #' @aliases totalArea
 #' @param X Input matrix where rows represent samples.
-#' @param add.DilF Character string for new variable for dilution factor (will be exported as global envrionment variable). Can be left NULL if dilution factor should not be exported.
+#' @param add.DilF Character string for new variable for dilution factor (will be exported as global environment variable). Can be left NULL if dilution factor should not be exported.
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 
 totalArea=function(X, add.DilF='ta.dilf'){
