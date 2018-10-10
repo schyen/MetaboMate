@@ -30,7 +30,7 @@ pred.opls=function(opls_model, newdata){
   if(is.null(ncol(X))){X=rbind(newdata)}
 
   # center and scale
-  X<-scale(newdata, center=opls_model@Xcenter, scale=opls_model@Xscale)
+  # X<-scale(newdata, center=opls_model@Xcenter, scale=opls_model@Xscale)
 
   # iteratively remove all orthogonal components from prediction data set
   e_new_orth <- X
@@ -41,7 +41,7 @@ pred.opls=function(opls_model, newdata){
   }
 
   if(opls_model@nPC>1){
-    pc.orth<-pca.pc(t_orth, nc=1)
+    pc.orth<-pca(t_orth, pc=1, method='ppca', scale='UV')
     t_orth_pca<-pc.orth@scores[,1]
   }else{
     t_orth_pca<-NULL
