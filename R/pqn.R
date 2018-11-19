@@ -10,6 +10,7 @@
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 pqn=function(X, reference.idx=NA, TArea=F, add.DilF=NULL){
 
+  nams=rownames(X)
   # apply total area normalisation
   if(TArea==T){
     X=t(apply(X, 1, function(x) x/sum(x)*1000))
@@ -32,5 +33,6 @@ pqn=function(X, reference.idx=NA, TArea=F, add.DilF=NULL){
     assign(add.DilF, dil.F, envir=.GlobalEnv)
   }
 
+  rownames(X.pqn)=nams
   return(X.pqn)
 }
