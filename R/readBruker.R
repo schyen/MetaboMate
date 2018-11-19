@@ -50,8 +50,7 @@ readBruker=function (path, filter = T)
     afile = afile[idx.a]
     pfile = pfile[idx.p]
     rfile = rfile[idx.r]
-  }
-  else {
+  }else {
     not.present <- list()
     not.present[[1]] = afile[!idx.a]
     not.present[[2]] <- pfile[!idx.p]
@@ -75,8 +74,7 @@ readBruker=function (path, filter = T)
   }
   if (Lp == 1) {
     cat("Reading ", Lp, " spectrum.\n", sep = "")
-  }
-  else {
+  }else {
     cat("Reading ", Lp, " spectra.\n", sep = "")
   }
   out <- apply(rbind(1:Lp), 2, function(i, pf = pfile, rf = rfile,
@@ -148,17 +146,46 @@ readBruker=function (path, filter = T)
   idx = complete.cases(t(nums))
   meta[, idx] = nums[, idx]
 
-  meta$a_Date = strptime("1970-01-01 00:00:00", format = "%Y-%m-%d %H:%M:%M") +
+  meta$a_Date =
+    strptime("1970-01-01 00:00:00", format = "%Y-%m-%d %H:%M:%M") +
     as.numeric(meta$a_DATE)
   meta$a_RunOrder = rank(meta$a_Date, na.last = "min")
   rownames(meta) = r.exp
   ppm <- seq(meta$p_OFFSET[1], meta$p_OFFSET[1]-meta$a_SW[1], -(meta$a_SW[1]/meta$a_TD[1]))
+
+  if(length(unique(meta$a_TD))>1){warning('Some experiments in this folder differ in digital resolution, you might want to filter these out.')}
+  if(length(unique(round(meta$a_SW),4))>1){warning('The sweep width is different for some experiments in this folder, please make sure you read-in the correct experiments.')}
+
   X <- t(sapply(out, function(x, ppmt = ppm) {
     sInter = approxfun(x[[3]], x[[2]])
     sInter(ppmt)
   }))
   colnames(X) <- ppm
-  rownames(X) <- r.exp
+
+  # rownames should include basenames if these differ
+  fnames=strsplit(dirname(afile), '/')
+  rnames=do.call(rbind, fnames)
+  idx=apply(rnames, 2, function(x) length(unique(x))==1)
+  idx=which(idx==F)
+  if(length(idx)>1){
+    rownames(X) <- sapply(fnames, function(x){
+      paste(x[idx[1]:length(x)], collapse='/')
+    })
+  }else{
+    rownames(X)<-rnames[,idx]
+  }
+
+
+  # The offset is slightly different in each exp, leading to NA values for few ppm variables at the ends of some spectra. Remove these if not too many!
+  idx=unique(which(is.na(X), arr.ind = T)[,2])
+  if(length(idx)<300){
+    X=X[,-idx]
+    ppm=ppm[-idx] }else{
+      warning('The ppm range is way to high for some experiments, please double check if you read-in the correct spectra!')
+
+  }
+
+
   assign("X", X, envir = .GlobalEnv)
   assign("ppm", ppm, envir = .GlobalEnv)
   assign("meta", meta, envir = .GlobalEnv)

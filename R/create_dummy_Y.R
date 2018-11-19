@@ -9,7 +9,7 @@
 create_dummy_Y=function(Y){
   if(!is.numeric(Y)){
     Y_levels=unique(Y)
-    if(length(Y_levels==2)){Y_new=cbind(as.numeric(as.factor(Y)))}else{
+    if(length(Y_levels)==2){Y_new=cbind(as.numeric(as.factor(Y)))}else{
     Y_new=matrix(-1, nrow=length(Y), ncol=length(Y_levels))
     for(i in 1:length(Y_levels)){
       Y_new[which(Y==Y_levels[i]),i]=1
