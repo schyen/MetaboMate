@@ -1,6 +1,6 @@
 ## MetaboMate 0.0.0.9002
 
-* readBruker: Rownames of NMR and metadata matrix indicate differing subdirectories of imported spectra (thanks for the suggestion Tom!)
+* Function [``readBruker``](../reference/readBruker.html): Rownames of NMR and metadata matrix indicate differing subdirectories of imported spectra (thanks for the suggestion Tom!)
 * Included prediction function for performing OPLS model predictions using new data (see [``pred.opls``](../reference/pred.opls.html))
 
 
