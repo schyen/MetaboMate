@@ -17,7 +17,9 @@ title: "MetaboMate"
 output: html_document
 footer: "Torben Kimhofer"
 ---
-
+[![Inline docs](http://inch-ci.org/github/kimsche/MetaboMate.svg?branch=master)](http://inch-ci.org/github/kimsche/MetaboMate)
+[![Build Status](https://travis-ci.org/kimsche/MetaboMate.png?branch=master)](https://travis-ci.org/kimsche/MetaboMate)
+[![HitCount](http://hits.dwyl.io/kimsche/MetaboMate.svg)](http://hits.dwyl.io/kimsche/MetaboMate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ####**All you need for NMR-based metabolic profiling with R!**

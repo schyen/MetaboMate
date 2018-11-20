@@ -14,11 +14,11 @@ navbar:
     - reference
     - articles
     - news
-  right: 
+  right:
     - github
     - linkedin
     - twitter
- components: 
+ components:
   home:
     icon: fa-home fa-lg
     href: index.html
@@ -76,12 +76,13 @@ reference:
   - '`specOverlay`'
 - title: Statistical modelling and model visualisations
   contents:
-  - '`pca`'  
-  - '`opls`' 
+  - '`pca`'
+  - '`opls`'
   - '`pred.opls`'
   - '`dmodx`'
   - '`plotscores`'
   - '`plotload`'
   - '`specload`'
-  
-  
+
+
+

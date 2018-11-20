@@ -1,0 +1,24 @@
+load("/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata")
+ls()
+bariatric=bariatric1
+save(bariatric, "/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata")
+save(bariatric, file="/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata")
+exit
+quit()
+load("/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata")
+ls()
+load("/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric_ori.rdata")
+ls()
+str(bariatric)
+table(bariatric$an$Class)
+table(bariatric$an$Timepoint)
+idx=which(bariatric$an$Timepoint %in% c('Pre', 'W2'))
+bariatric$X.pqn=bariatric$X.pqn[idx,]
+bariatric$an=bariatric$an[idx,]
+bariatric$meta=bariatric$meta[idx,]
+save(bariatric, file='/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata')
+load("/Users/torbenkimhofer/Rproj/MetaboMate/data/bariatric.rdata")
+ls()
+str(bariatric)
+head(bariatric$an$Class)
+table(bariatric$an$Class, bariatric$an$Timepoint)

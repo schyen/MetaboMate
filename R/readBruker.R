@@ -164,7 +164,7 @@ readBruker=function (path, filter = T)
 
   # rownames should include basenames if these differ
   fnames=strsplit(dirname(afile), '/')
-  rnames=do.call(rbind, fnames)
+  rnames=suppressWarnings(do.call(rbind, fnames))
   idx=apply(rnames, 2, function(x) length(unique(x))==1)
   idx=which(idx==F)
   if(length(idx)>1){
@@ -181,7 +181,7 @@ readBruker=function (path, filter = T)
   if(length(idx)<300){
     X=X[,-idx]
     ppm=ppm[-idx] }else{
-      warning('The ppm range is way to high for some experiments, please double check if you read-in the correct spectra!')
+      warning('The ppm range is much different for some experiments, please double check if you read-in the correct spectra!')
 
   }
 
