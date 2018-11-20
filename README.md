@@ -2,6 +2,8 @@ MetaboMate
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![HitCount](http://hits.dwyl.io/kimsche/MetaboMate.svg)](http://hits.dwyl.io/kimsche/MetaboMate) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 #### **All you need for NMR-based metabolic profiling with R!**
 
 ------------------------------------------------------------------------
@@ -25,8 +27,8 @@ The R toobox covers all basic processing and analysis steps, including:
 -   **Sample Normalisation**
     -   Total area normalisation
     -   Probablistic quotient normalisation (PQN) <br> <br>
--   **Multivariate Statistical Analysis**
-    -   Principal Comenent Analysis (PCA), including Hotelling's T2 statistic
+-   **Multivariate Analysis and Statistics**
+    -   Principal Comenent Analysis (PCA), including Hotelling's T<sup>2</sup> statistic
     -   Distance to Model in X space (detection of moderate outliers)
     -   Orthogoanal-Patial Least Squares (O-PLS) regression and discriminant analysis
     -   Single or multi-column Y for O-PLS <br> <br>
