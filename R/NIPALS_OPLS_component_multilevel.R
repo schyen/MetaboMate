@@ -78,7 +78,7 @@ NIPALS_OPLS_component_mulitlevel=function(X, Y){
   } else{w_o<-p_h - ((t(w_h) %*% t(p_h)/drop(crossprod(w_h))) %*% t(w_h))}
 
   # 8: normalise
-  w_o<-w_o/sqrt(sum(w_o[,1]^2)) # normalisation
+  w_o<-w_o/sqrt(sum(w_o[1,]^2)) # normalisation
 
   # 9: orthogonal scores
   t_o<-(X%*% t(w_o)) / drop(crossprod(t(w_o)))
