@@ -31,6 +31,7 @@ pred.opls=function(opls_model, newdata){
     X=newdata
   }
 
+  print(dim(X))
   # center and scale
   # X<-scale(newdata, center=opls_model@Xcenter, scale=opls_model@Xscale)
 
