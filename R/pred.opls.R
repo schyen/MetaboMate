@@ -27,7 +27,9 @@ pred.opls=function(opls_model, newdata){
     }
 
   # In case of one sample scenario: define X as column vector
-  if(is.null(ncol(X))){X=rbind(newdata)}
+  if(is.null(ncol(X))){X=rbind(newdata)}else{
+    X=newdata
+  }
 
   # center and scale
   # X<-scale(newdata, center=opls_model@Xcenter, scale=opls_model@Xscale)
