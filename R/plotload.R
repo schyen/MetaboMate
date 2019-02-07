@@ -16,15 +16,16 @@
 #' @importFrom scales pretty_breaks
 #' @seealso \code{\link{pca}} \code{\link{opls}} \code{\link{PCA_MetaboMate-class}} \code{\link{OPLS_MetaboMate-class}}
 
-plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical reconstruction'), title=''){
+plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
 
   if(grepl('stat|recon', type, ignore.case = T)){type='Statistical reconstruction'}else{
     type='Backscaled'
   }
 
-  if(class(model)[1]=='PCA_MetaboMate'){
-    type=c('Statistical reconstruction')
-
+  # # why is this in here?
+  # if(class(model)[1]=='PCA_MetaboMate'){
+  #   type=c('Statistical reconstruction')
+  #
 
     if(nrow(model@p)!=ncol(X)){
       stop('Model loadings do not fit to X matrix.')
