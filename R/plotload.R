@@ -23,9 +23,9 @@ plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical recons
   }
 
   # # why is this in here?
-  # if(class(model)[1]=='PCA_MetaboMate'){
-  #   type=c('Statistical reconstruction')
-  #
+  if(class(model)[1]=='PCA_MetaboMate'){
+    #type=c('Statistical reconstruction')
+
 
     if(nrow(model@p)!=ncol(X)){
       stop('Model loadings do not fit to X matrix.')
