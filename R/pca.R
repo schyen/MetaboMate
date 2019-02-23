@@ -3,7 +3,7 @@
 #' @description This function is used to perform Principal Component Analysis (PCA).
 #' @param X Numeric input matrix with each row representing an observation and each column a metabolic feature.
 #' @param pc Desired number of principal components.
-#' @param scale Desired scaling: None, unit variance (UV) or Pareto scaling
+#' @param scale Desired scaling method: \code{None}, \code{UV} (unit variance) or \code{Pareto} (Pareto scaling).
 #' @param method Algorithm for computing PCA. NIPALS is standard and usually fine. It can handle small amounts of missing/NA values.
 #' @details Other methods include: 'svd', 'rnipals', 'bpca', 'ppca', 'svdImpute', 'robustPca', 'nlpca', 'llsImpute', 'llsImputeAll'. If these methods are specified, the \code{pca} function from the \code{pcaMethods} package is used to fit PCA model (see References).
 #' @param center Logical indicating if data should be mean centered.
@@ -13,7 +13,7 @@
 #' @seealso \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}} \code{\link[pcaMethods]{pca}} \code{\link{plotscores}} \code{\link{plotload}} \code{\link{opls}}
 #' @importFrom pcaMethods pca
 #'
-pca=function(X, pc=2, scale=c('None', 'UV', 'Pareto'), center=T, method='nipals'){
+pca=function(X, pc=2, scale='UV', center=T, method='nipals'){
 
   X=as.matrix(center_scale(X, idc = 'all', center, scale))
 
