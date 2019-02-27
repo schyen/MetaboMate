@@ -4,15 +4,14 @@
 \alias{pca}
 \title{Perform Principal Component Analysis}
 \usage{
-pca(X, pc = 2, scale = c("None", "UV", "Pareto"), center = T,
-  method = "nipals")
+pca(X, pc = 2, scale = "UV", center = T, method = "nipals")
 }
 \arguments{
 \item{X}{Numeric input matrix with each row representing an observation and each column a metabolic feature.}
 
 \item{pc}{Desired number of principal components.}
 
-\item{scale}{Desired scaling: None, unit variance (UV) or Pareto scaling}
+\item{scale}{Desired scaling method: \code{None}, \code{UV} (unit variance) or \code{Pareto} (Pareto scaling).}
 
 \item{center}{Logical indicating if data should be mean centered.}
 

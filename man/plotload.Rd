@@ -5,7 +5,7 @@
 \title{Plotting PCA or OPLS loadings}
 \usage{
 plotload(model, X, ppm, shift = c(0, 10), pc = 1,
-  type = c("Statistical reconstruction"), title = "")
+  type = c("Statistical reconstruction", "Backscaled"), title = "")
 }
 \arguments{
 \item{model}{PCA or OPLS model generated via \emph{MetaboMate} package functions.}
