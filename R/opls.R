@@ -272,6 +272,11 @@ opls <- function(X,
       Q2 = round(Q2_1, 2),
       AUROC = round(aucs, 2)
     )
+
+    if(min(model.summary$Q2)<(-0.05)){
+      model.summary$Q2[which(model.summary$Q2<(-0.05))]=-0.05
+    }
+
   } else{
     model.summary = data.frame(
       R2X = round(R2x, 2),
