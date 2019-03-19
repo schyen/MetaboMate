@@ -229,7 +229,7 @@ opls <- function(X,
       cat('Something went wrong, Q2 is NA for component', nc, '\n',  sep = '')
     }
 
-    if (nc == 1 & ( Q2_1[nc] < 0.05 | aucs[nc]>0.7) ) {
+    if (nc == 1 & ( Q2_1[nc] < 0.05 | aucs[nc] < 0.7) ) {
       cat('At first PC, Q2 < 0.03: ', round(Q2_1[nc], 3), '\n',  sep = '')
       cat('At first PC, Q2 < 0.03: ', round(aucs[nc], 3), '\n',  sep = '')
       print('No sign. orthogonal components!')
