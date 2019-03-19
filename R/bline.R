@@ -7,7 +7,9 @@
 #' @seealso \code{\link{readBruker}} \code{\link[ptw]{asysm}}
 #' @importFrom ptw asysm
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
-bline=function(X){
-  X.bl=t(apply(X, 1, function(x) {x-asysm(x)}))
-  return(X.bl)
+bline <- function(X) {
+    X.bl <- t(apply(X, 1, function(x) {
+        x - asysm(x)
+    }))
+    return(X.bl)
 }

@@ -1,5 +1,5 @@
 ---
-title: "Data Import and Pre-processing"
+title: "NMR Data Import, Quality Control and Spectral Pre-processing"
 ---
 
 
@@ -10,31 +10,30 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette documents a typical pre-processing workflow for NMR-based metabolic profilig using the *MetaboMate* R package. Example data represent thirty Proton NMR (^1^H NMR) spectra of murine urine samples collected pre and post bariatric surgery. One dimensional spectra were acquired on a 600 MHz Bruker Avance III spectrometer, equipped with a 5 mm triple resonance (TXI) probe operating at 300 K. Further information on sample collection, processing and data acquisition can be obtained from the original publication by Jia V. Li *et al.*^[Li, Jia V., *et al.* (2011) Metabolic surgery profoundly influences gut microbial-host metabolic cross-talk. *Gut* 60.9, 1214-1223.]
+This tutorial runs through a typical data import and pre-processing workflow for NMR-based metabolic profilig using the *MetaboMate* R package. Example data are thirty Proton NMR (^1^H NMR) spectra of murine urine samples. Samples were collected pre and post bariatric surgery. 1D ^1^H NMR spectra were acquired using a standard 90˚-FID pulse sequence on a 600 MHz Bruker Avance III spectrometer, equipped with a 5 mm triple resonance (TXI) probe operating at 300 K. Further information on sample collection, processing and data acquisition can be obtained from the original publication by Jia V. Li *et al.*^[Li, Jia V., *et al.* (2011) Metabolic surgery profoundly influences gut microbial-host metabolic cross-talk. *Gut* 60.9, 1214-1223.]
 
-## Prerequisites
-Although not essential for this tutorial, I recommend to install RStudio. RStudio is an open-source integrated development environment for R, which includes a code editor that highlights syntax, enables quick and easy access to help pages, improves workspace management and offers various tools for plotting, history and debugging. Simply put, it makes working with R a lot more efficient.
 
-## Reading 1D NMR spectra 
-The first step is to read-in NMR spectra into the R workspace. This can be accomplished with the **`readBruker()`** function, whose only imput argument is the path to the NMR experiment folder on the computer. The function recursively searches for relevant NMR files in all subfolders and imports all 1D spectra into matrix format, where spectra are represented in rows and ppm variables in columns. The folloging code chunk reads-in Proton NMR spectra that come with the package:
+## Import of NMR spectra 
+The first step is to read NMR spectra into the R workspace. This can be accomplished with the **`readBruker()`** function, which requires one input argument: the path to the computer folder containing the NMR experiments. The function imports all NMR experiments in the specified directory, including all subdirectories. Here we go:
 
 ```{r read-in, fig.show='hold'}
+# load the package and exmaple spectra  
 library(MetaboMate)
 path=system.file("extdata/", package = "MetaboMate")
 readBruker(path)
 ls()
 ```
 
-This function automatically adds three variables to the R workspace: 
+Please note that there is no variable assignment before the function call below. The function automatically exports the following three variables to the R workspace: 
 
-* **X** <- 1D NMR spectra (matrix)
-* **ppm** <- ppm variables (vector)
-* **meta** <- spectrometer metadata (data frame)
+* **X** <- 1D NMR spectra (matrix: rows = spectra, columns = spectral ppm variables)
+* **ppm** <- chemical shift in ppm (vector)
+* **meta** <- acquisition and processing information (data frame, e.g., number of scans, radio frequency, run-order)
 
-The rownames of **X** are the name of the experiment folders, which can be used to match NMR spectra with sample annotation data (participant's age, etc). The vector **ppm** contains the chemical shift in ppm for each of the columns in X. The dataframe **meta** is row-matched to X as it contains detailed information about the spectrometer acquisition and processing parameters. Each column in meta represents a different parameter (including acquistion date and run order), whereas the prefices *a* and *p* indicate if the parameter was extracted from the accquistion (*acqus*) or processing (*procs*) status files, respectively. For example, the column *a_RG* contains the receiver gain (RG) value for each spectrum, which was extracted from the experiments' *acqus* files. A list of the most useful paramters can be found on the R help page of the function (enter `?readBruker()` in the R console). The spectrometer's manual is a good starting point to find out about paramters that are not listed on the help page.
+The rownames of **X** indicate the location and name of the respecitve experiment folder, which can be used to match NMR spectra with sample annotation data (participant's age, etc). The vector **ppm** contains the chemical shift in ppm for each of the columns in **X**. The dataframe **meta** is row-matched to **X** and contains detailed information about the spectrometer acquisition and processing parameters, including acquistion date and run-order. Each column in meta represents a different parameter, whereas the prefix *a* and *p* indicates if the parameter was extracted from the accquistion (*acqus*) or processing (*procs*) status files, respectively. For example, the column *a_RG* contains the receiver gain (RG) value for each spectrum, which was extracted from the experiments' *acqus* file. A list of the most useful paramters can be found on the R help page of the function (enter `?readBruker()` in the R console). Bruker's spectrometer manual is probably the best reference to find out about parameters that are not listed on the help page.
 
-## Plotting spectra 
-For the visualisation of NMR spectra there are two low-level plotting functions (**`spec()`** and **`matspec()`**), which allow plotting an individual spectrum or multiple spectra, respectively. Both of these functions are fairly fast. Let's have a first look at all imported spectra over the entire ppm range with the **`matspec()`** function.
+## Visualisaton using R's generic plotting functions
+For the visualisation of NMR spectra there are two low-level plotting functions (**`spec()`** and **`matspec()`**), which allow plotting an individual spectrum or overlaying multiple spectra, respectively. Both of these functions are fairly fast. Let's have a first look at all imported spectra over the entire ppm range with the **`matspec()`** function.
 
 ###  Spectral overlay plot with basic graphics function
 ```{r spec overlay I, fig.show='hold', fig.width = 7.2, fig.height = 4}
@@ -47,13 +46,13 @@ There are different higher-level plotting functions available that allow a more 
 
 For illustration purposes we plot the TSP signal (a component of the sample preparation buffer) coloured according to the receiver gain (*RG*) parameter in *meta* dataframe, the linetype corresponds to the experiment type (*EXP*) defined with the spectrometer operation software.
 
-### Spectral overlay plot with ggplot2 
+### Visualisaton with ggplot2 
 ```{r spec overlay II, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # plot TSP signal
 specOverlay(X, ppm, shift=c(-0.05,0.05), 
             an=list('Facet'='All spectra', # facetting (here: a single panel) 
-                    'Receiver Gain'=as.numeric(meta$a_RG), # colour scale
-                    'Experiment'=factor(meta$a_EXP))) # linetype
+                    'Receiver Gain'=meta$a_RG, # colour scale
+                    'Experiment'=meta$a_EXP)) # linetype
 ```
 
 The RG value amplifies the NMR signal (free induction decay) before it is converted to a digital signal. In the plot above you can see, that there were different types of experiments performed (indicated by different linetypes) and that the RG is related to the TSP signal strength within each experiment type. In metabolic phenotyping, the RG is often fixed for spectra acquired within one analytical run as it sometimes can be diffucult to account for. 

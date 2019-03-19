@@ -8,17 +8,16 @@
 #' @seealso \code{\link{readBruker}}
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 #' @importFrom ptw asysm
-
-noise.est=function(NMR, ppm, where=c(14.6,14.7)){
-
-  # set ppm range where noise should be estimated, i.e., no signals
-  idx=get.idx(where,ppm)
-  if(length(idx)<50){stop("No or too few data points for noise estimation!")}
-
-  noise=apply(NMR[,idx], 1, function(x){
-    x_driftcorrected=x-asysm(x, lambda=1e10)
-    noi=(max(x_driftcorrected)-min(x_driftcorrected))
-    return(noi)
-  })
-  return(noise)
+noise.est <- function(NMR, ppm, where = c(14.6, 14.7)) {
+    # set ppm range where noise should be estimated, i.e., no signals
+    idx <- get.idx(where, ppm)
+    if (length(idx) < 50) {
+        stop("No or too few data points for noise estimation!")
+    }
+    noise <- apply(NMR[, idx], 1, function(x) {
+        x_driftcorrected <- x - asysm(x, lambda = 1e+10)
+        noi <- (max(x_driftcorrected) - min(x_driftcorrected))
+        return(noi)
+    })
+    return(noise)
 }

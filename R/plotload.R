@@ -15,83 +15,54 @@
 #' @importFrom colorRamps matlab.like2
 #' @importFrom scales pretty_breaks
 #' @seealso \code{\link{pca}} \code{\link{opls}} \code{\link{PCA_MetaboMate-class}} \code{\link{OPLS_MetaboMate-class}}
-
-plotload=function(model, X, ppm, shift=c(0,10), pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
-
-  if(grepl('stat|recon', type, ignore.case = T)){type='Statistical reconstruction'}else{
-    type='Backscaled'
-  }
-
-  # # why is this in here?
-  if(class(model)[1]=='PCA_MetaboMate'){
-    #type=c('Statistical reconstruction')
-
-
-    if(nrow(model@p)!=ncol(X)){
-      stop('Model loadings do not fit to X matrix.')
+plotload <- function(model, X, ppm, shift = c(0, 10), pc = 1, type = c("Statistical reconstruction", "Backscaled"), title = "") {
+    if (grepl("stat|recon", type, ignore.case = T)) {
+        type <- "Statistical reconstruction"
+    } else {
+        type <- "Backscaled"
     }
-
-    if(nrow(model@p)!=length(ppm)){
-      stop('Model loadings do not fit to ppm vector.')
+    # # why is this in here?
+    if (class(model)[1] == "PCA_MetaboMate") {
+        # type=c('Statistical reconstruction')
+        if (nrow(model@p) != ncol(X)) {
+            stop("Model loadings do not fit to X matrix.")
+        }
+        if (nrow(model@p) != length(ppm)) {
+            stop("Model loadings do not fit to ppm vector.")
+        }
+    } else {
+        if (ncol(model@p_pred) != ncol(X)) {
+            stop("Model loadings do not fit to X matrix.")
+        }
+        if (ncol(model@p_pred) != length(ppm)) {
+            stop("Model loadings do not fit to ppm vector.")
+        }
     }
-
-  }else{
-
-    if(ncol(model@p_pred)!=ncol(X)){
-      stop('Model loadings do not fit to X matrix.')
+    idx <- get.idx(shift, ppm)
+    if (type == "Statistical reconstruction") {
+        switch(class(model)[1], PCA_MetaboMate = {
+            t <- model@t[, pc]
+        }, OPLS_MetaboMate = {
+            t <- model@t_pred[, pc]
+        })
+        cc <- cor(t, X)[1, ]
+        raCol <- c(0, max(abs(cc)))
+        cv <- cov(t, X)[1, ]
+        df <- data.frame(cor = abs(cc[idx]), cov = cv[idx], ppm = ppm[idx])
+        g <- ggplot(df, aes_string("ppm", "cov", colour = "cor")) + geom_line() + scale_x_reverse(breaks = pretty_breaks(n = 15)) + scale_color_gradientn(colors = matlab.like2(10), 
+            limits = raCol, name = "cor(t,x)") + ggtitle(title) + xlab(expression(delta ~ {
+        }^1 * H ~ (ppm))) + ylab("cov(t,x)") + theme_bw()
     }
-
-    if(ncol(model@p_pred)!=length(ppm)){
-      stop('Model loadings do not fit to ppm vector.')
+    if (type == "Backscaled") {
+        # backscaling p
+        p <- model@p_pred[pc, ] * model@Xscale
+        w <- minmax(abs(model@w_pred[pc, ]))
+        raCol <- range(w)
+        df <- data.frame(t_bs = p, w = abs(w), ppm)
+        df <- df[idx, ]
+        g <- ggplot(df, aes_string("ppm", "t_bs", colour = "w")) + geom_line() + scale_x_reverse(breaks = pretty_breaks(n = 15)) + scale_color_gradientn(colors = matlab.like2(10), 
+            limits = raCol, name = expression(abs ~ w[pred * "," ~ sc])) + ggtitle(title) + xlab(expression(delta ~ {
+        }^1 * H ~ (ppm))) + ylab(expression(p[pred] ~ sigma[x])) + theme_bw()
     }
-
-  }
-
-  idx=get.idx(shift, ppm)
-
-  if(type=='Statistical reconstruction'){
-    switch(class(model)[1],
-           "PCA_MetaboMate"={t=model@t[,pc]},
-           "OPLS_MetaboMate"={t=model@t_pred[,pc]}
-    )
-
-    cc=cor(t, X)[1,]
-    raCol=c(0, max(abs(cc)))
-    cv=cov(t, X)[1,]
-
-    df=data.frame(cor=abs(cc[idx]), cov=cv[idx], ppm=ppm[idx])
-
-    g=ggplot(df, aes_string('ppm', 'cov', colour='cor'))+
-      geom_line()+
-      scale_x_reverse(breaks=pretty_breaks(n=15))+
-      scale_color_gradientn(colors=matlab.like2(10), limits=raCol, name='cor(t,x)')+
-      ggtitle(title)+
-      xlab(expression(delta~{}^1*H~(ppm)))+
-      ylab('cov(t,x)')+
-      theme_bw()
-  }
-
-  if(type=='Backscaled'){
-
-    # backscaling p
-    p=model@p_pred[pc,]*model@Xscale
-    w=minmax(abs(model@w_pred[pc,]))
-
-    raCol=range(w)
-    df=data.frame(t_bs=p, w=abs(w), ppm)
-    df=df[idx,]
-
-    g=ggplot(df, aes_string('ppm', 't_bs', colour='w'))+
-      geom_line()+
-      scale_x_reverse(breaks=pretty_breaks(n=15))+
-      scale_color_gradientn(colors=matlab.like2(10),limits=raCol, name=expression(abs~w[pred*','~sc]))+
-      ggtitle(title)+
-      xlab(expression(delta~{}^1*H~(ppm)))+
-      ylab(expression(p[pred]~sigma[x]))+
-      theme_bw()
-
-  }
-
-
-  return(g)
+    return(g)
 }

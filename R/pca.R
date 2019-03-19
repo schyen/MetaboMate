@@ -13,63 +13,39 @@
 #' @seealso \code{\link[=PCA_MetaboMate-class]{PCA_MetaboMate}} \code{\link[pcaMethods]{pca}} \code{\link{plotscores}} \code{\link{plotload}} \code{\link{opls}}
 #' @importFrom pcaMethods pca
 #'
-pca=function(X, pc=2, scale='UV', center=T, method='nipals'){
-
-  X=as.matrix(center_scale(X, idc = 'all', center, scale))
-
-  if(method=='nipals'){
-    res=list()
-    for(i in 1:pc){
-      if(i==1){
-        res[[i]]=NIPALS_PCAcomponent(X)
-      }else(
-        res[[i]]=NIPALS_PCAcomponent(X=res[[i-1]][[1]])
-      )
+pca <- function(X, pc = 2, scale = "UV", center = T, method = "nipals") {
+    X <- as.matrix(center_scale(X, idc = "all", center, scale))
+    if (method == "nipals") {
+        res <- list()
+        for (i in 1:pc) {
+            if (i == 1) {
+                res[[i]] <- NIPALS_PCAcomponent(X)
+            } else (res[[i]] <- NIPALS_PCAcomponent(X = res[[i - 1]][[1]]))
+        }
+        Tpc <- sapply(res, "[[", 2)
+        Ppc <- sapply(res, "[[", 3)
+        # total.var<-sum(diag(cov(X))) #Calculate total variance in
+        total.var <- totSS(X)
+        prop.var <- rep(NA, ncol(Tpc))
+        print(dim(Tpc))
+        print(dim(Ppc))
+        cum.var <- rep(NA, ncol(Tpc))  #Create #Calculate proportion of variance explained and cumulative
+        for (i in 1:ncol(Tpc)) {
+            prop.var[i] <- totSS(Tpc[, i] %o% Ppc[, i])/total.var
+            # prop.var[i]<-var(Tpc[,i])/total.var
+        }
+        mod_pca <- new("PCA_MetaboMate", t = Tpc, p = Ppc, nc = pc, R2 = prop.var)
+    } else {
+        mod <- pcaMethods::pca(X, nPcs = pc, scale = "none", center = F, method = method)
+        r2 <- mod@R2cum
+        for (i in 1:pc) {
+            if (i == 1) {
+                next
+            } else {
+                r2[i] <- r2[i] - cumsum(r2[1:(i - 1)])
+            }
+        }
+        mod_pca <- new("PCA_MetaboMate", t = mod@scores, p = mod@loadings, nc = pc, R2 = r2)
     }
-
-    Tpc=sapply(res, '[[',2)
-    Ppc=sapply(res, '[[',3)
-
-    #total.var<-sum(diag(cov(X))) #Calculate total variance in
-    total.var<-totSS(X)
-    prop.var<-rep(NA, ncol(Tpc));
-    print(dim(Tpc))
-    print(dim(Ppc))
-
-    cum.var<-rep(NA, ncol(Tpc)) #Create #Calculate proportion of variance explained and cumulative
-    for(i in 1:ncol(Tpc)){
-      prop.var[i]<-totSS(Tpc[,i] %o% Ppc[,i])/total.var
-      #prop.var[i]<-var(Tpc[,i])/total.var
-      }
-
-
-    mod_pca=new('PCA_MetaboMate',
-                t=Tpc,
-                p=Ppc,
-                nc=pc,
-                R2=prop.var)
-  }else{
-
-    mod=pcaMethods::pca(X, nPcs=pc, scale='none', center=F, method=method)
-
-    r2<-mod@R2cum
-    for(i in 1:pc){
-      if(i==1){next}else{
-        r2[i]<-r2[i]-cumsum(r2[1:(i-1)])
-      }
-    }
-
-    mod_pca=new('PCA_MetaboMate',
-                t=mod@scores,
-                p=mod@loadings,
-                nc=pc,
-                R2=r2)
-  }
-
-  return(mod_pca)
-
+    return(mod_pca)
 }
-
-
-
-

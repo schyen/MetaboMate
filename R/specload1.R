@@ -167,8 +167,8 @@ g=ggplot()+
   theme_bare+
   theme(axis.text = element_text(colour="black"),
         axis.text.x = element_text(angle = 45, hjust = 1),
-        #legend.position="none",
-        legend.justification=c(1,1), legend.position=c(0.98,0.99))
+        legend.justification=c(1,1),
+        legend.position=c(0.98,0.99))
 
 if(type=='Statistical reconstruction'){
   g=g+scale_colour_gradientn(colors=matlab.like2(10), name='cor(t,x)', limits=raCol)

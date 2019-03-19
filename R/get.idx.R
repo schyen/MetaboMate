@@ -4,7 +4,7 @@
 #' @export
 #' @aliases get.idx
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
-get.idx=function(range=c(1,5), ppm){
-  range<-sort(range, decreasing=T);
-  which(ppm<=range[1] & ppm>=range[2])
-  }
+get.idx <- function(range = c(1, 5), ppm) {
+    range <- sort(range, decreasing = T)
+    which(ppm <= range[1] & ppm >= range[2])
+}

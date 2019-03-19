@@ -7,6 +7,6 @@
 #' \deqn{X_{scaled}=\frac{x-x_{min}}{x_{max}-x_{min}}}
 #' @usage minmax(x)
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
-
-minmax<-function(x){
-  (x-min(x))/(max(x)-min(x))}
+minmax <- function(x) {
+    (x - min(x))/(max(x) - min(x))
+}

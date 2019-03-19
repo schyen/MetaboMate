@@ -20,146 +20,94 @@
 #' @importFrom colorRamps matlab.like2
 #' @importFrom scales pretty_breaks
 #' @importFrom stats as.formula
-
-
-specload=function(model, X, ppm, shift=c(0,10), an, alp=0.3, size=0.5, pc=1, type=c('Statistical reconstruction', 'Backscaled'), title=''){
-
-  if(class(model)=='PCA_MetaboMate'){
-    type=c('Statistical reconstruction')
-
-    if(nrow(model@p)!=ncol(X)){
-      stop('Model loadings do not fit to X matrix.')
+specload <- function(model, X, ppm, shift = c(0, 10), an, alp = 0.3, size = 0.5, pc = 1, type = c("Statistical reconstruction", "Backscaled"), title = "") {
+    if (class(model) == "PCA_MetaboMate") {
+        type <- c("Statistical reconstruction")
+        if (nrow(model@p) != ncol(X)) {
+            stop("Model loadings do not fit to X matrix.")
+        }
+        if (nrow(model@p) != length(ppm)) {
+            stop("Model loadings do not fit to ppm vector.")
+        }
+    } else {
+        if (ncol(model@p_pred) != ncol(X)) {
+            stop("Model loadings do not fit to X matrix.")
+        }
+        if (ncol(model@p_pred) != length(ppm)) {
+            stop("Model loadings do not fit to ppm vector.")
+        }
     }
-
-    if(nrow(model@p)!=length(ppm)){
-      stop('Model loadings do not fit to ppm vector.')
+    if (is.numeric(an[[1]])) {
+        stop("Facet level is numeric!")
     }
-  }else{
-
-    if(ncol(model@p_pred)!=ncol(X)){
-      stop('Model loadings do not fit to X matrix.')
+    if (length(an) < 3) {
+        if (length(an) == 1) {
+            an[[2]] <- "black"
+            an[[3]] <- "1"
+        } else {
+            an[[3]] <- "1"
+        }
     }
-
-    if(ncol(model@p_pred)!=length(ppm)){
-      stop('Model loadings do not fit to ppm vector.')
+    names(an) <- c("facet", "col", "ltype")
+    idx <- get.idx(shift, ppm)
+    if (length(idx) == 0) {
+        stop("Shift area not in ppm variable.")
     }
-
-  }
-
-  if(is.numeric(an[[1]])){
-    stop('Facet level is numeric!')
-  }
-
-  if(length(an)<3){
-    if(length(an)==1){
-      an[[2]]='black'
-      an[[3]]='1'
-    }else{
-      an[[3]]='1'
+    if (grepl("Stat|struct|ical", type, ignore.case = T)) {
+        type <- "Statistical reconstruction"
+    } else {
+        type <- "Backscaled"
     }
-  }
-  names(an)=c('facet', 'col', 'ltype')
-
-  idx=get.idx(shift, ppm)
-  if(length(idx)==0){stop('Shift area not in ppm variable.')}
-
-  if(grepl('Stat|struct|ical', type, ignore.case = T)){
-    type='Statistical reconstruction'
-  }else{
-    type='Backscaled'
-  }
-
-  ########## define overalay
-  if(type=='Statistical reconstruction'){
-    switch(class(model)[1],
-           "PCA_MetaboMate"={t=model@t[,pc]},
-           "OPLS_MetaboMate"={t=model@t_pred[,pc]}
-    )
-
-    cols=cor(t, X)[1,]
-    raCol=c(0, max(abs(cols)))
-    y=cov(t, X)[1,]
-
-  }
-
-  if(type=='Backscaled'){
-
-    # backscaling p
-    y=model@p_pred[pc,]*model@Xscale
-    cols=minmax(abs(model@w_pred[pc,]))
-    raCol=c(0,1)
-  }
-
-  #####################
-  le.arg<-length(an)
-  idx=get.idx(shift, ppm)
-
-  specs=X[,idx]
-  limY=range(specs)
-  colnames(specs)=paste("ppm", ppm[idx], sep='_')
-
-  df=data.frame(ID=1:nrow(specs), do.call(cbind.data.frame, an) , specs)
-
-  df=melt(df, id.vars=c('ID', names(an)))
-  df$variable=as.numeric(gsub('^\\.', '-', gsub('ppm_','', df$variable)))
-
-  #colnames(df)[4:6]=c('Group', 'ppm', 'Intensity')
-  df$load=NA
-
-
-  # reduce to idx
-  cols=abs(cols[idx])
-  y=y[idx]
-  cv1=(minmax(y)*(limY[2]/3))+limY[2]*0.67
-
-
-
-  if(max(cv1)>limY[2]){
-    cv1=cv1-abs(max(cv1-limY[2]))
-  }
-
-
-  fac.lev=unique(an[[1]])
-  # define loadings
-  df1=data.frame(alp,
-                 ID=nrow(X)+1,
-                 facet=fac.lev[1],
-                 Group='load',
-                 ppm=ppm[idx],
-                 Intensity=cv1,
-                 load=cols)
-
-  for(i in 2:length(fac.lev)){
-    df1=rbind(df1,
-              data.frame(alp,
-                         ID=nrow(X)+i,
-                         facet=fac.lev[i],
-                         Group='load',
-                         ppm=ppm[idx],
-                         Intensity=cv1,
-                         load=cols))
-  }
-
-  g=ggplot()+
-    geom_line(data=df1, aes_string('ppm', 'Intensity', color='load', group='ID'), size=0.8)+
-    geom_line(data=df, aes_string('variable', 'value',group='ID'), alpha=alp, size=0.1)+
-    scale_x_reverse(breaks=round(seq(shift[1], shift[2], by=abs(diff(shift))/20),3))+
-    scale_y_continuous(limits=limY)+
-    ggtitle(title)+
-    xlab(expression(delta~{}^1*H~'(ppm)'))+
-    ylab('Intensity (AU)')+
-    facet_grid(facet~.)+
-    theme_bw()+
-    theme(axis.text = element_text(colour="black"),
-          axis.text.x = element_text(angle = 45, hjust = 1))
-
-  if(type=='Statistical reconstruction'){
-    g=g+scale_colour_gradientn(colors=matlab.like2(10), name='cor(t,x)', limits=raCol)
-  }else{
-    g=g+scale_colour_gradientn(colors=matlab.like2(10), name=expression(abs~w[pred*','~sc]), limits=raCol)
-  }
-
-  return(g)
-
-
+    ########## define overalay
+    if (type == "Statistical reconstruction") {
+        switch(class(model)[1], PCA_MetaboMate = {
+            t <- model@t[, pc]
+        }, OPLS_MetaboMate = {
+            t <- model@t_pred[, pc]
+        })
+        cols <- cor(t, X)[1, ]
+        raCol <- c(0, max(abs(cols)))
+        y <- cov(t, X)[1, ]
+    }
+    if (type == "Backscaled") {
+        # backscaling p
+        y <- model@p_pred[pc, ] * model@Xscale
+        cols <- minmax(abs(model@w_pred[pc, ]))
+        raCol <- c(0, 1)
+    }
+    ##################### 
+    le.arg <- length(an)
+    idx <- get.idx(shift, ppm)
+    specs <- X[, idx]
+    limY <- range(specs)
+    colnames(specs) <- paste("ppm", ppm[idx], sep = "_")
+    df <- data.frame(ID = 1:nrow(specs), do.call(cbind.data.frame, an), specs)
+    df <- melt(df, id.vars = c("ID", names(an)))
+    df$variable <- as.numeric(gsub("^\\.", "-", gsub("ppm_", "", df$variable)))
+    # colnames(df)[4:6]=c('Group', 'ppm', 'Intensity')
+    df$load <- NA
+    # reduce to idx
+    cols <- abs(cols[idx])
+    y <- y[idx]
+    cv1 <- (minmax(y) * (limY[2]/3)) + limY[2] * 0.67
+    if (max(cv1) > limY[2]) {
+        cv1 <- cv1 - abs(max(cv1 - limY[2]))
+    }
+    fac.lev <- unique(an[[1]])
+    # define loadings
+    df1 <- data.frame(alp, ID = nrow(X) + 1, facet = fac.lev[1], Group = "load", ppm = ppm[idx], Intensity = cv1, load = cols)
+    for (i in 2:length(fac.lev)) {
+        df1 <- rbind(df1, data.frame(alp, ID = nrow(X) + i, facet = fac.lev[i], Group = "load", ppm = ppm[idx], Intensity = cv1, load = cols))
+    }
+    g <- ggplot() + geom_line(data = df1, aes_string("ppm", "Intensity", color = "load", group = "ID"), size = 0.8) + geom_line(data = df, aes_string("variable", 
+        "value", group = "ID"), alpha = alp, size = 0.1) + scale_x_reverse(breaks = round(seq(shift[1], shift[2], by = abs(diff(shift))/20), 3)) + 
+        scale_y_continuous(limits = limY) + ggtitle(title) + xlab(expression(delta ~ {
+    }^1 * H ~ "(ppm)")) + ylab("Intensity (AU)") + facet_grid(facet ~ .) + theme_bw() + theme(axis.text = element_text(colour = "black"), axis.text.x = element_text(angle = 45, 
+        hjust = 1))
+    if (type == "Statistical reconstruction") {
+        g <- g + scale_colour_gradientn(colors = matlab.like2(10), name = "cor(t,x)", limits = raCol)
+    } else {
+        g <- g + scale_colour_gradientn(colors = matlab.like2(10), name = expression(abs ~ w[pred * "," ~ sc]), limits = raCol)
+    }
+    return(g)
 }

@@ -1,48 +1,72 @@
-# Installation
-The MetaboMate package is currently hosted on GitHub. Installing it requires the developer tools R package:
+# Installation Notes
+
+The MetaboMate package is currently hosted on GitHub. Therefore, the installation requires the devtools R package. Run the following R code to install devtools and then MetaboMate:
 ```r
-install.packages('devtools')
-library(devtools)
+# check if devtools is already installed and if not, install it
+if(!requireNamespace('devtools')){install.packages('devtools')}
+
+# install MetaboMate
+devtools::install_github('kimsche/MetaboMate')
+
+# load the package
+library('MetaboMate')
 ```
 
-The following command installs the MetaboMate package:
-
-**`devtools::install_github('kimsche/MetaboMate', build_vignettes=TRUE)`**
-
-The installation process can take up to about 3 minutes as the tutorials are build locally with high-resolution NMR example data.
-
+The package installation should not take longer than a minute (most likely much shorter, depends on your internet bandwith).
+After successfull installation the last R command (``library(MetaboMate)``) returns no error message. See sections below for additional help if there was an installation error.
 
 &nbsp;
 
-#### Installation Notes for R Starters
+&nbsp;
 
-There might come up **warning messages** (eg. *unknown time zone*). These are not a problem! :pray:
-However, **error messages** are a problem as these stop the installation process. 
+### Additional Installation Guidance for R Starters
+
+&nbsp;
+
+#### Warnings vs. Errors
+During the installation process there might come up **warning messages** (the most common one is: *unknown time zone*). Warning messages are not a problem and can be safely ignored! However, **error messages** are a problem as these stop the installation process. You can find some solutions to common errors further below.
 
 &nbsp;
 
 #### Solutions to Common Installation Errors:
 
+&nbsp;
+
 >`Installation failed: 'exdir' does not exist`
 
-Workspace directory not writable, change the location of the current workspace
+This usually means the R workspace directory is not writable. Try the following before installing MetaboMate:
 
->`Dependency package missing`
-
-Install the required package(s) from Bioconductor.org
+  * Start R / RStudio as an admin: open the program with a right-click and then select the open as admin option
+  * Change the location of the current workspace to a writable one. E.g., create a new folder in the 'My Documents' directory and then navigate to this folder using RStudio's 'Set working directory' option (Session tab).
 
 &nbsp;
 
-You can check if the installation was successful by loading the package into your R session: `library(MetaboMate)` - all is fine if no error message is returned.
+>`A dependency package is not installed`
+
+Like most R packages, MetaboMate depends on a few already existing R packages, some of them are not available via CRAN but the Bioconductor repository. It is likely that Bioconductor packages require manuall installation before you can install MetaboMate. To find out which dependency packages are missing, check the error message for the phrase similar to this: '[some package name] not found'. Once you identified the required package, install it from [Bioconductor](https://www.bioconductor.org/install/). Installation from Bioconductor is very straighforward, each Bioconductor package has a webpage (use Google to find it) which lists R package installatoin code that can be pasted directly into the R console.
 
 
+&nbsp;
 
-## Tutorials
-Tutorials (also called vignettes in R) are distributed with the package (run `vignette(package='MetaboMate')`) and can also be found in the Tutorials tab on this website. Currently, there are two tutorials availabe:
 
-* Data Import and Pre-processing
-* Mutlivariate Statistics
+# Tutorials
 
+The following data analysis workflows are available:
+
+* [Import of 1D NMR spectra, quality control and data pre-processing](https://kimsche.github.io/MetaboMate/articles/Imps.html)
+* [Mutlivariate statistical analysis using PCA and O-PLS](https://kimsche.github.io/MetaboMate/articles/MVA.html)
+* Biomarker identification with STOCSY and STORM
+
+&nbsp;
+
+Although not essential, I recommend to use [RStudio](https://www.rstudio.com) for the tutorials, rather than simply an R console. RStudio is free and an open-source integrated development environment for R. The main pros of using RStudio include easy management of different projects, highlighting of R code syntax and tools for plotting, history and debugging. Simply put, it makes working with R a lot more efficient.
+
+&nbsp;
+
+**Don't be shy and [send me your feedback](mailto:tkimhofer@gmail.com)!**
+&nbsp;
+
+&nbsp;
 
 
 
