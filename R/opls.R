@@ -298,7 +298,7 @@ opls <- function(X,
              position = "dodge",
              colour = NA,
              aes(alpha= mm$'alpha1') )+
-    scale_y_continuous(limits = c(min(c(0, min(Q2_1) - 0.02)), 1), breaks = pretty_breaks()) +
+    scale_y_continuous(limits = c(min(c(0, min(-0.05) - 0.02)), 1), breaks = pretty_breaks()) +
     theme_bw() +
     labs(y = '',
       #title = paste('An  O-PLS-', type, ' model (1+', nc - 1, ') was fitted', sep = '')
