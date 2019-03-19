@@ -55,6 +55,13 @@ opls <- function(X,
       }
       Y_out <- create_dummy_Y(Y)
       Y <- Y_out[[1]]
+
+      levs=unique(apply(Y, 2, function(x){
+        length(unique(x))
+      }))
+      if(length(levs)==1 & levs[1]==1){
+        stop('Y vector has only a single level')
+      }
     }
 
     # check dimensions and convert to matrix, stop if features are non-numeric
