@@ -180,6 +180,7 @@ opls <- function(X, Y, t_pred = 1, center = T, scale = "UV", cv.k = 7, cv.type =
         if (length(which(is.na(Q2_1))) > 0) {
             cat("Something went wrong, Q2 is NA for component", nc, "\n", sep = "")
         }
+        # if first component in ns
         if ((type == "R" & nc == 1 & (Q2_1[nc] < 0.05)) | (type == "DA" & nc == 1 & (aucs[nc] < 0.6))) {
             # if (nc == 1 & ( Q2_1[nc] < 0.05 & aucs[nc] < 0.7) ) {
             cat("At first PC, Q2 < 0.03: ", round(Q2_1[nc], 3), "\n", sep = "")
@@ -195,10 +196,10 @@ opls <- function(X, Y, t_pred = 1, center = T, scale = "UV", cv.k = 7, cv.type =
                 # sep = '')
                 enough <- T
             }
-        }
-        if (Q2_1[nc] > 0.98 | aucs[nc] > 0.97) {
+          if (Q2_1[nc] > 0.98 | aucs[nc] > 0.97) {
             # cat('At PC ', nc, ', Q2 > 0.98: ', round(Q2_1[nc], 3), '\n', sep = '')
             enough <- T
+          }
         }
         if (nc == maxPCo) {
             enough <- T

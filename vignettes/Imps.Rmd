@@ -22,7 +22,9 @@ library(dplyr)
 
 &nbsp;
 
-This tutorial runs through a typical data import and pre-processing workflow for Nuclear Magnetic Resonance (NMR) - based metabolic profilig with the *MetaboMate* R package. First of all, load the *MetaboMate* package:
+This tutorial runs through a typical data import and pre-processing workflow for Nuclear Magnetic Resonance (NMR) spectroscopy - based metabolic profilig with the *MetaboMate* R package. If you no idea how to declare vectors, lists and data.frames in R, then I would recommend to have a quick look at DataCamp’s free [R Tutorial](https://www.datacamp.com/courses/free-introduction-to-r) first. 
+
+Let's get started by loading the *MetaboMate* package:
 
 ```{r load-pack, fig.show='hold'}
 # load package
@@ -93,29 +95,27 @@ From this overview we can see that the spectral width ranges from -5 to approxim
 
 ### ggplot2 
 
-There are different higher-level plotting functions available that allow a more comprehensive spectral visualisation of individual peaks or spectral ranges. One function is **`specOverlay()`**, which is comparable to **`matspec()`** shown above, but enables to create different subplots (aka facetting) and to include colourscales and linetypes in a straightforward way. 
+There are different higher-level plotting functions available that allow a more comprehensive spectral visualisation of individual peaks or spectral ranges. One function is **`specOverlay()`**, which is comparable to **`matspec()`** shown above, but enables to create different subplots (aka facetting) and to include colour scales and linetypes in a straightforward way. 
 The order in which the plotting parameters are specified is the same for all functions of this type: `an=list(facet, colour, lineype)`, whereas each list element is a vector with as many elements as there are spectra in *X*.
 
-For illustration purposes let's plot the TSP signal, which is a reference compound located in the ppm range of -0.05 to 0.05. Added is information on acquisition paramters that can be found in the *meta* dataframe: the different panels (facetting) show different experiment types, the colour maps to the receiver gain (*a_RG*) and the linetype indicates the NMR pulse program (*a_PULPROG*):
+For illustration purposes, let's plot the TSP signal (a singlet present in all spectra) located in the ppm range of -0.05 to 0.05. Added is information on acquisition paramters that can be found in the *meta* dataframe: the different panels (facetting) show different experiment types, the colour maps to the analytical run order (*a_RunOrder*) and the linetype indicates the NMR pulse program (*a_PULPROG*):
 
 ```{r spec overlay II, fig.show='hold', fig.width = 7, fig.height = 5}
 # plot TSP signal
 specOverlay(X, ppm, shift=c(-0.05,0.05), 
     an=list( 'Facet'=meta$a_EXP, # facet
-             'Receiver Gain'=meta$a_RG, # colour
+             'Run Order'=meta$a_RunOrder, # colour
              'Pulse Program'=meta$a_PULPROG) # linetype
     ) # linetype
 
 ```
 
-The plot above shows that there were three different experiment types performed (i.e., three different panels), all with pulse program *<noesypr1d>* which a Bruker term for a standard 90˚ pulse experiment with water pre-saturation. The RG value should really be constant or in a small and defined range, which is the case for the respective experiment type. 
-
+The plot above shows that three different experiment types were performed (i.e., three different panels), all based on the pulse program *\<noesypr1d\>*, which a Bruker term for a standard 90˚ pulse experiment with water pre-saturation. Experiment types labelled *\<\>* and *\<OB_flowtest\>* are calibration experiemnts and were performed before type *\<JL-noe1D\>* (see colour scale, i.e., run order).
 
 
 ## Spectral referencing
 
-Spectral referencing refers to horizontally shifting an entire spectrum unitl a specific signal reaches a defined chemical shift. 
-In urine metabolic profiling, the standard compound  is TSP^[3-(trimethylsilyl)-2,2′,3,3′-tetradeuteropropionic acid] (usually added to the sample buffer), which gives rise to a singlet that is defined to resonate at 0 ppm.^[Dona, A.C., *et al.* (2014) Precision high-throughput proton NMR spectroscopy of human urine, serum, and plasma for large-scale metabolic phenotyping. *Analytical Chemistry*. 86.19. 9887-94.]
+Spectral referencing refers to horizontally shifting an entire spectrum unitl a signal of a standard compound reaches a defined chemical shift position. In urine metabolic profiling, the standard compound is TSP^[3-(trimethylsilyl)-2,2′,3,3′-tetradeuteropropionic acid] (usually added to the sample buffer), which gives rise to a singlet that is defined to resonate at 0 ppm.^[Dona, A.C., *et al.* (2014) Precision high-throughput proton NMR spectroscopy of human urine, serum, and plasma for large-scale metabolic phenotyping. *Analytical Chemistry*. 86.19. 9887-94.]
 
 We can reference the urine spectra using the **`calibrate()`** function, as shown with the following code:
 ```{r calibration, fig.show='hold', fig.width = 7.2, fig.height = 6}
@@ -125,20 +125,20 @@ X.cali=calibration(X, ppm, type='Urine')
 # plot TSP overlay with calibrated data, facetted for each different experiment type
 specOverlay(X.cali, ppm, shift=c(-0.05,0.05), 
     an=list( 'Facet'=meta$a_EXP, # facet
-             'Receiver Gain'=meta$a_RG, # colour
+             'Run Order'=meta$a_RunOrder, # colour
              'Pulse Program'=meta$a_PULPROG) # linetype
     ) # linetype
 
 ```
 
-Now you can see that for all spectra, the TSP peak apex is centered at chemical shift of zero ppm (that was not the case before). 
+Now you can see that for all spectra, the TSP peak apex is centered at a chemical shift of zero ppm (that was not the case before). 
 
 
 
 &nbsp;
 
 ### Filtering based on spectrometer parameters
-For statistical analysis we are only interested in experiment type *<JL-noe1d>* as all other ones are calibration experiments. To exclude the latter, execute the following R code which also re-runs the previous plotting command:
+For statistical analysis we are only interested in *\<JL-noe1d\>* experiment type, as the other calibration experiments are not suitable for quantitative analysis. To exclude the latter, execute the following R code which also re-runs the previous plotting command:
 
 ```{r filter, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # Exclude calibration experiments
@@ -154,20 +154,15 @@ specOverlay(X, ppm, shift=c(-0.05,0.05),
     ) # linetype
 ```
 
-&nbsp;
-
-
-Both of the experiment types labelled **\<\>** and **\<OB_flowtest\>** (upper and lower panel in the above plot) are calibration experiments and were performed at the beginning of the run (as indicated by the colour). For quantitative analysis these are not suitable and therefore, the desired experiment type (**\<JL-noe1d\>**) will be filtered before we continue with the analysis.
-
 
 &nbsp;
 
 
 ## Assessment of spectral quality
 
-In metabolic phenotyping and in any other field where multiple NMR spectra are compared quantitatively, the quality of spectra is of particular importance. Assessment of spectral quality usually is a visual inspection of the water suppresion quality, spectral line widths and baseline stability as well as the average signal to noise (SN) ratio.
+In metabolic phenotyping and in any other field where multiple NMR spectra are compared quantitatively, the quality of spectra is of particular importance. Basic spectral quality assessement includes visual inspection of the water suppresion quality, spectral line widths, baseline level and stability as well as the average signal to noise (SN) ratio.
 
-High throughput NMR often does not allow a manual inspection of each individual spectrum and automatically generated quality indices are used to exclude low quality spectra. The **`spec.qc()`** function derives several spectral quality control indices and produces an overview plot if the function argument plot is set to TRUE: 
+High throughput NMR often does not allow a manual inspection of each individual spectrum and automatically generated quality indices are used to exclude low quality spectra. The **`spec.qc()`** function derives several spectral quality control indices and produces an overview plot if the function argument plot is set to *TRUE*: 
 
 ```{r spec qc I, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # calculate quality control measures
@@ -176,7 +171,7 @@ spec.qc=spec.quality(X.cali, ppm, ppm.noise=c(9.4,9.5), plot=T)
 
 The output of this function is a dataframe containing the quality control indices for each sample: 
 
-* TSP line widht in ppm (related to the shim quality)
+* TSP line width in ppm (related to the shim quality)
 * Area of the residual water signal (quality of water suppression)
 * Baseline area 
 * Average signal to noise ratio
@@ -186,19 +181,20 @@ The latter two paramters are primarily influenced by biological factors. For exa
 The first few rows of the quality indices table are shown just below. Like for the NMR matrix *X*, the row names are the experiment folders.
 
 ```{r qc table, echo=F}
-kable(head(spec.qc, 6)) %>%
-kable_styling(bootstrap_options = "striped", full_width = F, position = "float_left")
+kable(head(spec.qc, 4)) %>%
+kable_styling(bootstrap_options = "striped", full_width = T, position = "float_left")
 #knitr::kable(head(spec.qc, 6))
 #library(DT)
 #datatable(head(spec.qc, 6), rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T) )
 ```
 
-Currently, the line width estimate of the **`spec.quality()`** function (*TSP.lw.ppm*) requires a TSP signal or any other external reference compound that resonates at zero ppm. The respective line width in Hertz can be derived by multiplying *TSP.lw.ppm* with the spectrometer frequency in the *meta* dataframe:
+
+Currently, the line width estimate of the **`spec.quality()`** function (*TSP.lw.ppm*) requires a TSP signal or any other external reference compound that resonates at zero ppm. The respective line width in Hertz (Hz) can be derived by multiplying *TSP.lw.ppm* with the spectrometer frequency in the *meta* dataframe:
 
 ```{r spec qc II, fig.show='hold', fig.width = 7.2, fig.height = 4}
-# TSP line widht in Hz
+# TSP line width in Hz
 TSP.lw.Hz=spec.qc$"TSP.lw.ppm" * meta$"a_SFO1"
-hist(TSP.lw.Hz, xlab='TSP line widht (Hz)', main='Histogram', breaks = "FD")
+hist(TSP.lw.Hz, xlab='TSP line width (Hz)', main='Histogram', breaks = "FD", xlim=c(1.5,3.5))
 ```
 
 &nbsp;
@@ -206,7 +202,7 @@ hist(TSP.lw.Hz, xlab='TSP line widht (Hz)', main='Histogram', breaks = "FD")
 
 ## Excision of chemical shifts regions
 
-Further downstream analysis requires the excision of chemical shift regions where signals from external sources (e.g. buffer)  are present or are non-quantitative. In urinary NMR analyses these include the TSP and residual water signal as well as ppm regions where there is no signal but only noise.
+Further downstream analysis requires the excision of chemical shift regions where signals from external sources (e.g. buffer components) are present or are non-quantitative. In urinary NMR analyses these include the TSP signal, the residual water and urea signal as well as ppm regions where there is no signal but only noise.
 
 The function **`get.idx()`** can be used to obtain indices of the desired shift range from the ppm vector. These indices can then be further used to exclude the relevant columns in the NMR matrix and ppm vector. This is illustrated in the following code snippet.
 
@@ -235,15 +231,23 @@ In 1D 1H NMR spectroscopy using simple pulse sequences, broad resonanes originat
 X.bl=bline(X.cali)
 
 # compare spectra before and after baseline correction
-specOverlay(X.cali, ppm, shift=c(3.6,4), 
-an=list(panel="Not BL corrected", 
-"Baseline"=spec.qc$"Baseline"),
-title="Raw")
+specOverlay(X = X.cali, 
+            ppm = ppm, 
+            shift=c(3,4), 
+            an=list(
+              panel="Not BL corrected", 
+              "SN ratio"=spec.qc$"SN.ratio"),
+              title="Raw"
+            )
 
-specOverlay(X.bl, ppm, shift=c(3.6,4), 
-an=list(panel="BL corrected" , 
-"SN ratio"=spec.qc$"SN.ratio"),
-title="Baseline corrected")
+specOverlay(X = X.bl, 
+            ppm = ppm, 
+            shift=c(3,4), 
+            an=list(
+              panel="Not BL corrected", 
+              "SN ratio"=spec.qc$"SN.ratio"),
+              title="Baseline corrected"
+            )
 ```
 
 &nbsp;
@@ -254,20 +258,24 @@ title="Baseline corrected")
 Depending on the sample type, spectra may require normalisation prior to statistical analysis. For example, urine dilutions vary across samples, perhaps due to the uptake of different amounts of water. Normalisation methods can account for these kind of systematic differences in spectral intensities.
 
 There are several normalisation methods avaiable. Among the most commonly applied ones are Total Area (TA) normalisation and Probablistic Quotient Normalisation (PQN).^[Dieterly, F., \emph{et al.} (2006), Probabilistic Quotient Normalization as Robust Method to Account for Dilution of Complex Biological Mixtures. Application in 1H NMR Metabonomics, \emph{Analytical Chemistry}, 78.3, 4281-90] In this tutorial, we normalise the spectra using both methods and compare the results. Therefore, the functions **`pqn()`** and **`totaArea()`** are called, both returning the normalised NMR matrix. The additional input argument *add.DilF* indicates if the calculated dilution factors should be exported to the R workspace. Having a look at the calculated dilution factors can be very informative. For example, if pooled quality control samples were periodically included in the study run, then these should have very comparable dilution factors. The **add.DilF** argument specifies a user-given variable name and a vector variable named like this (containing the dilution factors) is automatically added to the R workspace after calling the function. Here's an example: 
-  
-  ```{r normalisation, fig.show='hold', fig.width = 7.2, fig.height = 4}
 
+```{r normalisation, fig.show='hold', fig.width = 7.2, fig.height = 4}
+# PQN normalisation
 X.pqn=pqn(X.bl, add.DilF = 'dilF.pqn')
+
+# Total area normalisation
 X.ta=totalArea(X.bl, add.DilF='dilF.ta')
 
-plot(log10(dilF.pqn), log10(dilF.ta), xlab='PQN Dilution Factor', ylab='Total Area (scaled)')
-abline(a = c(0,1), col='red')
+# Dilution method comparsion using statistical dilution factors 
+plot(log10(dilF.pqn), log10(dilF.ta), xlab='PQN Dilution Factor', ylab='Total Area (scaled)', xlim=c(-1,1.5), ylim=c(-1,1.5))
+abline(a = c(0,1), col='green')
 ```
 
 Plotting the dilution factors of both normalisation factors against each other, shows that these are genearlly lower for PQN than for TA normalisation. Which normalisation method is more appropriate generally depends on the sample type, experimental setup and analysis platform. In NMR-based untargeted metabolic phenotyping studies using urine as a sample matrix I recommend using PQN instead of TA normalisation.
 
-The last step is a final visual inspection of the pre-processed NMR spectra: 
-  ```{r visal check, fig.show='hold', fig.width = 7.2, fig.height = 4}
+The final step in this preprocessing tutorial is the visual inspection of the pre-processed NMR spectra: 
+
+```{r visal check, fig.show='hold', fig.width = 7.2, fig.height = 4}
 matspec(ppm, X.pqn, shift = range(ppm))
 matspec(ppm, X.pqn, shift = c(2,4))
 matspec(ppm, X.pqn, shift = c(4,6))
@@ -279,6 +287,6 @@ matspec(ppm, X.pqn, shift = c(6,9))
 
 # Summary and further steps
 
-The raw spectra were quality checked and pre-processed including calibration to TSP, removal of non-quantitative or technical signals, as well as regions which contain only noise. Further, the urine-derived spectra were normalised with PQN to account for sample dilution effects. Further filtering steps could be applied based on the established quality indices (eg., using TSP line widths as an estimate for shimming quality). 
+Raw 1D NMR spectra were imported, quality checked and pre-processed which included referencing to TSP, baseline correction and excision of spectral areas bearing no quantitative biological information. Further, the urine-derived spectra were normalised with PQN to account for different sample dilutions. Further filtering steps could be applied based on the established quality indices (eg., using TSP line widths as an estimate for shimming quality). 
 
-Spectra are now prepared for statistical analysis. Commonly applied analysis methods in metabolic profiling include Prinicpal Component Analysis (PCA) and Orthogoanl-Partial-Least Squares (O-PLS). You can find more information on this in the vignette **Multivariate Statistical Analysis** of the *MetaboMate* package.
+Spectra are now optimally prepared for statistical analysis. Commonly applied analysis methods in metabolic profiling include Prinicpal Component Analysis (PCA) and Orthogoanl-Partial-Least Squares (O-PLS). You can find more information on this in the vignette **Multivariate Statistical Analysis** of the *MetaboMate* package.

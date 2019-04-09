@@ -26,9 +26,6 @@ Thirty raw Proton NMR (^1^H NMR) spectra of murine urine samples come with the *
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # For reproducibility
 set.seed(153)
-
-# Load package
-library(MetaboMate)
 ```
 
 

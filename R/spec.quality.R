@@ -66,7 +66,7 @@ spec.quality <- function(X, ppm, ppm.noise = c(9.4, 9.5), plot = T) {
     out <- data.frame(TSP.lw.ppm = tsp.lw, Residual.water = round(resW), Baseline.est = round(bl.sum*10,1), SN.ratio = round(sn.ratio,1))
     rownames(out) <- rownames(X)
     if (plot == T | plot== 'interactive') {
-        g <- ggplot(data = out, aes_string(x = "SN.ratio", y = "Residual.water")) +
+        g <- ggplot(data = out, aes_string(x = "SN.ratio", y = "Residual.water", colour = "Baseline.est", size = "TSP.lw.ppm")) +
           #, colour = "Baseline.est", size = "TSP.lw.ppm"
           geom_point(shape = 21) +
           scale_colour_gradientn(colours = matlab.like2(10)) +
