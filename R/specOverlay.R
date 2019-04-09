@@ -39,7 +39,7 @@ specOverlay <- function(X, ppm, shift = c(-0.01, 0.01), an = list("facet", "col"
     df$variable <- ppm[as.numeric(gsub("Idx_", "", df$variable))]
     # initiate generic ggplot object
     g <- ggplot() + scale_x_reverse(breaks = seq(shift[1], shift[2], by = abs(diff(shift))/20), name = expression(delta ~ {
-    }^1 * H ~ "(ppm)")) + scale_y_continuous(breaks = pretty_breaks(), name = "Intensity (AU)") + ggtitle(title) + facet_grid(as.formula(paste(names(an)[1], 
+    }^1 * H ~ "(ppm)")) + scale_y_continuous(breaks = pretty_breaks(), name = "Intensity") + ggtitle(title) + facet_grid(as.formula(paste(names(an)[1],
         "~ ."))) + theme_bw() + theme(axis.text = element_text(colour = "black"), axis.text.x = element_text(angle = 45, hjust = 1))
     # add colour and line type
     switch(le.arg, `1` = {
@@ -53,7 +53,7 @@ specOverlay <- function(X, ppm, shift = c(-0.01, 0.01), an = list("facet", "col"
         }
     }, `3` = {
         an[[3]] <- factor(an[[3]])
-        g <- g + geom_line(data = df, aes_string(x = "variable", y = "value", group = "ID", colour = names(an)[2], linetype = names(an)[3]), alpha = alp, 
+        g <- g + geom_line(data = df, aes_string(x = "variable", y = "value", group = "ID", colour = names(an)[2], linetype = names(an)[3]), alpha = alp,
             size = size)
         # add multi-colour gradient if colour vector is not factor/char
         col.cat <- is.factor(an[[2]]) | is.character(an[[2]]) | is.logical(an[[2]])

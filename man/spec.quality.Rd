@@ -4,7 +4,7 @@
 \alias{spec.quality}
 \title{Calculating spectral quality indices}
 \usage{
-spec.quality(X, ppm, ppm.noise = c(9.4, 9.5), plot = T)
+spec.quality(X, ppm, ppm.noise = c(9.4, 9.5), plot = "interactive")
 }
 \arguments{
 \item{X}{NMR matrix, rows represent spectra.}

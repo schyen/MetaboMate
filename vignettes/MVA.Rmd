@@ -1,5 +1,5 @@
 ---
-title: "Multivariate Statistical Analysis"
+title: "Tutorial II"
 ---
 
 ```{r setup, include = FALSE}
@@ -9,12 +9,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette documents a typical multivariate statistical analysis workflow for NMR-based metabolic profilig using the *MetaboMate* R package. Example data represent Proton NMR spectra of murine urine samples collected before and after bariatric or sham surgery^[Li, Jia V., *et al.* (2011) Metabolic surgery profoundly influences gut microbial-host metabolic cross-talk. *Gut*. 60.9, 1214-1223.]. Data have been pre-processed with *MetboMate* functions including spectral calibration, excision of chemical shift regions representing noise or unwanted signals and normalisation to account for different sample dilutions. Please see *Data Preprocessing* vignette for further information on data pre-processing.
+# Multivariate statistical analysis
 
-## Prerequisites
-I recommend to install RStudio. RStudio is an open-source integrated development environment for R, which includes a code editor that highlights syntax, enables quick and easy access to help pages, improves workspace management and offers various tools for plotting, history and debugging. Simply put, it makes working with R a lot more efficient.
+This tutorial illustrates a multivariate statistical analysis workflow for NMR-based metabolic profilig with the *MetaboMate* R package.First of all, load the *MetaboMate* package:
 
-Let's get started with the analysis:
+```{r load-pack, fig.show='hold'}
+# load package
+library(MetaboMate)
+```
+
+
+## Data
+
+Thirty raw Proton NMR (^1^H NMR) spectra of murine urine samples come with the *MetaboMate* package and will be used for this tutorial. Urine samples were collected in a time-resolved fashion with a single collection before and multiple collections after a bariatric surgery was performed. 1D ^1^H NMR spectra were acquired using a standard 90˚-FID pulse sequence on a 600 MHz Bruker Avance III spectrometer, equipped with a 5 mm triple resonance (TXI) probe operating at 300 K. Further information on sample collection, processing and data acquisition can be found in the original publication by Jia V. Li *et al.*^[Li, Jia V., *et al.* (2011) Metabolic surgery profoundly influences gut microbial-host metabolic cross-talk. *Gut* 60.9, 1214-1223.]
+
 ```{r, fig.show='hold', fig.width = 7.2, fig.height = 4}
 # For reproducibility
 set.seed(153)
@@ -22,6 +30,12 @@ set.seed(153)
 # Load package
 library(MetaboMate)
 ```
+
+
+## Prerequisites
+Data has been preprocessed as illustrated in [Tutorial I](). , which including the excision of spectral reagions that bear no quantitative or biological information, baseline correction
+
+Let's get started with the analysis:
 
 ## Loading example data
 First, let's import the bariatric surgery data with the following R commands.

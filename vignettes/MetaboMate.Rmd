@@ -1,6 +1,6 @@
 # Installation Notes
 
-The MetaboMate package is currently hosted on GitHub. Therefore, the installation requires the devtools R package. Run the following R code to install devtools and then MetaboMate:
+The *MetaboMate* package is currently hosted on GitHub. Therefore, the installation is performed using the *devtools* R package. Run the following code to install first *devtools* and then *MetaboMate*:
 ```r
 # check if devtools is already installed and if not, install it
 if(!requireNamespace('devtools')){install.packages('devtools')}
@@ -13,7 +13,7 @@ library('MetaboMate')
 ```
 
 The package installation should not take longer than a minute (most likely much shorter, depends on your internet bandwith).
-After successfull installation the last R command (``library(MetaboMate)``) returns no error message. See sections below for additional help if there was an installation error.
+After successfull installation the last command above (``library(MetaboMate)``) returns no error message. See the sections below for additional help if an installation error came up. Scroll further down for a list of tutorials and workflows.
 
 &nbsp;
 

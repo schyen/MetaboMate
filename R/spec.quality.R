@@ -14,6 +14,7 @@
 #' @importFrom colorRamps matlab.like2
 #' @importFrom graphics plot
 #' @importFrom stats median
+#' @importFrom plotly ggplotly
 #' @author Torben Kimhofer \email{tkimhofer@@gmail.com}
 spec.quality <- function(X, ppm, ppm.noise = c(9.4, 9.5), plot = T) {
     if (min(ppm.noise) < min(ppm) | max(ppm.noise) > max(ppm)) {
@@ -47,9 +48,9 @@ spec.quality <- function(X, ppm, ppm.noise = c(9.4, 9.5), plot = T) {
     bl <- apply(X[, idx], 1, function(x) {
         bl <- asysm(x)
         # bl=bl+abs(min(bl))
-        bl
+        bl/median(x)
     })
-    bl.sum <- apply(bl, 2, sum)/ncol(X)
+    bl.sum <- apply(bl, 2, sum)/length(idx)
     # noise estimation
     X.bl <- t(apply(cbind(1:ncol(bl)), 1, function(i, idc = idx) {
         x.bl <- (X[i, idc] - bl[, i])
@@ -62,12 +63,22 @@ spec.quality <- function(X, ppm, ppm.noise = c(9.4, 9.5), plot = T) {
         idx <- X.bl[i, ] > spec.n[i]
         median(X.bl[i, idx])/spec.n[i]
     })
-    out <- data.frame(TSP.lw.ppm = tsp.lw, Residual.water = resW, Baseline.est = bl.sum, SN.ratio = sn.ratio)
+    out <- data.frame(TSP.lw.ppm = tsp.lw, Residual.water = round(resW), Baseline.est = round(bl.sum*10,1), SN.ratio = round(sn.ratio,1))
     rownames(out) <- rownames(X)
-    if (plot == T) {
-        g <- ggplot(data = out, aes_string(x = "SN.ratio", y = "Residual.water", colour = "Baseline.est", size = "TSP.lw.ppm")) + geom_point(shape = 21) + 
-            scale_colour_gradientn(colours = matlab.like2(10)) + scale_y_continuous(trans = "log10") + labs(x = "Estimated Signal to Noise Ratio", 
-            y = "Residual Water Signal") + theme_bw()
+    if (plot == T | plot== 'interactive') {
+        g <- ggplot(data = out, aes_string(x = "SN.ratio", y = "Residual.water")) +
+          #, colour = "Baseline.est", size = "TSP.lw.ppm"
+          geom_point(shape = 21) +
+          scale_colour_gradientn(colours = matlab.like2(10)) +
+          scale_y_continuous(trans = "log10") +
+          scale_x_continuous(limits=c(0, max(sn.ratio)))+
+          labs(x = "Estimated Average Signal to Noise Ratio",
+               y = "Residual Water",
+               colour='Est. Baseline',
+               size='Lw TSP (ppm)') +
+            theme_bw()
+
+        #if(plot== 'interactive'){g <- ggplotly(g)}
         plot(g)
     }
     return(out)

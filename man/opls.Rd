@@ -8,7 +8,7 @@ opls(X, Y, t_pred = 1, center = T, scale = "UV", cv.k = 7,
   cv.type = "k-fold", plotting = T, maxPCo = 5)
 }
 \arguments{
-\item{X}{Numeric input matrix (measurements derived by NMR spectroscopy or MS) with each row representing an observation and each column a metabolic feature.}
+\item{X}{Numeric input matrix or dataframe (usually measurements obtained through NMR spectroscopy or mass spectrometry) with each row representing an observation and each column a metabolic feature.}
 
 \item{Y}{Response vector or matrix with same length or number of columns than rows in X, respectively.}
 
