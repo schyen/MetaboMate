@@ -40,6 +40,6 @@ Suggests:
     spelling,
     testthat
 VignetteBuilder: knitr
-URL: https://github.com/kimsche/MetaboMate
-BugReports: https://github.com/kimsche/MetaboMate/issues
+URL: https://github.com/tkimhofer/MetaboMate
+BugReports: https://github.com/tkimhofer/MetaboMate/issues
 Language: en-GB
